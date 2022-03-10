@@ -2,7 +2,7 @@
 
 - **Team**
   - [Jesús Vena Campos](https://github.com/jesvencam)
-  - [Belén Rodríguez Salazar ](https://github.com/beldruxs)
+  - [Belén Rodríguez Salazar](https://github.com/beldruxs)
   - [Marcos Saa Martinez](https://github.com/MarcoSaa01)
 - **Project description**: Nuesto proyecto consta en analizar la relación existente entre las emisiones de CO2, la produccion de carbón y la balanza comercial entre diferentes paises en relacion a los ultimos años. 
 - **Repository**: [gti-sos/SOS2122-22](https://github.com/gti-sos/SOS2122-22.git)
