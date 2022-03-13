@@ -10,7 +10,7 @@ app.get("/cool",(req,res)=>{
     res.send("<html><body>"+cool()+"</body></html>")
 });
 
-app.use("/index", express.static('public'));
+app.use("/", express.static('public'));
 
 
 
