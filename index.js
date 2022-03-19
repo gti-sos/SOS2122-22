@@ -38,6 +38,7 @@ app.post(BASE_API_URL+"/coalStats",(req,res)=>{
     coalStats.push(req.body);
     res.sendStatus(201,"CREATED");
 });
+//----------------------------------------------------
 
 app.listen(port, () =>{
     console.log(`server TRULY ready at the port ${port}`);
