@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 const BASE_API_URL = "/api/v1";
 
-//datos Belén Rodríguez (belrodsal)
+//Get Y Post con datos Belén Rodríguez (belrodsal)
 var coalStats = [
     {
         country:"Spain",
