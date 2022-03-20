@@ -1,23 +1,15 @@
-const cool = require("cool-ascii-faces");
-const bodyParser = require("body-parser");
-
 const express = require("express");
-
+const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 8080;
-/*
-app.get("/cool",(req,res)=>{
-    console.log("Requested / route");
-    res.send("<html><body>"+cool()+"</body></html>")
-});
-
-app.use("/", express.static('public'));
-*/
+const BASE_API_URL = "/api/v1";
 
 app.use(bodyParser.json());
 
-const BASE_API_URL = "/api/v1";
 
+
+
+//#####################   Belén Rodríguez (belrodsal) ####################//
 //Get Y Post con datos Belén Rodríguez (belrodsal)
 var coalStats = [
     {
@@ -38,29 +30,13 @@ app.post(BASE_API_URL+"/coalStats",(req,res)=>{
     coalStats.push(req.body);
     res.sendStatus(201,"CREATED");
 });
-//----------------------------------------------------
-
-app.listen(port, () =>{
-    console.log(`server TRULY ready at the port ${port}`);
-});
 
 
 
-
-/*
-/********   API Jesús Vena Campos  *********/
+//######################   API Jesús Vena Campos  ###############################//
 
 
-//const express = require("express");
-//const bodyParser = require("body-parser");
-//const app = express();
-//const port = process.env.PORT || 8081;
-
-/*app.use(bodyParser.json());
-
-//const BASE_API_URL = "/api/v1";
-
-var contacts = [
+var co2 = [
     {		
         country : "España",
         year : 2020,
@@ -78,7 +54,7 @@ var contacts = [
 ];
 
 app.get(BASE_API_URL+"/co2-stats",(req,res)=>{
-    res.send(JSON.stringify(contacts,null,2));
+    res.send(JSON.stringify(co2,null,2));
 
 });
 
@@ -89,20 +65,20 @@ app.get(BASE_API_URL+"/co2-stats",(req,res)=>{
 
 
 app.post(BASE_API_URL+"/co2-stats",(req,res)=>{
-    contacts.push(req.body);
+    co2.push(req.body);
     res.sendStatus(201,"CREATED");
 
 });
 //ESTO BORRA TODOS LOS RECURSO  
 app.delete(BASE_API_URL+"/co2-stats", (req, res)=>{
-    contacts = [];
+    co2 = [];
     res.sendStatus(200,"OK");
 });
 
 
 app.delete(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
     var contactName = req.params.name;
-    contacts.filter((contact)=>{
+    co2.filter((contact)=>{
         return(contact.name!=contactName);
     })
     res.sendStatus(200,"OK");
@@ -111,7 +87,7 @@ app.delete(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
 
 app.get(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
     var contactName = req.params.name;
-    filteredContacts = contacts.filter((contact)=>{
+    filteredContacts = co2.filter((contact)=>{
         return(contact.name == contactName);
     })
     if(filteredContacts == 0){
@@ -125,13 +101,14 @@ app.get(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
 
 });
 
+//##########################################
 
+app.use("/",express.static('public'));
 
-//app.use("/",express.static('public'));
+//----------------------------------------------------
 
-//para que esté escuchando en un puerto 
-app.listen(port,() =>{
-console.log(`Server ready at port ${port}`)
+app.listen(port, () =>{
+    console.log(`Server ready at port ${port}`);
 });
+//----------------------------------------------------
 
-*/
