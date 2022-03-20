@@ -86,9 +86,9 @@ app.delete(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
 
 
 app.get(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
-    var contactName = req.params.name;
-    filteredContacts = co2.filter((contact)=>{
-        return(contact.name == contactName);
+    var countryName = req.params.country;
+    filteredCountries = co2.filter((countryName)=>{
+        return(country.name == countryName);
     })
     if(filteredContacts == 0){
         res.sendStatus(404,"NOT FOUND");
