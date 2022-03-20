@@ -4,13 +4,8 @@ const bodyParser = require("body-parser");
 const express = require("express");
 
 const app = express();
-<<<<<<< HEAD
-const port = process.env.PORT || 8081;
-
-=======
-//const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 /*
->>>>>>> 9d99b846bbeb57f4863de930c62adb7680db6493
 app.get("/cool",(req,res)=>{
     console.log("Requested / route");
     res.send("<html><body>"+cool()+"</body></html>")
@@ -51,17 +46,19 @@ app.listen(port, () =>{
 
 
 
+
+/*
 /********   API Jesús Vena Campos  *********/
 
 
-const express = require("express");
-const bodyParser = require("body-parser");
+//const express = require("express");
+//const bodyParser = require("body-parser");
 //const app = express();
 //const port = process.env.PORT || 8081;
 
-app.use(bodyParser.json());
+/*app.use(bodyParser.json());
 
-const BASE_API_URL = "/api/v1";
+//const BASE_API_URL = "/api/v1";
 
 var contacts = [
     {		
@@ -80,30 +77,30 @@ var contacts = [
     }
 ];
 
-app.get(BASE_API_URL+"/contacts",(req,res)=>{
+app.get(BASE_API_URL+"/co2-stats",(req,res)=>{
     res.send(JSON.stringify(contacts,null,2));
 
 });
 
-app.get(BASE_API_URL+"/contacts",(req,res)=>{
+app.get(BASE_API_URL+"/co2-stats",(req,res)=>{
     res.redirect(API_DOC_PORTAL);
 
 });
 
 
-app.post(BASE_API_URL+"/contacts",(req,res)=>{
+app.post(BASE_API_URL+"/co2-stats",(req,res)=>{
     contacts.push(req.body);
     res.sendStatus(201,"CREATED");
 
 });
 //ESTO BORRA TODOS LOS RECURSO  
-app.delete(BASE_API_URL+"/contacts", (req, res)=>{
+app.delete(BASE_API_URL+"/co2-stats", (req, res)=>{
     contacts = [];
     res.sendStatus(200,"OK");
 });
 
 
-app.delete(BASE_API_URL+"/contacts/:name", (req, res)=>{
+app.delete(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
     var contactName = req.params.name;
     contacts.filter((contact)=>{
         return(contact.name!=contactName);
@@ -112,7 +109,7 @@ app.delete(BASE_API_URL+"/contacts/:name", (req, res)=>{
 });
 
 
-app.get(BASE_API_URL+"/contacts/:name", (req, res)=>{
+app.get(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
     var contactName = req.params.name;
     filteredContacts = contacts.filter((contact)=>{
         return(contact.name == contactName);
@@ -130,10 +127,11 @@ app.get(BASE_API_URL+"/contacts/:name", (req, res)=>{
 
 
 
-app.use("/",express.static('public'));
+//app.use("/",express.static('public'));
 
 //para que esté escuchando en un puerto 
 app.listen(port,() =>{
 console.log(`Server ready at port ${port}`)
 });
 
+*/
