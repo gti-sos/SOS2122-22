@@ -34,8 +34,7 @@ app.post(BASE_API_URL+"/coalStats",(req,res)=>{
 //##################### API marsaamar1 ####################//
 //Get Y Post 
 var tradeStats = [
-    { “country”: “Spain”, “year”: 2021, “export” : 325263.6, “import” : 354170.2, “balance” : -28906.2 },
-  { “country”: “Italy”, “year”: 2021, “export” : 516.262.5, “import” : 465.846.6, “balance” : 50.415.9 }
+    
 ];
 
 app.get(BASE_API_URL+"/trade-stats",(req,res)=>{
