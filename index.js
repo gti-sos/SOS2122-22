@@ -34,6 +34,20 @@ app.post(BASE_API_URL+"/coalStats",(req,res)=>{
 //##################### API marsaamar1 ####################//
 //Get Y Post 
 var tradeStats = [
+    {		
+        country : "Spain",
+        year : 2020,
+        export : 500.817,
+        import : 21003.13,
+        balance : 423443.62
+    },
+    {
+        country : "Italy",
+        year : 2017,
+        co2_tot : 2530.177,
+        co2_kg : 24430.15,
+        co2_tpc : 42234.77
+    }
     
 ];
 
