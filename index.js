@@ -22,17 +22,18 @@ var coalStats = [
     }
 ];
 
-app.get(BASE_API_URL+"/coalStats",(req,res)=>{
+app.get(BASE_API_URL+"/coal-stats",(req,res)=>{
     res.send(JSON.stringify(coalStats,null,2));
 });
 
-app.post(BASE_API_URL+"/coalStats",(req,res)=>{
+app.post(BASE_API_URL+"/coal-stats",(req,res)=>{
     coalStats.push(req.body);
     res.sendStatus(201,"CREATED");
 });
 
-//##################### API marsaamar1 ####################//
-//Get Y Post 
+
+//##################### API MARCOS SAA (marsaamar1) ####################//
+
 var tradeStats = [
     {		
         country : "Spain",
@@ -44,9 +45,9 @@ var tradeStats = [
     {
         country : "Italy",
         year : 2017,
-        co2_tot : 2530.177,
-        co2_kg : 24430.15,
-        co2_tpc : 42234.77
+        export : 2530.177,
+        import : 24430.15,
+        balance : 42234.77
     }
     
 ];
