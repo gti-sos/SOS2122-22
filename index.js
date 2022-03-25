@@ -123,7 +123,6 @@ app.get(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
     }else{
         res.send(JSON.stringify(filteredCountries[0],null,2));
     }
-
     res.sendStatus(200,"OK");
 
 
