@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 
-
+const coal_stats_API = require("./src/belrodsalAPI/indexBelrodsal.js");
 const co2_stats_API = require("./src/jesvencamAPI/indexJESVENCAM.js");
 
 const BASE_API_URL = "/api/v1";
@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 
 app.use("/",express.static('public'));
 
+coal_stats_API(app);
 co2_stats_API.register(app);
 
 //----------------------------------------------------
