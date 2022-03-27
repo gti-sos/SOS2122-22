@@ -21,10 +21,10 @@ var co2 = [
 
 
 
-module.exports = (app) =>{
+module.exports.register = (app) =>{
 
     //Cargar datos iniciales en caso de que este vacío
-    app.get(BASE_API_URL+"/co2-stats/loadInitalData",(req,res)=>{
+    app.get(BASE_API_URL+"/co2-stats",(req,res)=>{
         if(co2.length==0){
             co2.push({		
                 country : "mexico",
@@ -167,10 +167,11 @@ module.exports = (app) =>{
     //DELETE
     
     
-    app.delete(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
+    app.delete(BASE_API_URL+"/co2-stats/:country/:year", (req, res)=>{
         var countryName = req.params.country;
-        co2.filter((c)=>{
-            return(c.country!=countryName);
+        var year = req.params.year; 
+        co2 = co2.filter((c)=>{
+            return(c.country!=countryName || (c.country == countryName && c.year !=year) );
             co2.pop()
         })
         res.sendStatus(200,"OK");
