@@ -150,9 +150,13 @@ module.exports.register = (app) =>{
               //  return(c.country == countryName && c.year == yearReq);
             //});
             if(pointer == null){
-                res.sendStatus(400,"Not Found");
+                res.sendStatus(404,"Not Found");
             }else if(countryName !=body.country || yearReq !=body.year){
                 res.sendStatus(400,"Bad Request");
+            
+            
+            }else if(countryName == body.country && yearReq !=body.year){
+                res.sendStatus(404,"Not Found");
             }else{
                 var new_stat = {...body};
                 co2[pointer] = new_stat;
@@ -167,11 +171,11 @@ module.exports.register = (app) =>{
     //DELETE
     
     
-    app.delete(BASE_API_URL+"/co2-stats/:country/:year", (req, res)=>{
+    app.delete(BASE_API_URL+"/co2-stats/:country", (req, res)=>{
         var countryName = req.params.country;
-        var year = req.params.year; 
+       // var year = req.params.year; 
         co2 = co2.filter((c)=>{
-            return(c.country!=countryName || (c.country == countryName && c.year !=year) );
+            return(c.country!=countryName);   // || (c.country == countryName && c.year !=year) 
             co2.pop()
         })
         res.sendStatus(200,"OK");
