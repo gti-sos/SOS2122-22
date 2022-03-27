@@ -1,0 +1,21 @@
+{
+	"id": "a77fb14d-9380-4569-8f78-58339ef9d4aa",
+	"name": "Local",
+	"values": [
+		{
+			"key": "HOST",
+			"value": "localhost",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "PORT",
+			"value": "8080",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-03-25T10:41:07.977Z",
+	"_postman_exported_using": "Postman/9.14.14"
+}

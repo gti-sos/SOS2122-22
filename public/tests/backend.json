@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "00de3eec-ca72-44e1-9b1b-120d03300419",
+		"name": "SOS2022-l07",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/api",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

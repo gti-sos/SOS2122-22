@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "newman run ./tests/backend.json -e ./tests/env/local.json"
   },
   "dependencies": {
     "body-parser": "^1.19.2",
