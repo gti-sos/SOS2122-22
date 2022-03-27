@@ -144,14 +144,14 @@ module.exports.register = (app) =>{
             var yearReq = req.params.year;
             var body = req.body;
             var pointer = co2.findIndex((reg)=>{
-                return (reg.country == countryName && reg.year == year)
+                return (reg.country == countryName && reg.year == yearReq)
             })
-            filteredCountryYear = co2.filter((c)=>{
-                return(c.country == countryName && c.year == yearReq);
-            });
+            //filteredCountryYear = co2.filter((c)=>{
+              //  return(c.country == countryName && c.year == yearReq);
+            //});
             if(pointer == null){
                 res.sendStatus(400,"Not Found");
-            }else if(countryName !=body.country || year !=body.year){
+            }else if(countryName !=body.country || yearReq !=body.year){
                 res.sendStatus(400,"Bad Request");
             }else{
                 var new_stat = {...body};
