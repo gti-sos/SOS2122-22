@@ -164,9 +164,8 @@ module.exports = (app) =>{
         
         app.delete(BASE_API_URL+"/coal-stats/:country", (req, res)=>{
             var countryName = req.params.country;
-            coalStats.filter((c)=>{
+            coalStats = coalStats.filter((c)=>{
                 return(c.country!=countryName);
-                coalStats.pop()
             })
             res.sendStatus(200,"OK");
         });
