@@ -18,7 +18,7 @@ app.use("/",express.static('public'));
 
 coal_stats_API(app);
 co2_stats_API.register(app);
-trade_stats_API.register(app);
+trade_stats_API(app);
 
 //----------------------------------------------------
 

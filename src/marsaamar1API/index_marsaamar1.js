@@ -82,7 +82,7 @@ var tradeStats = [
 ];
 
 
-module.exports.register = (app) =>{
+module.exports = (app) =>{
 
     //GET
 
