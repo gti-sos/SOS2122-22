@@ -24,7 +24,7 @@ var co2 = [
 module.exports.register = (app) =>{
 
     //Cargar datos iniciales en caso de que este vacío
-    app.get(BASE_API_URL+"/co2-stats",(req,res)=>{
+    app.get(BASE_API_URL+"/co2-stats/loadInitialData",(req,res)=>{
         if(co2.length==0){
             co2.push({		
                 country : "mexico",
