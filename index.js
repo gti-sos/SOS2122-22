@@ -8,6 +8,7 @@ const port = process.env.PORT || 8080;
 
 const coal_stats_API = require("./src/belrodsalAPI/indexBelrodsal.js");
 const co2_stats_API = require("./src/jesvencamAPI/indexJESVENCAM.js");
+const trade_stats_API = require("./src/marsaamar1API/index_marsaamar1.js");
 
 const BASE_API_URL = "/api/v1";
 
@@ -17,6 +18,7 @@ app.use("/",express.static('public'));
 
 coal_stats_API(app);
 co2_stats_API.register(app);
+trade_stats_API(app);
 
 //----------------------------------------------------
 
@@ -58,36 +60,6 @@ app.get(BASE_API_URL+"/coal-stats",(req,res)=>{
 
 app.post(BASE_API_URL+"/coal-stats",(req,res)=>{
     coalStats.push(req.body);
-    res.sendStatus(201,"CREATED");
-});
-
-
-//##################### API MARCOS SAA (marsaamar1) ####################//
-
-var tradeStats = [
-    {		
-        country : "Spain",
-        year : 2020,
-        export : 500.817,
-        import : 21003.13,
-        balance : 423443.62
-    },
-    {
-        country : "Italy",
-        year : 2017,
-        export : 2530.177,
-        import : 24430.15,
-        balance : 42234.77
-    }
-    
-];
-
-app.get(BASE_API_URL+"/trade-stats",(req,res)=>{
-    res.send(JSON.stringify(tradeStats,null,2));
-});
-
-app.post(BASE_API_URL+"/trade-stats",(req,res)=>{
-    tradeStats.push(req.body);
     res.sendStatus(201,"CREATED");
 });
 
