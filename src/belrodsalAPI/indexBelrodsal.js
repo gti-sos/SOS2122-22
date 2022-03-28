@@ -106,10 +106,14 @@ module.exports = (app) =>{
         });
         
         app.post(BASE_API_URL+"/coal-stats/:country",(req,res)=>{
-            var countryName = req.params.country;
+            if(test_Peticion(req)){
+                res.sendStatus(400,"BAD REQUEST");
+            }else{
+                var countryName = req.params.country;
             filteredCountries = coalStats.filter((c)=>{
                 return(c.country == countryName);
             });
+            }       
             if(filteredCountries != 0){
                 res.sendStatus(409,"Conflict");
             }else{
@@ -164,11 +168,18 @@ module.exports = (app) =>{
         
         app.delete(BASE_API_URL+"/coal-stats/:country", (req, res)=>{
             var countryName = req.params.country;
-            coalStats.filter((c)=>{
-                return(c.country!=countryName);
-                coalStats.pop()
-            })
-            res.sendStatus(200,"OK");
+            filteredCountries = coalStats.filter((c)=>{
+                return(c.country == countryName);
+            });
+            if(filteredCountries == 0){
+                res.sendStatus(404,"NOT FOUND");
+            }else{
+                coalStats.filter((c)=>{
+                    return(c.country!=countryName);
+                    coalStats.pop()
+                })
+                res.sendStatus(200,"OK");
+            }    
         });
         
          
