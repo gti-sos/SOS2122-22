@@ -3,20 +3,20 @@ const bodyParser = require("body-parser");
 const BASE_API_URL = "/api/v1";
 
 var coalStats = [
-    {
-        country:"spain",
-        year:2005,
-        productions:123456,
-        exports:63.70,
-        consumption:49070.43
-    },
-    {
-        country:"australia",
-        year:2005,
-        productions:21474.10,
-        exports:1754.70,
-        consumption:0
-    }
+{
+    country:"spain",
+    year:2005,
+    productions:123456,
+    exports:63.70,
+    consumption:49070.43
+},
+{
+    country:"australia",
+    year:2005,
+    productions:21474.10,
+    exports:1754.70,
+    consumption:0
+}
 ];
 
 
@@ -93,34 +93,60 @@ module.exports = (app) =>{
         
         
         });
+
+        
+
+        app.get(BASE_API_URL+"/coal-stats/:country/:year", (req, res)=>{
+            var countryName = req.params.country;
+            var countryYear = req.params.year;
+            filteredCountries = coalStats.filter((c) => {
+            return ((c.country == countryName) && (c.year == countryYear));
+            })
+            if (filteredIuv == 0) {
+                res.sendStatus(404, "NOT FOUND");
+            }
+            else {
+                res.send(JSON.stringify(filteredIuv[0], null, 2));
+            }
+        });
+        
+        
+        
         
         //##########################################
         
         //POST
         
         
-        app.post(BASE_API_URL+"/coal-stats",(req,res)=>{
-            coalStats.push(req.body);
-            res.sendStatus(201,"CREATED");
+        app.post(BASE_API_URL+"/coal-stats", (req,res) => {
+            if(test_Peticion(req)){
+                res.sendStatus(400,"BAD REQUEST")
+            }
+            else{
+                filteredIuv = coalStats.filter( (e) => {
+                    return (e.country == req.body.country
+                        &&  e.year == req.body.year
+                        &&  e.veh_use_comm == req.body.veh_use_comm
+                        &&  e.veh_use_pass == req.body.veh_use_pass
+                        &&  e.veh_use_per_1000 == req.body.veh_use_per_1000);
+                }); 
         
+                recursoExistente = coalStats.filter( (e) => {
+                    return (e.year == req.body.year && e.country == req.body.country);
+                })
+                if(recursoExistente != 0){
+                    res.sendStatus(409,"CONFLICT");
+                }else{
+                    coalStats.push(req.body);
+                    res.sendStatus(201,"CREATED");
+                }
+            }
         });
         
-        app.post(BASE_API_URL+"/coal-stats/:country",(req,res)=>{
-            if(test_Peticion(req)){
-                res.sendStatus(400,"BAD REQUEST");
-            }else{
-                var countryName = req.params.country;
-            filteredCountries = coalStats.filter((c)=>{
-                return(c.country == countryName);
-            });
-            }       
-            if(filteredCountries != 0){
-                res.sendStatus(409,"Conflict");
-            }else{
-                res.sendStatus(405,"Method Not Allowed");
-            }
-          
         
+        // POST A UN RECURSO CONCRETO (INCORRECTO)
+        app.post(BASE_API_URL+"/in-use-vehicles/:country/:year",(req, res)=>{
+            res.sendStatus(405,"METHOD NOT ALLOWED");
         });
         
         //##########################################
@@ -155,7 +181,7 @@ module.exports = (app) =>{
                 }else{
                     var new_stat = {...body};
                     coalStats[pointer] = new_stat;
-                    res.sendStatus(200,"Updated");
+                    res.sendStatus(200,"OK");
                 }
             }
             
@@ -182,6 +208,23 @@ module.exports = (app) =>{
             }    
         });
         
+        app.delete(BASE_API_URL+"/coal-stats/:country/:year", (req,res) => {
+            var countryName = req.params.country;
+            var countryName = req.params.year;
+            filteredIuv = coalStats.filter( (e) => {
+                return ((e.country == countryName) && (e.year == countryName));
+            });
+            if(filteredIuv == 0){
+                res.sendStatus(404,"NOT FOUND");
+            }
+            else{
+                var i = coalStats.indexOf(filteredIuv[0]);
+                if(i!==-1){
+                    coalStats.splice(i,1);
+                }
+            }
+            res.sendStatus(200, "OK");
+        })
          
         app.delete(BASE_API_URL+"/coal-stats", (req, res)=>{
             coalStats = [];
