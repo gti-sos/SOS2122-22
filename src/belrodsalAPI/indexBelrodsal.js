@@ -2,7 +2,22 @@
 const bodyParser = require("body-parser");
 const BASE_API_URL = "/api/v1";
 
-var coalStats = [];
+var coalStats = [
+{
+    country:"spain",
+    year:2005,
+    productions:123456,
+    exports:63.70,
+    consumption:49070.43
+},
+{
+    country:"australia",
+    year:2005,
+    productions:21474.10,
+    exports:1754.70,
+    consumption:0
+}
+];
 
 
 module.exports = (app) =>{
