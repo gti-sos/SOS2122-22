@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx newman run ./public/tests/pruebasjesus.json -e ./public/tests/api_jesvencam_enviroment.json"
   },
   "dependencies": {
     "body-parser": "^1.19.2",
