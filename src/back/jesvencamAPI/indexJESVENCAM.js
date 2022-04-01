@@ -7,7 +7,7 @@ var co2 = [];
 
 
 module.exports.register = (app) =>{
-
+    
     // Postaman documentation 
     app.get(BASE_API_URL+"/co2-stats/docs",(req,res)=>{
         res.redirect("https://documenter.getpostman.com/view/19481636/UVyrVwjh");
