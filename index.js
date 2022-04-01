@@ -6,9 +6,9 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 
-const coal_stats_API = require("./src/belrodsalAPI/indexBelrodsal.js");
-const co2_stats_API = require("./src/jesvencamAPI/indexJESVENCAM.js");
-const trade_stats_API = require("./src/marsaamar1API/index_marsaamar1.js");
+const coal_stats_API = require("./src/back/belrodsalAPI/indexBelrodsal.js");
+const co2_stats_API = require("./src/back/jesvencamAPI/indexJESVENCAM.js");
+const trade_stats_API = require("./src/back/marsaamar1API/index_marsaamar1.js");
 
 const BASE_API_URL = "/api/v1";
 

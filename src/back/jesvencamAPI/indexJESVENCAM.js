@@ -2,29 +2,7 @@ const bodyParser = require("body-parser");
 const BASE_API_URL = "/api/v1";
 
 
-var co2 = [
-    {		
-        country : "spain",
-        year : 2020,
-        co2_tot : 214.817,
-        co2_kg : 0.13,
-        co2_tpc : 4.62
-    },
-    {
-        country : "alemania",
-        year : 2017,
-        co2_tot : 250.177,
-        co2_kg : 0.15,
-        co2_tpc : 4.77
-    },
-    {		
-        country : "spain",
-        year : 2022,
-        co2_tot : 214.817,
-        co2_kg : 0.13,
-        co2_tpc : 4.62
-    }
-];
+var co2 = [];
 
 
 
@@ -78,6 +56,27 @@ module.exports.register = (app) =>{
                 co2_tot : 250.177,
                 co2_kg : 0.15,
                 co2_tpc : 4.77
+            },
+            {		
+                country : "spain",
+                year : 2020,
+                co2_tot : 214.817,
+                co2_kg : 0.13,
+                co2_tpc : 4.62
+            },
+            {
+                country : "alemania",
+                year : 2017,
+                co2_tot : 250.177,
+                co2_kg : 0.15,
+                co2_tpc : 4.77
+            },
+            {		
+                country : "spain",
+                year : 2022,
+                co2_tot : 214.817,
+                co2_kg : 0.13,
+                co2_tpc : 4.62
             })
     
         }

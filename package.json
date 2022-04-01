@@ -1,12 +1,11 @@
 {
   "scripts": {
     "start": "node index.js",
-    "test": "npx newman run ./public/tests/pruebasjesus.json -e ./public/tests/api_jesvencam_enviroment.json"
+    "test": "npx newman run ./public/tests/jesvencam/test_jesusvena.json -e ./public/tests/jesvencam/api_jesvencam_enviroment.json"
 
   },
   "dependencies": {
     "body-parser": "^1.19.2",
-    "cool-ascii-faces": "^1.3.4",
     "express": "^4.17.3"
   }
 }

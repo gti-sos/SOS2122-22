@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "9c2c2c93-1382-4678-b508-253fb59e4d4b",
-		"name": "SOS2122-22-jvc",
+		"_postman_id": "9d316e0e-0859-4d01-b20a-ac66e220b21d",
+		"name": "SOS2122-jesvencam",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET /co2-stats",
+			"name": "GET /co2-stats Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -32,12 +32,104 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/loadInitialData",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"{{url}}"
+						"{{HEROKU}}"
 					],
 					"path": [
+						"api",
+						"v1",
+						"co2-stats"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /co2-stats/loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response is an Array\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Array.isArray(jsonData)).to.eql(true);",
+							"});",
+							"pm.test(\"Response has contacts\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.at.least(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HEROKU}}/api/v1/co2-stats/loadInitialData",
+					"host": [
+						"{{HEROKU}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"co2-stats",
 						"loadInitialData"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /co2-stats/spain/year OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HEROKU}}/api/v1/co2-stats/spain/2020",
+					"host": [
+						"{{HEROKU}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"co2-stats",
+						"spain",
+						"2020"
 					],
 					"query": [
 						{
@@ -69,18 +161,79 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/alemania",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats/alemania",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
 						"v1",
 						"co2-stats",
 						"alemania"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /co2-stats year ok",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HEROKU}}/api/v1/co2-stats2020",
+					"host": [
+						"{{HEROKU}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"co2-stats2020"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /co2-stats year FAIL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HEROKU}}/api/v1/co2-stats2026",
+					"host": [
+						"{{HEROKU}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"co2-stats2026"
 					]
 				}
 			},
@@ -117,12 +270,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/finlandia",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats/finlandia",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -162,12 +312,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -206,12 +353,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/alemania",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats/alemania",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -224,14 +368,14 @@
 			"response": []
 		},
 		{
-			"name": "POST co2/japon.   FAILED",
+			"name": "POST co2/japon.   FAILED(BAD R)",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 409\", function () {",
-							"    pm.response.to.have.status(409);",
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -251,18 +395,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/japon",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"co2-stats",
-						"japon"
+						"co2-stats"
 					]
 				}
 			},
@@ -295,66 +435,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/loadInitialData",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"co2-stats",
-						"loadInitialData"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "PUT co2-stats/spain/2015 FAILED",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\"country\": \"spain\",\n\"year\": 2015,\n\"co2_tot\": 11,\n\"co2_kg\": 0.17,\n\"co2_tpc\": 4.17\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/loadInitialData/spain",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"loadInitialData",
-						"spain"
+						"co2-stats"
 					],
 					"query": [
 						{
@@ -387,12 +475,9 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -439,12 +524,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/spain/2020",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats/spain/2020",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -491,18 +573,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/loadInitialData",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"co2-stats",
-						"loadInitialData"
+						"co2-stats"
 					],
 					"query": [
 						{
@@ -516,7 +594,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE /co2-stats/polonia",
+			"name": "DELETE /co2-stats/polonia OK",
 			"event": [
 				{
 					"listen": "test",
@@ -543,12 +621,51 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats/polonia",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats/polonia",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"co2-stats",
+						"polonia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /co2-stats/polonia NOT FOUND",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"country\": \"Polonia\",\n\"year\": 2015,\n\"co2_tot\": 117.177,\n\"co2_kg\": 0.17,\n\"co2_tpc\": 4.17\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}/api/v1/co2-stats/polonia",
+					"host": [
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -588,12 +705,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://sos2122-22.herokuapp.com/api/v1/co2-stats",
-					"protocol": "https",
+					"raw": "{{HEROKU}}/api/v1/co2-stats",
 					"host": [
-						"sos2122-22",
-						"herokuapp",
-						"com"
+						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
@@ -606,15 +720,31 @@
 		},
 		{
 			"name": "GET /co2-stats vacio,crea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/loadInitialData",
+					"raw": "{{HEROKU}}/api/v1/co2-stats/loadInitialData",
 					"host": [
-						"{{url}}"
+						"{{HEROKU}}"
 					],
 					"path": [
+						"api",
+						"v1",
+						"co2-stats",
 						"loadInitialData"
 					]
 				}
