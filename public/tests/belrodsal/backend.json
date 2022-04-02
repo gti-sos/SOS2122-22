@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "098bcb07-cd3d-4e12-8bed-5fbf71807c97",
+		"name": "SOS2122-22-BRS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get /coal-stats Inicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response is an Array\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/loadInitialData",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /coal-stats/australia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/australia",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"australia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /coal-stats/polonia FAILED",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/polonia",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"polonia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST coal-stats/polonia CREATED",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\" : \"polonia\",\r\n\"year\" : 2005,\r\n\"productions\" : 473265.78,\r\n\"exports\" : 1754.75,\r\n\"consumption\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST coal-stats/polonia CONFLICT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\" : \"polonia\",\r\n\"year\" : 2005,\r\n\"productions\" : 473265.78,\r\n\"exports\" : 1754.75,\r\n\"consumption\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST coal-stats/spain BAD REQUEST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"spain\",\r\n\"year\" : 2005,\r\n\"productions\" : 1131498.13,\r\n\"consumption\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET coal-stats/ ACTUALIZADO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response is an Array\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /coal-stats/spain/2016 FAILED",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"spain\",\r\n\"year\" : 2005,\r\n\"productions\" : 1131498.13,\r\n\"exports\" : 49942.21,\r\n\"consumption\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/spain/2016",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"spain",
+						"2016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /coal-stats FAILED",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"spain\",\r\n\"year\" : 2005,\r\n\"productions\" : 1131498.13,\r\n\"exports\" : 49942.21,\r\n\"consumption\" : 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /coal-stats/spain/2005 OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"spain\",\r\n\"year\" : 2005,\r\n\"productions\" : 1131498.13,\r\n\"exports\" : 49942.00,\r\n\"consumption\" : 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/spain/2005",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"spain",
+						"2005"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET coal-stats/ ACTUALIZADO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE coal-stats/india  OK",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/india",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"india"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE coal-stats/OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /coal-stats VACIO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /coal-stats loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response is an Array\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(Array.isArray(jsonData)).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}coal-stats/loadInitialData",
+					"host": [
+						"{{HEROKU}}coal-stats"
+					],
+					"path": [
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
