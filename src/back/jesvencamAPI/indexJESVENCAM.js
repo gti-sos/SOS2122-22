@@ -167,6 +167,13 @@ module.exports.register = (app,db) =>{
             res.send(JSON.stringify(filteredCO2Years,null,2)); 
     
         }
+        if (req.query.limit != undefined || req.query.offset != undefined) {
+            filteredList = paginacion(req, filteredList);
+        }
+        filteredList.forEach((element) => {
+            delete element._id;
+        });
+        res.send(JSON.stringify(filteredList, null, 2));
     });
 
     app.get(BASE_API_URL+"/co2-stats?:co2_tot", (req, res)=>{
@@ -182,6 +189,13 @@ module.exports.register = (app,db) =>{
             res.send(JSON.stringify(filteredCO2tot[0],null,2)); 
     
         }
+        if (req.query.limit != undefined || req.query.offset != undefined) {
+            filteredList = paginacion(req, filteredList);
+        }
+        filteredList.forEach((element) => {
+            delete element._id;
+        });
+        res.send(JSON.stringify(filteredList, null, 2));
     });
     
     
@@ -350,7 +364,7 @@ module.exports.register = (app,db) =>{
 
 
     //Función paginación 
-    
+
     function paginacion(req, lista) {
 
         var res = [];
