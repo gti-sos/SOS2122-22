@@ -18,10 +18,6 @@
 							"pm.test(\"Response is an Array\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(Array.isArray(jsonData)).to.eql(true);",
-							"});",
-							"pm.test(\"Response has contacts\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.length).to.be.at.least(1);",
 							"});"
 						],
 						"type": "text/javascript"

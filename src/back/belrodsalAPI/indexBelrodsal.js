@@ -50,9 +50,28 @@ module.exports = (app) =>{
             res.send(JSON.stringify(coalStats,null,2));
         
         });
+
         
-        app.get(BASE_API_URL+"/coal-stats",(req,res)=>{
-            res.send(JSON.stringify(coalStats,null,2));
+    
+        
+        app.get(BASE_API_URL+"/coal-stats", (req, res)=>{
+        
+            if(coalStats == []){
+                res.sendStatus(404,"NOT FOUND");
+            }else{
+                res.send(JSON.stringify(co2,null,2));
+            }
+        
+            res.sendStatus(200,"OK");
+    
+            //paginacion
+            if (req.query.limit != undefined || req.query.offset != undefined) {
+                filteredList = paginacion(req, filteredList);
+            }
+            filteredList.forEach((element) => {
+                delete element._id;
+            });
+            res.send(JSON.stringify(filteredList, null, 2));
         });
         
         app.get(BASE_API_URL+"/coal-stats/docs",(req,res)=>{
@@ -73,6 +92,14 @@ module.exports = (app) =>{
             }else{
                 res.send(JSON.stringify(filteredCountries[0],null,2));
             }
+            //paginacion 
+            if(req.query.limit != undefined || req.query.offset != undefined){
+                newRegis = paginacion(req,newRegis);
+            }
+            newRegis.forEach((element)=>{
+                delete element._id;
+            });
+            res.send(JSON.stringify(newRegis,null,2));
         
             res.sendStatus(200,"OK");
         
@@ -85,14 +112,25 @@ module.exports = (app) =>{
             var countryName = req.params.country;
             var countryYear = req.params.year;
             filteredCountries = coalStats.filter((c) => {
-            return ((c.country == countryName) && (c.year == countryYear));
+            return (c.country == countryName && c.year == countryYear);
             })
-            if (filteredIuv == 0) {
+            if (filteredCountries == 0) {
                 res.sendStatus(404, "NOT FOUND");
             }
             else {
-                res.send(JSON.stringify(filteredIuv[0], null, 2));
+                res.send(JSON.stringify(filteredCountries[0], null, 2));
             }
+            //paginacion 
+            if(req.query.limit != undefined || req.query.offset != undefined){
+                newRegis = paginacion(req,newRegis);
+            }
+            newRegis.forEach((element)=>{
+                delete element._id;
+            });
+            res.send(JSON.stringify(newRegis,null,2));
+        
+            res.sendStatus(200,"OK");
+
         });
         
         
@@ -111,9 +149,10 @@ module.exports = (app) =>{
                 filteredIuv = coalStats.filter( (e) => {
                     return (e.country == req.body.country
                         &&  e.year == req.body.year
-                        &&  e.veh_use_comm == req.body.veh_use_comm
-                        &&  e.veh_use_pass == req.body.veh_use_pass
-                        &&  e.veh_use_per_1000 == req.body.veh_use_per_1000);
+                        &&  e.country == req.country
+                        &&  e.productions == req.body.productions
+                        &&  e.exports == req.body.exports
+                        &&  e.consumption == req.body.consumption);
                 }); 
         
                 recursoExistente = coalStats.filter( (e) => {
@@ -222,6 +261,22 @@ module.exports = (app) =>{
                     req.body.productions == null |
                     req.body.exports == null |
                     req.body.consumption == null );
+        }
+
+        function paginacion(req, lista) {
+
+            var res = [];
+            const limit = req.query.limit;
+            const offset = req.query.offset;
+    
+            if (limit < 1 || offset < 0 || offset > lista.length) {
+                res.push("INCORRECT PARAMETERS");
+                return res;
+            }
+    
+            res = lista.slice(offset, parseInt(limit) + parseInt(offset));
+            return res;
+    
         }
 
 };
