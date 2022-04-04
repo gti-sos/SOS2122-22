@@ -2,7 +2,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "npx newman run ./public/tests/jesvencam/test_jesusvena.json -e ./public/tests/jesvencam/api_jesvencam_enviroment.json",
-    "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json"
+    "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json",
+    "test-trade-stats": "npx newman run ./public/tests/marsaamar1/tests.json -e ./public/tests/marsaamar1/env.json"
   },
   "dependencies": {
     "body-parser": "^1.19.2",
