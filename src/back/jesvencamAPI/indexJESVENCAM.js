@@ -6,7 +6,7 @@ var co2 = [];
 
 
 
-module.exports.register = (app) =>{
+module.exports.register = (app,db) =>{
     
     // Postaman documentation 
     app.get(BASE_API_URL+"/co2-stats/docs",(req,res)=>{
@@ -14,7 +14,8 @@ module.exports.register = (app) =>{
     
     });
 
-    // Create data if arry is empty 
+  
+
     app.get(BASE_API_URL+"/co2-stats/loadInitialData",(req,res)=>{
         if(co2.length==0){
             co2.push({		
@@ -84,6 +85,7 @@ module.exports.register = (app) =>{
     
     });
     
+    
   
     app.get(BASE_API_URL+"/co2-stats", (req, res)=>{
         
@@ -94,6 +96,15 @@ module.exports.register = (app) =>{
         }
     
         res.sendStatus(200,"OK");
+
+        //paginacion
+        if (req.query.limit != undefined || req.query.offset != undefined) {
+            filteredList = paginacion(req, filteredList);
+        }
+        filteredList.forEach((element) => {
+            delete element._id;
+        });
+        res.send(JSON.stringify(filteredList, null, 2));
     });
     
     //POR PAIS 
@@ -107,6 +118,14 @@ module.exports.register = (app) =>{
         }else{
             res.send(JSON.stringify(filteredCountries[0],null,2));
         }
+        //paginacion 
+        if(req.query.limit != undefined || req.query.offset != undefined){
+            newRegis = paginacion(req,newRegis);
+        }
+        newRegis.forEach((element)=>{
+            delete element._id;
+        });
+        res.send(JSON.stringify(newRegis,null,2));
     
         res.sendStatus(200,"OK");
     });
@@ -123,7 +142,14 @@ module.exports.register = (app) =>{
         }else{
             res.send(JSON.stringify(filteredCountriesYears[0],null,2));
         }
-    
+        if(req.query.limit != undefined || req.query.offset != undefined){
+            newRegis = paginacion(req,newRegis);
+            res.send(JSON.stringify(newRegis,null,2));
+        }
+        newRegis.forEach((element)=>{
+            delete element._id;
+        });
+        res.send(JSON.stringify(newRegis[0],null,2));
         res.sendStatus(200,"OK");
     });
 
@@ -331,8 +357,7 @@ module.exports.register = (app) =>{
         if (limit < 1 || offset < 0 || offset > lista.length) {
             res.push("INCORRECT PARAMETERS");
             return res;
-        }
-
+        }   
         res = lista.slice(offset, parseInt(limit) + parseInt(offset));
         return res;
 
