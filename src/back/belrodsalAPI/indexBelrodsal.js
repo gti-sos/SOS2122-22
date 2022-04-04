@@ -112,13 +112,13 @@ module.exports = (app) =>{
             var countryName = req.params.country;
             var countryYear = req.params.year;
             filteredCountries = coalStats.filter((c) => {
-            return ((c.country == countryName) && (c.year == countryYear));
+            return (c.country == countryName && c.year == countryYear);
             })
             if (filteredCountries == 0) {
                 res.sendStatus(404, "NOT FOUND");
             }
             else {
-                res.send(JSON.stringify(filteredIuv[0], null, 2));
+                res.send(JSON.stringify(filteredCountries[0], null, 2));
             }
             //paginacion 
             if(req.query.limit != undefined || req.query.offset != undefined){
