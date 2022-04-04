@@ -348,6 +348,9 @@ module.exports.register = (app,db) =>{
     }
 
 
+
+    //Función paginación 
+    
     function paginacion(req, lista) {
 
         var res = [];
