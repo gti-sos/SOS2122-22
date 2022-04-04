@@ -87,7 +87,7 @@ module.exports = (app) =>{
             filteredCountries = coalStats.filter((c) => {
             return ((c.country == countryName) && (c.year == countryYear));
             })
-            if (filteredIuv == 0) {
+            if (filteredCountries == 0) {
                 res.sendStatus(404, "NOT FOUND");
             }
             else {
