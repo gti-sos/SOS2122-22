@@ -111,9 +111,10 @@ module.exports = (app) =>{
                 filteredIuv = coalStats.filter( (e) => {
                     return (e.country == req.body.country
                         &&  e.year == req.body.year
-                        &&  e.veh_use_comm == req.body.veh_use_comm
-                        &&  e.veh_use_pass == req.body.veh_use_pass
-                        &&  e.veh_use_per_1000 == req.body.veh_use_per_1000);
+                        &&  e.country == req.country
+                        &&  e.productions == req.body.productions
+                        &&  e.exports == req.body.exports
+                        &&  e.consumption == req.body.consumption);
                 }); 
         
                 recursoExistente = coalStats.filter( (e) => {
