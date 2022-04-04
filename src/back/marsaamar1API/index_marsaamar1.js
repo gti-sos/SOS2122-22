@@ -120,31 +120,22 @@ module.exports = (app) =>{
     
     });
 
-    /* 
-    
-    app.get(BASE_API_URL+"/trade-stats/:year", (req, res)=>{
-        var tradeYear = req.params.year;
-        var filteredYear = tradeStats.filter((y)=>{
-            return(y.year == tradeYear);
+    app.get(BASE_API_URL+"/trade-stats/:country/:year", (req, res)=>{
+        var countryName = req.params.country;
+        var countryYear = req.params.year;
+        filteredCountries = tradeStats.filter((c) => {
+        return ((c.country == countryName) && (c.year == countryYear));
         })
-        if(filteredYear == 0){
-            res.sendStatus(404,"NOT FOUND");
-        }else{
-            res.send(JSON.stringify(filteredYear[0],null,2));
+        if (filteredCountries == 0) {
+            res.sendStatus(404, "NOT FOUND");
         }
-        res.sendStatus(200,"OK");
+        else {
+            res.send(JSON.stringify(filteredIuv[0], null, 2));
+        }
     });
-
-    */
-    
     
     //POST
     
-    
-    app.post(BASE_API_URL+"/trade-stats",(req,res)=>{
-        tradeStats.push(req.body);
-        res.sendStatus(201,"CREATED");
-    });
     
     app.post(BASE_API_URL+"/trade-stats/:country",(req,res)=>{
         var countryName = req.params.country;
@@ -156,8 +147,32 @@ module.exports = (app) =>{
         }else{
             res.sendStatus(405,"Method Not Allowed");
         }
-      
+        
+    });
+
+    app.post(BASE_API_URL+"/trade-stats", (req,res) => {
+        if(test_request(req)){
+            res.sendStatus(400,"BAD REQUEST")
+        }
+        else{
+            filteredIuv = tradeStats.filter( (e) => {
+                return (e.country == req.body.country
+                    &&  e.year == req.body.year
+                    &&  e.export == req.body.export
+                    &&  e.import == req.body.import
+                    &&  e.balance == req.body.balance);
+            }); 
     
+            recursoExistente = tradeStats.filter( (e) => {
+                return (e.year == req.body.year && e.country == req.body.country);
+            })
+            if(recursoExistente != 0){
+                res.sendStatus(409,"CONFLICT");
+            }else{
+                tradeStats.push(req.body);
+                res.sendStatus(201,"CREATED");
+            }
+        }
     });
     
     
@@ -208,6 +223,24 @@ module.exports = (app) =>{
             
         })
         res.sendStatus(200,"OK");
+    });
+
+    app.delete(BASE_API_URL+"/trade-stats/:country/:year", (req,res) => {
+        var countryName = req.params.country;
+        var countryName = req.params.year;
+        filteredIuv = tradeStats.filter( (e) => {
+            return ((e.country == countryName) && (e.year == countryName));
+        });
+        if(filteredIuv == 0){
+            res.sendStatus(404,"NOT FOUND");
+        }
+        else{
+            var i = tradeStats.indexOf(filteredIuv[0]);
+            if(i!==-1){
+                tradeStats.splice(i,1);
+            }
+        }
+        res.sendStatus(200, "OK");
     });
     
      

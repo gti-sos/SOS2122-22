@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "34af2293-804d-4330-ac45-8f7d32f8cc09",
+		"name": "Tests marsaamar1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Base de datos llena",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats",
+					"host": [
+						"{{SERVER}}trade-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /loadInitialData ERROR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats/loadInitialData",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Base de datos borrada",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats",
+					"host": [
+						"{{SERVER}}trade-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /loadInitialData CREATED",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats/loadInitialData",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Base de datos con 5 datos iniciales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats",
+					"host": [
+						"{{SERVER}}trade-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get España OK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats/España",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"España"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST España CONFLICTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats/Inglaterra",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"Inglaterra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE España OK",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats/España",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"España"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST España Method Not Allowed",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}trade-stats/España",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"España"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT FAILED",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2018,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 330635.8,\r\n        \"balance\" : -37177.1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}trade-stats/España/2016",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"España",
+						"2016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT FAILED 2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2018,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 330635.8,\r\n        \"balance\" : -37177.1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}trade-stats",
+					"host": [
+						"{{SERVER}}trade-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT OK",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2018,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 3340635.8,\r\n        \"balance\" : -37177.1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}trade-stats/España/2018",
+					"host": [
+						"{{SERVER}}trade-stats"
+					],
+					"path": [
+						"España",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
