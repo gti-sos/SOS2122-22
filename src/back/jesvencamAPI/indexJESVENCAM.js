@@ -320,5 +320,22 @@ module.exports.register = (app) =>{
                 req.body.co2_kg == null |
                 req.body.co2_tpc == null );
     }
+
+
+    function paginacion(req, lista) {
+
+        var res = [];
+        const limit = req.query.limit;
+        const offset = req.query.offset;
+
+        if (limit < 1 || offset < 0 || offset > lista.length) {
+            res.push("INCORRECT PARAMETERS");
+            return res;
+        }
+
+        res = lista.slice(offset, parseInt(limit) + parseInt(offset));
+        return res;
+
+    }
     
 }
