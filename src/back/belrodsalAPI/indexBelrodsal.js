@@ -5,7 +5,7 @@ const BASE_API_URL = "/api/v1";
 var coalStats = [];
 
 
-module.exports = (app) =>{
+module.exports = (app,db) =>{
 
     //##########################################
     //GET
@@ -50,9 +50,56 @@ module.exports = (app) =>{
             res.send(JSON.stringify(coalStats,null,2));
         
         });
+
         
-        app.get(BASE_API_URL+"/coal-stats",(req,res)=>{
-            res.send(JSON.stringify(coalStats,null,2));
+    
+        
+        app.get(BASE_API_URL+"/coal-stats", (req, res)=>{
+        
+            if(coalStats == []){
+                res.sendStatus(404,"NOT FOUND");
+            }else{
+                res.send(JSON.stringify(co2,null,2));
+            }
+        
+            res.sendStatus(200,"OK");
+    
+            //paginacion
+            if (req.query.limit != undefined || req.query.offset != undefined) {
+                filteredList = paginacion(req, filteredList);
+            }
+            filteredList.forEach((element) => {
+                delete element._id;
+            });
+            res.send(JSON.stringify(filteredList, null, 2));
+        });
+
+        app.get(BASE_API_URL + url_jaime + "/:country/:year", (req, res)=>{
+            var Year = parseInt(req.params.year);
+            var Country = req.params.country;
+    
+    
+            db.find({country : Country, year: Year}, {_id:0}, function(err,data){
+                console.log("0");
+                if(err){
+                    console.log("1");
+                    console.error("ERROR GET: "+ err);
+                    res.sendStatus(500, "Internal Server Error");
+                }else {
+                    console.log("2");
+                    if(data.length != 0){
+                        console.log("3");
+                        res.send(JSON.stringify(data,null,2));
+                        res.status(200);
+                    } else{
+                        console.log("4");
+                        console.error("Data not found");
+                        res.status(404);
+                        res.send("Data not found");
+                    }
+                }
+            });
+    
         });
         
         app.get(BASE_API_URL+"/coal-stats/docs",(req,res)=>{
@@ -73,6 +120,14 @@ module.exports = (app) =>{
             }else{
                 res.send(JSON.stringify(filteredCountries[0],null,2));
             }
+            //paginacion 
+            if(req.query.limit != undefined || req.query.offset != undefined){
+                newRegis = paginacion(req,newRegis);
+            }
+            newRegis.forEach((element)=>{
+                delete element._id;
+            });
+            res.send(JSON.stringify(newRegis,null,2));
         
             res.sendStatus(200,"OK");
         
@@ -93,6 +148,17 @@ module.exports = (app) =>{
             else {
                 res.send(JSON.stringify(filteredIuv[0], null, 2));
             }
+            //paginacion 
+            if(req.query.limit != undefined || req.query.offset != undefined){
+                newRegis = paginacion(req,newRegis);
+            }
+            newRegis.forEach((element)=>{
+                delete element._id;
+            });
+            res.send(JSON.stringify(newRegis,null,2));
+        
+            res.sendStatus(200,"OK");
+
         });
         
         
@@ -223,6 +289,22 @@ module.exports = (app) =>{
                     req.body.productions == null |
                     req.body.exports == null |
                     req.body.consumption == null );
+        }
+
+        function paginacion(req, lista) {
+
+            var res = [];
+            const limit = req.query.limit;
+            const offset = req.query.offset;
+    
+            if (limit < 1 || offset < 0 || offset > lista.length) {
+                res.push("INCORRECT PARAMETERS");
+                return res;
+            }
+    
+            res = lista.slice(offset, parseInt(limit) + parseInt(offset));
+            return res;
+    
         }
 
 };
