@@ -386,31 +386,41 @@ module.exports.register = (app,db) =>{
         });
     })
     
-    
-    
-    app.delete(BASE_API_URL+"co2-stats/:country/:year",(req, res)=>{
-        var country = req.params.country;
-        var year = req.params.year;
-        db.find({ country: country, year: parseInt(year) }, {}, (err, filteredList) => {
-            if (err) {
-                res.sendStatus(500, "INTERNAL SERVER ERROR");
+    app.delete(BASE_API_URL + "/co2-stats/:country", (req, res) => { 
+        var countryName = req.params.country;
+        registration_stats.filter((cont) => {
+            return (cont.country != countryName);
+        });
+        res.sendStatus(200, "OK");
+    });
+
+    app.delete(BASE_API_URL + "/co2-stats/:country/:year",(req, res)=>{
+        var countryR = req.params.country;
+        var yearR = req.params.year;
+
+        db.find({country: countryR, year: parseInt(yearR)}, {}, (err, regisNew)=>{
+            if (err){
+                res.sendStatus(500,"ERROR EN CLIENTE");
+                return;
             }
-            if (filteredList == 0) {
-                res.sendStatus(404, "NOT FOUND");
-                
+            if(regisNew==0){
+                res.sendStatus(404,"NOT FOUND");
+                return;
             }
-            db.remove({ country: country, year: year }, {}, (err, numRemoved) => {
-                if (err) {
-                    res.sendStatus(500, "INTERNAL SERVER ERROR");
+            db.remove({country: countryR, year: yearR}, {}, (err, numRemoved)=>{
+                if (err){
+                    res.sendStatus(500,"ERROR EN CLIENTE");
+                    return;
                 }
-
-                res.sendStatus(200, "DELETED");
-
+            
+                res.sendStatus(200,"DELETED");
+                return;
+                
             });
         });
 
     })
- 
+
     
 
 
