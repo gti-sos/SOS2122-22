@@ -69,7 +69,7 @@ module.exports.register = (app,db) =>{
     
     // Postaman documentation 
     app.get(BASE_API_URL+"/co2-stats/docs",(req,res)=>{
-        res.redirect("https://documenter.getpostman.com/view/19481636/UVyrVwjh");
+        res.redirect("https://documenter.getpostman.com/view/19481636/UVyvwuou");
     
     });
     app.get(BASE_API_URL+ "/co2-stats/loadInitialData", (req, res) => {
