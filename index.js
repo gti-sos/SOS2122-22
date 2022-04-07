@@ -18,7 +18,7 @@ co2_stats_API.register(app,db_co2_stats);
 const BASE_API_URL = "/api/v1";
 
 
-app.use("/",express.static('public'));
+app.use("/",express.static('./public'));
 
 coal_stats_API(app);
 trade_stats_API(app);

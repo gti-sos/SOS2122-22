@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "start": "node index.js",
     "test": "npx newman run ./public/tests/jesvencam/test-jesvencam.json -e ./public/tests/jesvencam/api_jesvencam_enviroment.json",
     "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json",
@@ -9,5 +11,15 @@
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
     "nedb": "^1.8.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0"
   }
 }
