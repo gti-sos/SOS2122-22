@@ -66,7 +66,7 @@ var co2 = [{
 
 
 module.exports.register = (app,db) =>{
-    
+
     // Postaman documentation 
     app.get(BASE_API_URL+"/co2-stats/docs",(req,res)=>{
         res.redirect("https://documenter.getpostman.com/view/19481636/UVyvwuou");
@@ -312,7 +312,6 @@ module.exports.register = (app,db) =>{
     })
     
     
-    // PUTs
     
     // PUT de una lista de recursos
     
@@ -421,12 +420,7 @@ module.exports.register = (app,db) =>{
 
     })
 
-    
-
-
-   
-
-
+        
     //Función paginación 
     function paginacion(req, lista){
 
