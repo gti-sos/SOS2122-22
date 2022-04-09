@@ -6,6 +6,7 @@
     <body>
     <h1>SOS2122-22</h1>	
     <a href="/#/Co2StatsTable">Table of CO2 Stats</a>
+    <p><a href="/#/CoalStatsTable">Table of Coal Stats</a></p>
     <h3>Team</h3>
     <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a></p>
