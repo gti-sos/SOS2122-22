@@ -326,7 +326,7 @@ module.exports.register = (app,db) =>{
         //COMPROBAMOS FORMATO JSON
 
         if(test_Peticion(req)){
-            res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
+            res.sendStatus(400,"BAD REQUEST");
             return;
         }
         
@@ -340,7 +340,7 @@ module.exports.register = (app,db) =>{
                 return;
             }
 
-            //COMPROBAMOS SI EXISTE EL ELEMENTO
+            
 
             filteredList = filteredList.filter((reg)=>
             {
@@ -351,14 +351,13 @@ module.exports.register = (app,db) =>{
                 return;
             }
 
-            //COMPROBAMOS SI LOS CAMPOS ACTUALIZADOS SON IGUALES
 
             if(countryR != body.country || yearR != body.year){
                 res.sendStatus(400,"BAD REQUEST");
                 return;
             }
 
-            //ACTUALIZAMOS VALOR
+        
                 
             db.update({country: countryR, year: yearR }, {$set: body}, {},function(err, updatedDb) {
                 if (err) {
@@ -387,7 +386,7 @@ module.exports.register = (app,db) =>{
     
     app.delete(BASE_API_URL + "/co2-stats/:country", (req, res) => { 
         var countryName = req.params.country;
-        registration_stats.filter((cont) => {
+        co2.filter((cont) => {
             return (cont.country != countryName);
         });
         res.sendStatus(200, "OK");
@@ -429,7 +428,7 @@ module.exports.register = (app,db) =>{
         const offset = req.query.offset;
         
         if(limit < 1 || offset < 0 || offset > lista.length){
-            res.push("ERROR EN PARAMETROS LIMIT Y/O OFFSET");
+            res.push("BAD PARAMS");
             return res;
         }
 
