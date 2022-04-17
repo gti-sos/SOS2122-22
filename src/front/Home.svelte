@@ -6,7 +6,7 @@
     <body>
     <h1>SOS2122-22</h1>	
     <a href="/#/Co2StatsTable">Table of CO2 Stats</a>
-    <p><a href="/#/CoalStatsTable">Table of Coal Stats</a></p>
+    <p><a href="/#/coalStatsTable">Table of Coal Stats</a></p>
     <h3>Team</h3>
     <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a></p>
@@ -20,3 +20,4 @@
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/trade-stats/docs">https://sos2122-22.herokuapp.com/api/v1/trade-stats/docs </a>(developed by <a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a>)</p>
 </body>
 </main>
+
