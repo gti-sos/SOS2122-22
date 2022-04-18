@@ -18,7 +18,7 @@ db_trade_stats = new Datastore();
 
 co2_stats_API.register(app,db_co2_stats);
 coal_stats_API.register(app,db_coal_stats);
-coal_stats_APIV2(app,db_coal_stats);
+coal_stats_APIV2.register(app,db_coal_stats);
 trade_stats_API.register(app,db_trade_stats);
 
 const BASE_API_URL = "/api/v1";
