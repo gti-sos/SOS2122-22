@@ -392,20 +392,20 @@ module.exports.register = (app,db) =>{
         res.sendStatus(200, "OK");
     });
 
-    app.delete(BASE_API_URL + "/co2-stats/:country/:year",(req, res)=>{
+    app.delete(BASE_API_URL_+"/:country/:year",(req, res)=>{
         var countryR = req.params.country;
         var yearR = req.params.year;
 
-        db.find({country: countryR, year: parseInt(yearR)}, {}, (err, regisNew)=>{
+        db.find({country: countryR, year: parseInt(yearR)}, {}, (err, filteredList)=>{
             if (err){
                 res.sendStatus(500,"ERROR EN CLIENTE");
                 return;
             }
-            if(regisNew==0){
+            if(filteredList==0){
                 res.sendStatus(404,"NOT FOUND");
                 return;
             }
-            db.remove({country: countryR, year: yearR}, {}, (err, numRemoved)=>{
+            db.remove({country: countryR, year: parseInt(yearR)}, {}, (err, numRemoved)=>{
                 if (err){
                     res.sendStatus(500,"ERROR EN CLIENTE");
                     return;
@@ -418,7 +418,6 @@ module.exports.register = (app,db) =>{
         });
 
     })
-
         
     //Función paginación 
     function paginacion(req, lista){
