@@ -11,6 +11,7 @@
         balance: ""
 	}
     onMount(getEntries);
+	
     async function getEntries(){
         console.log("Fetching entries....");
         const res = await fetch("/api/v1/trade-stats"); 
@@ -22,7 +23,12 @@
     }
 	async function insertEntry(){
         console.log("Inserting entry...."+JSON.stringify(newEntry));
-        const res = await fetch("/api/v1/trade-stats",
+		if (newEntry.country == "" || newEntry.year == "" ||
+            newEntry.export == "" || newEntry.import == "" || newEntry.balance == "") {
+             alert("Los campos no pueden estar vacios");
+			
+			} else{
+				const res = await fetch("/api/v1/trade-stats",
 			{
 				method: "POST",
 				body: JSON.stringify(newEntry),
@@ -30,9 +36,19 @@
 					"Content-Type": "application/json"
 				}
 			}).then(function (res){
-				getEntries();
-				window.alert("Entrada introducida con éxito");
+				if (res.status == 201 || res.status == 200){
+                     getEntries()
+                     console.log("Data introduced");
+                     window.alert("Entrada introducida correctamente");
+                }else if(res.status == 400){
+                     console.log("ERROR Data was not correctly introduced");
+                     window.alert("Entrada introducida incorrectamente");
+                }else if(res.status == 409){
+                     console.log("ERROR There is already a data with that country and year in the da tabase");
+                     window.alert("Ya existe dicha entrada");
+                }
 			}); 
+			}
     }
 	async function BorrarEntry(countryDelete, yearDelete){
         console.log("Deleting entry....");
