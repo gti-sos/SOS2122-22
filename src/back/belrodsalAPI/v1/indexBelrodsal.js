@@ -2,7 +2,7 @@ const bodyParser = require("body-parser");
 
 const BASI_API_COALSTATS = "/api/v1/coal-stats";
 
-//API Antonio Saborido
+
 
 var coalStats = [
     {		

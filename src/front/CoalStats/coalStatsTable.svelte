@@ -22,7 +22,11 @@
     }
 	async function insertEntry(){
         console.log("Inserting entry...."+JSON.stringify(newEntry));
-        const res = await fetch("/api/v1/coal-stats",
+		if (newEntry.country == "" || newEntry.year == "" ||
+            newEntry.productions == "" || newEntry.exports == "" || newEntry.consumption == "") {
+             alert("Los campos no pueden estar vacios");
+		}else{
+			const res = await fetch("/api/v1/coal-stats",
 			{
 				method: "POST",
 				body: JSON.stringify(newEntry),
@@ -31,8 +35,10 @@
 				}
 			}).then(function (res){
 				getEntries();
-				window.alert("Entrada introducida con éxito");
+				/*window.alert("Entrada introducida con éxito");*/
 			}); 
+		}
+        
     }
 	async function BorrarEntry(countryDelete, yearDelete){
         console.log("Deleting entry....");
@@ -41,7 +47,7 @@
 				method: "DELETE"
 			}).then(function (res){
 				getEntries();
-				window.alert("Entrada eliminada con éxito");
+				/*window.alert("Entrada eliminada con éxito");*/
 			});
     }
 	async function BorrarEntries(){
@@ -51,7 +57,7 @@
 				method: "DELETE"
 			}).then(function (res){
 				getEntries();
-				window.alert("Entradas elimidas con éxito");
+				/*window.alert("Entradas elimidas con éxito")*/
 			});
     }
 	async function LoadEntries(){
@@ -61,7 +67,7 @@
 				method: "GET"
 			}).then(function (res){
 				getEntries();
-				window.alert("Entradas cargadas con éxito");
+				/*window.alert("Entradas cargadas con éxito");*/
 			});
     }
 	
