@@ -2,6 +2,9 @@
     import { onMount } from 'svelte';
 	import Table from 'sveltestrap/src/Table.svelte';
 	import Button from 'sveltestrap/src/Button.svelte';
+	import { Alert } from 'sveltestrap';
+
+	var BASE_API_PATH = "/api/v1/coal-stats";
     let entries = [];
 	let newEntry = {
 		country: "",
@@ -10,75 +13,141 @@
         exports: "",
         consumption: ""
 	}
+
+	let checkMSG = "";
+    let visible = false;
+    let color = "danger";
+    let page = 1;
+    let totaldata=6;
+ 
+    
     onMount(getEntries);
+    //GET
     async function getEntries(){
         console.log("Fetching entries....");
         const res = await fetch("/api/v1/coal-stats"); 
         if(res.ok){
+            console.log("Ok:");
             const data = await res.json();
             entries = data;
             console.log("Received entries: "+entries.length);
+        }else {
+                checkMSG= res.status + ": Recursos no encontrados ";
+                console.log("ERROR! no encontrado");
+            }
+    }
+    //GET INITIALDATA
+    async function LoadEntries() {
+ 
+        console.log("Fetching entry data...");
+        await fetch(BASE_API_PATH + "/loadInitialData");
+        const res = await fetch(BASE_API_PATH + "?limit=10&offset=0");
+        if (res.ok) {
+            console.log("Ok:");
+            const json = await res.json();
+            entries = json;
+            visible = true;
+            totaldata=6;
+            console.log("Received " + entries.length + " entry data.");
+            color = "success";
+            checkMSG = "Datos cargados correctamente";
+        } else {
+            color = "danger";
+            checkMSG= res.status + ": " + "No se pudo cargar los datos";
+            console.log("ERROR! ");
         }
     }
-	async function insertEntry(){
-        console.log("Inserting entry...."+JSON.stringify(newEntry));
-		if (newEntry.country == "" || newEntry.year == "" ||
-            newEntry.productions == "" || newEntry.exports == "" || newEntry.consumption == "") {
+    //INSERT DATA
+    async function insertEntry(){
+		 
+         console.log("Inserting resources...");
+         if (newEntry.country == "" || newEntry.year == null ||
+            newEntry.productions == null || newEntry.exports == null || newEntry.consumption == null ) {
              alert("Los campos no pueden estar vacios");
-		}else{
-			const res = await fetch("/api/v1/coal-stats",
-            {
-                method: "POST",
-                body: JSON.stringify(newEntry),
-                headers: {
-                    "Content-Type": "application/json"
+         } else{
+             const res = await fetch(BASE_API_PATH,{
+                 method:"POST",
+                 body:JSON.stringify({
+                        country: newEntry.country,
+                        year: parseInt(newEntry.year),
+                        productions: parseFloat(newEntry.productions),
+                        exports: parseFloat(newEntry.exports),
+                        consumption: parseFloat(newEntry.consumption) 
+                    }),
+                 headers:{
+                     "Content-Type": "application/json"
                 }
-            }).then(function (res){
-                if (res.status == 201 || res.status == 200){
+            }).then(function (res) {
+                 visible=true;
+                if (res.status == 201){
                      getEntries()
+                     totaldata++;
                      console.log("Data introduced");
-                     window.alert("Entrada introducida correctamente");
+                     color = "success";
+                     checkMSG="Entrada introducida correctamente a la base de datos";
                 }else if(res.status == 400){
                      console.log("ERROR Data was not correctly introduced");
-                     window.alert("Entrada introducida incorrectamente");
+                     color = "danger";
+                     checkMSG= "Los datos de la entrada no fueron introducidos correctamente";
                 }else if(res.status == 409){
                      console.log("ERROR There is already a data with that country and year in the da tabase");
-                     window.alert("Ya existe dicha entrada");
+                     color = "danger";
+                     checkMSG= "Ya existe una entrada en la base de datos con el pais y el año introducido";
                 }
-            }); 
+            });	
+        }
     }
+    //DELETE STAT
+    async function BorrarEntry(countryD, yearD) {
         
+        const res = await fetch(BASE_API_PATH+ "/" + countryD + "/" + yearD, {
+            method: "DELETE"
+        }).then(function (res) {
+            visible = true;
+            getEntries();      
+            if (res.status==200) {
+                totaldata--;
+                color = "success";
+                checkMSG = "Recurso "+countryD+" "+yearD+ " borrado correctamente";
+                console.log("Deleted " + countryD);            
+            } else if (res.status==404) {
+                color = "danger";
+                checkMSG = "No se ha encontrado el objeto " + countryD;
+                console.log("Resource NOT FOUND");            
+            } else {
+                color = "danger";
+                checkMSG= res.status + ": " + "No se pudo borrar el recurso";
+                console.log("ERROR!");
+            }      
+        });
     }
-	async function BorrarEntry(countryDelete, yearDelete){
-        console.log("Deleting entry....");
-        const res = await fetch("/api/v1/coal-stats/"+countryDelete+"/"+yearDelete,
-			{
+    //DELETE ALL STATS
+    async function BorrarEntries() {
+		console.log("Deleting entry data...");
+		if (confirm("¿Está seguro de que desea eliminar todas las entradas?")){
+			console.log("Deleting all entry data...");
+			const res = await fetch(BASE_API_PATH, {
 				method: "DELETE"
-			}).then(function (res){
-				getEntries();
-				/*window.alert("Entrada eliminada con éxito");*/
+			}).then(function (res) {
+                visible=true;
+				if (res.ok && totaldata>0){
+                    totaldata = 0;
+					getEntries();
+                    color = "success";
+					checkMSG="Datos eliminados correctamente";
+					console.log("OK All data erased");
+				} else if (totaldata == 0){
+                    console.log("ERROR Data was not erased");
+                    color = "danger";
+					checkMSG= "¡No hay datos para borrar!";
+                } else{
+					console.log("ERROR Data was not erased");
+                    color = "danger";
+					checkMSG= "No se han podido eliminar los datos";
+				}
 			});
-    }
-	async function BorrarEntries(){
-        console.log("Deleting entries....");
-        const res = await fetch("/api/v1/coal-stats/",
-			{
-				method: "DELETE"
-			}).then(function (res){
-				getEntries();
-				/*window.alert("Entradas elimidas con éxito")*/
-			});
-    }
-	async function LoadEntries(){
-        console.log("Loading entries....");
-        const res = await fetch("/api/v1/coal-stats/loadInitialData",
-			{
-				method: "GET"
-			}).then(function (res){
-				getEntries();
-				/*window.alert("Entradas cargadas con éxito");*/
-			});
-    }
+		}
+	}
 	
 </script>
 
@@ -94,9 +163,16 @@
 		</p>
 	  </figure>
 
-{#await entries}
-loading
+	{#await entries}
+		loading
 	{:then entries}
+	
+	<Alert color={color} isOpen={visible} toggle={() => (visible = false)}>
+		{#if checkMSG}
+			{checkMSG}
+		{/if}
+	</Alert>
+
 	<Table bordered>
 		
 		

@@ -4,6 +4,10 @@
     import { onMount } from 'svelte';
     import Button from 'sveltestrap/src/Button.svelte';
     import Table from 'sveltestrap/src/Table.svelte';
+    import { Alert } from 'sveltestrap';
+
+    let visible = false;
+    let color = "danger";
 
 
     let entry = {};
@@ -12,6 +16,7 @@
     let updatedproductions;
     let updatedexports;
     let updatedconsumption;
+    let errorMsg = "";
 
     onMount(getEntries);
     async function getEntries(){
@@ -26,8 +31,10 @@
             updatedexports = entry.exports;
             updatedconsumption = entry.consumption;
         }else{
-            Errores(res.status);
-            pop();
+            visible = true;
+            color = "danger"
+            errorMsg = "Error " + res.status + " : " + "Ningún recurso con los parametros " + params.country +" " + params.year;
+            console.log("ERROR" + errorMsg);
         }
     }
     async function EditEntry(){
@@ -37,41 +44,38 @@
 				method: "PUT",
 				body: JSON.stringify({
                     country: updatedCountry,
-                    year: updatedYear,
-                    productions: updatedproductions,
-                    exports: updatedexports,
-                    consumption: updatedconsumption
+                    year: parseInt(updatedYear),
+                    productions: parseFloat(updatedproductions),
+                    exports: parseFloat(updatedexports),
+                    consumption: parseFloat(updatedconsumption)
                 }),
 				headers: {
 					"Content-Type": "application/json"
 				}
-			}); 
-    }
-    async function Errores(code){
-        
-        let msg;
-        if(code == 404){
-            msg = "La entrada seleccionada no existe"
-        }
-        if(code == 400){
-            msg = "La petición no está correctamente formulada"
-        }
-        if(code == 409){
-            msg = "El dato introducido ya existe"
-        }
-        if(code == 401){
-            msg = "No autorizado"
-        }
-        if(code == 405){
-            msg = "Método no permitido"
-        }
-        window.alert(msg)
-            return;
+			}).then(function (res) {
+                    visible = true;
+                    if(res.status == 200){
+                        getEntries(); 
+                        console.log("Data introduced");
+                        color = "success";
+                        errorMsg="Recurso actualizado correctamente";
+                    }else{
+                        console.log("Data not edited");
+                        color = "danger";
+                        errorMsg= "Compruebe los campos";
+                    }
+                });	
     }
 </script>
 
 <main>
-    <h1>Editar entrada "{params.country}"/"{params.year}"</h1>
+    <Alert color={color} isOpen={visible} toggle={() => (visible = false)}>
+        {#if errorMsg}
+		    {errorMsg}
+	    {/if}
+    </Alert>
+
+    <h1>Editar entrada "{params.country}","{params.year}"</h1>
     {#await entry}
     loading
         {:then entry}
@@ -89,8 +93,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{updatedCountry}</td>
-                    <td>{updatedYear}</td>
+                    <td><input bind:value="{updatedCountry}"></td>
+                    <td><input bind:value = "{updatedYear}"></td>
                     <td><input bind:value="{updatedproductions}"></td>
                     <td><input bind:value="{updatedexports}"></td>
                     <td><input bind:value="{updatedconsumption}"></td>
