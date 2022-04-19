@@ -18,7 +18,6 @@
 
     async function getStats(){
         console.log("Fetching c02Stats....");
-		//const initialData = await fetch("/api/v1/co2-stats/loadInitialData"); 
         const res = await fetch("/api/v1/co2-stats"); 
         if(res.ok){
             const data = await res.json();
@@ -34,7 +33,8 @@
 				method: "GET"
 			}).then(function (res){
 				getStats();
-				window.alert("Entradas cargadas con éxito");
+				window.alert("Registros cargados");
+				console.log("cargados los registros");
 			});
     }
 
@@ -42,19 +42,6 @@
 	async function insertStat(){
 
 		console.log("Inserting new Stat: "+JSON.stringify(newCo2_stat));
-		var country = newCo2_stat.coutry;
-		var year = newCo2_stat.year;
-
-		const res1 = await fetch("/api/v1/co2-stats");
-		for(var c in res1){
-			if(c.country == country && c.year == year){
-				console.log("ERRRORORORORORORORORO");
-				
-
-			};
-		}
-		
-
         const res = await fetch("/api/v1/co2-stats",
 					{
 						method: "POST",
@@ -63,7 +50,25 @@
 							"Content-Type":"application/json"
 						}
 					}).then(function (res){
-						getStats();
+						if(res.status == 201){
+							getStats();
+							window.alert("Añadido nuevo registro");
+						}else{
+							var m = "";
+							if(res.status == 400){
+            					m = "Mala petición"
+       						}
+        					if(res.status == 409){
+            					m = "Conflicto (Ya existe ese recurso)"
+       	 					}
+        					if(res.status == 401){
+           						m = "No autorizado"
+        					}
+        					if(res.status == 405){
+            					m = "Método no permitido"
+        					}
+        					window.alert(m)
+						}
 					}); 
 					
 		console.log("Done.");
@@ -71,34 +76,44 @@
 
 
 	async function 	DeleteStats(){
-	console.log("Deleting entries....");
+	console.log("Deleting stats....");
     const res = await fetch("/api/v1/co2-stats/",
 		{
 			method: "DELETE"
 		}).then(function (res){
 			getStats();
-			window.alert("Entradas elimidas con éxito");
+			window.alert("Registros Eliminados ");
 		});	
 	}
+
+	async function DeleteStat(country, year){
+        console.log("Deleting entry....");
+        const res = await fetch("/api/v1/co2-stats/"+country+"/"+year,
+			{
+				method: "DELETE"
+			}).then(function (res){
+				getStats();
+				window.alert("Registro Eliminado");
+			});
+    }
+
 
 
 </script>
 
 <main>
-    
-{#await co2_stats}
+
+
+    <h1>Consumo de CO2</h1>
+
+{#await co2_stats}	
 loading
-	{:then co2_stats}
+	{:then stats}
 	
+
 	<Table bordered>
 		<thead>
 			<tr>
-				<Button 
-						outline 
-						color="primary" 
-						on:click="{LoadStats}">
-					Cargar Datos Iniciales
-					</Button>
 				<th>Pais</th>
 				<th>Año</th>
 				<th>C02 por 1000 Dolares del PIB</th>
@@ -114,11 +129,7 @@ loading
                 <td><input bind:value="{newCo2_stat.co2_tot}"></td>
 				<td><input bind:value="{newCo2_stat.co2_tpc}"></td>
 
-				<td>
-					<Button 
-						outline 
-						color="primary" 
-						on:click="{insertStat}">
+				<td><Button outline color="primary" on:click="{insertStat}">
 					Añadir
 					</Button>
 				</td>
@@ -130,20 +141,28 @@ loading
 					<td>{co2_stat.co2_kg}</td>
                     <td>{co2_stat.co2_tot}</td>
                     <td>{co2_stat.co2_tpc}</td>
+					<td><Button outline color="warning" on:click={function (){
+						window.location.href = `/#/co2-stats/${co2_stat.country}/${co2_stat.year}`
+					}}>
+						Editar
+					</Button>
+					<td><Button outline color="danger" on:click={DeleteStat(co2_stat.country,co2_stat.year)}>
+						Borrar
+					</Button>
+					</td>
 				</tr>
-				
 			{/each}
+			<tr>
+				<td><Button outline color="success" on:click={LoadStats}>
+					Cargar datos
+				</Button></td>
+				<td><Button outline color="danger" on:click={DeleteStats}>
+					Borrar todo
+				</Button></td>
+			</tr>
 		</tbody>
-
 	</Table>
-	<td>
-		<Button 
-			outline 
-			color="primary" 
-			on:click="{DeleteStats}">
-		Eliminar Todo 
-		</Button>
-	</td>
 {/await}
+    
 
 </main>
