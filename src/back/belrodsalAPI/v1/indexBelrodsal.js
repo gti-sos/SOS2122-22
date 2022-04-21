@@ -52,7 +52,7 @@ var coalStats = [
         exports : 1754.75,
         consumption : 0
     }
-]
+];
 
 module.exports.register = (app,db) =>{
     /* 
@@ -74,9 +74,10 @@ module.exports.register = (app,db) =>{
                     db.insert(coalStats[i]);
                 }
                 res.sendStatus(200, "OK.")
-                return;
+                res.send(JSON.stringify(coalStats,null,2));
             }else{
                 res.sendStatus(200, "Ya inicializados")
+                res.send(JSON.stringify(coalStats,null,2));
             }
         });
         
