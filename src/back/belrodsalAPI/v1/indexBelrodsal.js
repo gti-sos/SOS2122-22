@@ -247,6 +247,7 @@ app.get(BASE_API_COALSTATS+"/:country",(req, res)=>{
         //RESULTADO
         if(req.query.limit != undefined || req.query.offset != undefined){
             filteredList = pagination(req,filteredList);
+            res.send(JSON.stringify(filteredList,null,2));
         }
         filteredList.forEach((element)=>{
             delete element._id;
