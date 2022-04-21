@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 
-const BASI_API_COALSTATS = "/api/v1/coal-stats";
+const BASI_API_COALSTATS = "/api/v/coal-stats";
 
 
 
@@ -86,7 +86,7 @@ module.exports.register = (app,db) =>{
     
     app.get(BASI_API_COALSTATS+"/docs",(req,res)=>
     {
-        res.redirect("https://documenter.getpostman.com/view/19996738/UVysxGDk")
+        res.redirect("https://documenter.getpostman.com/view/19481676/UVyn2ykY")
     })
     
     // GETs
