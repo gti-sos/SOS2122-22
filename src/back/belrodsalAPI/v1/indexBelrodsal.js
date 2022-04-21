@@ -251,7 +251,7 @@ app.get(BASE_API_COALSTATS+"/:country",(req, res)=>{
         filteredList.forEach((element)=>{
             delete element._id;
         });
-        res.send(JSON.stringify(filteredList,null,2));
+        res.send(JSON.stringify(filteredList[0],null,2));
     });
 
 });
