@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 
-const BASI_API_COALSTATS = "/api/v/coal-stats";
+const BASI_API_COALSTATS = "/api/v2/coal-stats";
 
 
 

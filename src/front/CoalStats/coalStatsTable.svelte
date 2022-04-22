@@ -4,7 +4,7 @@
 	import Button from 'sveltestrap/src/Button.svelte';
 	import { Alert } from 'sveltestrap';
 
-	var BASE_API_PATH = "/api/v1/coal-stats";
+	var BASE_API_PATH = "/api/v2/coal-stats";
     let entries = [];
 	let newEntry = {
 		country: "",
@@ -25,7 +25,7 @@
     //GET
     async function getEntries(){
         console.log("Fetching entries....");
-        const res = await fetch("/api/v1/coal-stats"); 
+        const res = await fetch("/api/v2/coal-stats"); 
         if(res.ok){
             console.log("Ok:");
             const data = await res.json();
