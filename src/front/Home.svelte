@@ -5,7 +5,7 @@
 <main> 
     <body>
     <h1>SOS2122-22</h1>	
-    <a href="/#/Co2StatsTable">Table of CO2 Stats</a>
+    <p><a href="/#/Co2StatsTable">Table of CO2 Stats</a></p>
     <p><a href="/#/coalStatsTable">Table of Coal Stats</a></p>
     <p><a href="/#/tradeStatsTable">Table of Trade Stats</a></p>
     <h3>TEAM</h3>
