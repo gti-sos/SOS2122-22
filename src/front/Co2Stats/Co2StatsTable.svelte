@@ -17,6 +17,8 @@
         co2_tpc : ""
 	};
 
+    let year=2020;
+    let country = "spain";
    //Pagination
    let current_offset = 2;
     let limit = 6;
@@ -40,9 +42,16 @@
     onMount(getStats);
 
 
+
+    
+
+
     async function getStats(){
         console.log("Fetching c02Stats....");
-        const res = await fetch("/api/v1/co2-stats"); 
+        const res = await fetch("/api/v1/co2-stats"+"?limit=" +
+                limit +
+                "&offset=" +
+                current_offset); 
         if(res.ok){
             const data = await res.json();
             co2_stats = data;
@@ -52,6 +61,22 @@
                 console.log("ERROR! no encontrado");
             }
     }
+
+
+    async function getStats2(){
+        console.log("Fetching c02Stats....");
+        const res = await fetch("/api/v1/co2-stats/?limit=" + limit + "&offset=" + current_offset); 
+        if(res.ok){
+            const data = await res.json();
+            co2_stats = data;
+            console.log("Received STATS: "+co2_stats.length);
+        }else {
+                checkMSG= res.status + ": Recursos no encontrados ";
+                console.log("ERROR! no encontrado");
+            }
+    }
+
+
 
 	async function getData() {
         console.log("Fetching data...");
@@ -68,14 +93,12 @@
         }
     }
 
+
 	async function getDataSearch(query) {
         console.log("Fetching data...");
+
         const res = await fetch(
-            "api/v1/co2-stats" +query +
-                "?limit=" +
-                limit +
-                "&offset=" +
-                current_offset
+            "api/v1/co2-stats/"+query
         );
         if (res.ok) {
             console.log("Ok");
@@ -99,7 +122,6 @@
                 "OFFSET: " +
                 current_offset
         );
-        //const res = await fetch("api/v1/evictions" + query + "&limit=" + limit + "&offset="+current_offset);
         const res = await fetch("api/v1/co2-stats" + query);
         if (res.ok) {
             const json = await res.json();
@@ -193,13 +215,13 @@
         visitado = "si";
         console.log("Searching data...");
         var campos = new Map(
-            Object.entries(newCo2_stat).filter((o) => {
+            Object.co2_stats(newCo2_stat).filter((o) => {
                 return o[1] != "";
             })
         );
         let querySymbol = "?";
         let aux = "";
-        for (var [clave, valor] of campos.entries()) {
+        for (var [clave, valor] of campos.co2_stats()) {
             querySymbol += clave + "=" + valor + "&";
             if (clave == "year") {
                 aux = aux + "Año=" + valor + " ";
@@ -245,23 +267,16 @@
         getNumDataSearch(fullQuery);
         //getNumData(fullQuery);
     }
-	/*
-    function botonCancelar() {
-        var cancelar = document.getElementById("cancelar").innerHTML;
-        console.log("Boton cancelar " + cancelar);
-        document.getElementById("cancelar").innerHTML =
-            '<button style="border-radius:5px; margin-left:18px; padding:10px 8px; background-color: #dc3545; color:#fff; border-color: #dc3545;" onClick="window.location.reload();">Cancelar</button>';
-    }
-	*/
+	
 	async function LoadStats(){
-        console.log("Loading stats....");
+        console.log("Loading stats LOADINITIAL....");
         
         await fetch("/api/v1/co2-stats/loadInitialData");
-        const res2 = await fetch("api/v1/co2-stats/loadInitialData" + "?limit=10&offset=0");
+                const res2 = await fetch("api/v1/co2-stats/loadInitialData" + "?limit=10&offset=5");
+        console.log("CARGADOS")
         if (res2.ok) {
             console.log("Ok:");
-            const json = await res2.json();
-            co2_stats = json;
+            
             visible = true;
             color = "success";
             checkMSG = "Datos cargados correctamente";
@@ -337,6 +352,19 @@
 
 
     <h1>Consumo de CO2</h1>
+
+    <td><input type="text" id="country" bind:value="{country}"></td>
+				<td><input type="number" min="2000" bind:value="{year}"></td>
+				<td align="center"><Button outline color="dark" on:click="{()=>{
+					if (limit == null || current_offset == null) {
+						window.alert('Los campos fecha inicio y fecha fin no pueden estar vacíos')
+					}else{
+						searchData();
+					}}}">
+					Buscar
+					</Button>
+                    <p></p>
+				</td>
 
 {#await co2_stats}	
 loading
