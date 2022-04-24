@@ -3,9 +3,7 @@
 	import Table from 'sveltestrap/src/Table.svelte';
 	import Button from 'sveltestrap/src/Button.svelte';
 	import { Alert } from 'sveltestrap';
-
     const delay = ms => new Promise(res => setTimeout(res, ms));
-
 	var BASE_API_PATH = "/api/v2/coal-stats";
     let entries = [];
 	let newEntry = {
@@ -15,14 +13,12 @@
         exports: "",
         consumption: ""
 	}
-
 	let checkMSG = "";
     let visible = false;
     let color = "danger";
     let page = 1;
     let numPage = 0;
     let totaldata=11;
-
     
 	let yFrom = "";
 	let yTo = "";
@@ -30,13 +26,11 @@
     
     
 	//Límite máximo de páginas
-
  
     
     onMount(getEntries);
     //GET
-    async function getEntries(parametros="") {
-        visible = false;
+    async function getEntries(parametros="",b=false) {
 		console.log("Fetching data....");
 		const res = await fetch("/api/v1/coal-stats"+parametros);
 						
@@ -62,13 +56,19 @@
                 checkMSG = "Comprueba los parametros de busqueda";
 			}
 			if(res.status == "405"){
-				window.alert("Método no permitido");
+                color = "danger";
+                checkMSG = "Método no permitido";
+				
 			}
 			if(res.status == "404"){
-				window.alert("Elemento no encontrado");
+                color = "danger";
+                checkMSG = "Elemento no encontrado";
+				
 			}
 			if(res.status == "500"){
-				window.alert("INTERNAL SERVER ERROR");
+                color = "danger";
+                checkMSG = "INTERNAL SERVER ERROR";
+				
 			}
 		}
 	}
@@ -80,9 +80,7 @@
             entries=json;
             console.log("Found "+ entries.length + " countries");
         }    
-
     }
-
    
    
     //GET INITIALDATA
@@ -197,7 +195,6 @@
 			});
 		}
 	}
-
     async function getPreviewPage() {
         console.log(totaldata);
         if (page-10 > 1) {
@@ -247,8 +244,6 @@
             console.log("ERROR!");
         }
     }
-
-
 	
 </script>
 
