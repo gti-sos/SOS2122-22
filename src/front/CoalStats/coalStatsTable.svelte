@@ -61,6 +61,7 @@
 				
 			}
 			if(res.status == "404"){
+                visible = true;
                 color = "danger";
                 checkMSG = "Elemento no encontrado";
 				
@@ -277,11 +278,11 @@
         </thead>
         <tbody>
             <tr>
-                <td><input bind:value={yFrom} type="text"/></td>
-                <td><input bind:value={yTo} type="text"/> </td>
-                <td><Button color="info" on:click={getEntries(`?from=${yFrom}&to=${yTo}`,true)}>Buscar</Button></td>
+                <td><input bind:value={yFrom} type="number"/></td>
+                <td><input bind:value={yTo} type="number"/> </td>
+                <td><Button color="dark" on:click={getEntries(`?from=${yFrom}&to=${yTo}`,true)}>Buscar</Button></td>
                 <td>
-                    <Button color="info" on:click="{
+                    <Button color="outline-dark" on:click="{
                         ()=>{yFrom = null; yTo = null; getEntries();}
                     }">Limpiar Busqueda</Button>
                 </td>
@@ -316,6 +317,11 @@
 					Añadir
 					</Button>
 				</td>
+                <td>
+                    <Button color="outline-info" on:click="{
+                        ()=>{newEntry.country = null; newEntry.year = null; newEntry.productions = null; newEntry.exports = null;newEntry.consumption = null; getEntries();}
+                    }">Limpiar</Button>
+                </td>
 			</tr>
 			{#each entries as entry}
 				<tr>
