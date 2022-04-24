@@ -4,6 +4,8 @@
 	import Button from 'sveltestrap/src/Button.svelte';
 	import { Alert } from 'sveltestrap';
 
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
 	var BASE_API_PATH = "/api/v2/coal-stats";
     let entries = [];
 	let newEntry = {
@@ -18,24 +20,71 @@
     let visible = false;
     let color = "danger";
     let page = 1;
-    let totaldata=6;
+    let numPage = 0;
+    let totaldata=11;
+
+    
+	let yFrom = "";
+	let yTo = "";
+    let Uyear = "";
+    
+    
+	//Límite máximo de páginas
+
  
     
     onMount(getEntries);
     //GET
-    async function getEntries(){
-        console.log("Fetching entries....");
-        const res = await fetch("/api/v2/coal-stats"); 
+    async function getEntries(parametros="") {
+        visible = false;
+		console.log("Fetching data....");
+		const res = await fetch("/api/v1/coal-stats"+parametros);
+						
+		console.log(res.ok);
+		if (res.ok) {
+			const data = await res.json();
+			entries = data;
+			await delay(50);
+            
+			for(let i=0; i<entries.length ; i++){
+				let y = entries[i].year;
+				if(y < yFrom){
+					yFrom = y;
+				}
+			}
+			console.log("Received data: " + entries.length);
+		}
+		
+		else{
+			if(res.status == "400"){
+                visible = true;
+                color = "danger";
+                checkMSG = "Comprueba los parametros de busqueda";
+			}
+			if(res.status == "405"){
+				window.alert("Método no permitido");
+			}
+			if(res.status == "404"){
+				window.alert("Elemento no encontrado");
+			}
+			if(res.status == "500"){
+				window.alert("INTERNAL SERVER ERROR");
+			}
+		}
+	}
+    async function busqueda_año(Uyear){
+        
+        const res = await fetch("api/v2/coal-stats?year="+Uyear);
         if(res.ok){
-            console.log("Ok:");
-            const data = await res.json();
-            entries = data;
-            console.log("Received entries: "+entries.length);
-        }else {
-                checkMSG= res.status + ": Recursos no encontrados ";
-                console.log("ERROR! no encontrado");
-            }
+            const json = await res.json();
+            entries=json;
+            console.log("Found "+ entries.length + " countries");
+        }    
+
     }
+
+   
+   
     //GET INITIALDATA
     async function LoadEntries() {
  
@@ -47,7 +96,7 @@
             const json = await res.json();
             entries = json;
             visible = true;
-            totaldata=6;
+            totaldata=11;
             console.log("Received " + entries.length + " entry data.");
             color = "success";
             checkMSG = "Datos cargados correctamente";
@@ -65,7 +114,7 @@
             newEntry.productions == null || newEntry.exports == null || newEntry.consumption == null ) {
              alert("Los campos no pueden estar vacios");
          } else{
-             const res = await fetch(BASE_API_PATH,{
+             const res = await fetch(BASE_API_PATH+"?limit=10",{
                  method:"POST",
                  body:JSON.stringify({
                         country: newEntry.country,
@@ -148,6 +197,58 @@
 			});
 		}
 	}
+
+    async function getPreviewPage() {
+        console.log(totaldata);
+        if (page-10 > 1) {
+            page-=5; 
+        } else page = 1
+        console.log("Charging page... Listing since: "+page);
+        const res = await fetch("/api/v2/coal-stats?limit=10&offset="+(-1+page));
+        
+        if (totaldata == 0){
+            console.log("ERROR Data was not erased");
+            color = "danger";
+            checkMSG= "¡No hay datos!";
+        }else if (res.ok) {
+            console.log("Ok:");
+            const json = await res.json();
+            entries = json;
+            console.log("Received "+entries.length+" resources.");
+        } else {
+            checkMSG= res.status+": "+res.statusText;
+            console.log("ERROR!");
+        }
+        numPage = Math.round(page/10);
+    }
+    async function getNextPage() {
+        console.log(totaldata);
+        if (page+10 > totaldata) {
+            page = 1
+        } else {
+            page+=10
+        }
+        numPage = Math.round(page/10);
+        
+        console.log("Charging page... Listing since: "+page);
+        const res = await fetch("/api/v2/coal-stats?limit=10&offset="+(-1+page));
+    
+        if (totaldata == 0){
+            console.log("ERROR Data was not erased");
+            color = "danger";
+            checkMSG= "¡No hay datos!";
+        }else if (res.ok) {
+            console.log("Ok:");
+            const json = await res.json();
+            entries = json;
+            console.log("Received " + entries.length + " resources.");
+        } else {
+            checkMSG= res.status + ": " + res.statusText;
+            console.log("ERROR!");
+        }
+    }
+
+
 	
 </script>
 
@@ -172,7 +273,28 @@
 			{checkMSG}
 		{/if}
 	</Alert>
-
+    <Table>
+        <thead>
+            <tr>
+                <th>Fecha_Inicio</th>
+                <th>Fecha_Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input bind:value={yFrom} type="text"/></td>
+                <td><input bind:value={yTo} type="text"/> </td>
+                <td><Button color="info" on:click={getEntries(`?from=${yFrom}&to=${yTo}`,true)}>Buscar</Button></td>
+                <td>
+                    <Button color="info" on:click="{
+                        ()=>{yFrom = null; yTo = null; getEntries();}
+                    }">Limpiar Busqueda</Button>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
+    
+    <!--<p>Buscar registros del año <input bind:value={Uyear} type="text"/> <Button color="info" on:click={busqueda_año(`${Uyear}`,true)}>Buscar</Button> </p>-->
 	<Table bordered>
 		
 		
@@ -228,6 +350,15 @@
 			</tr>
 		</tbody>
 	</Table>
+    <Button id ="atrasbtn" on:click="{getPreviewPage}">
+        Atrás
+    </Button>
+    <Button id ="siguientebtn" on:click="{getNextPage}">
+        Siguiente
+    </Button>
+    <div align="center">
+        Página {numPage} 
+    </div>
 {/await}
 
 </main>
