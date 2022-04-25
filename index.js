@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
 const co2_stats_API = require("./src/back/jesvencamAPI/indexJESVENCAM.js");
-const trade_stats_API = require("./src/back/marsaamar1API/v1/index_marsaamar1.js");
+const trade_stats_APIV2 = require("./src/back/marsaamar1API/v2/index_marsaaamar1_v2.js");
 
 const Datastore = require('nedb');
 
@@ -19,7 +19,7 @@ db_trade_stats = new Datastore();
 co2_stats_API.register(app,db_co2_stats);
 coal_stats_API.register(app,db_coal_stats);
 coal_stats_APIV2.register(app,db_coal_stats);
-trade_stats_API.register(app,db_trade_stats);
+trade_stats_APIV2.register(app,db_trade_stats);
 
 
 const BASE_API_URL = "/api/v1";
@@ -29,7 +29,7 @@ const BASE_API_URL = "/api/v1";
 app.use("/",express.static('./public'));
 
 
-//trade_stats_API(app);
+//trade_stats_APIV2V2(app);
 
 //----------------------------------------------------
 

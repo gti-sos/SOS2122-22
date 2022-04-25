@@ -4,50 +4,69 @@
     import { onMount } from 'svelte';
     import Button from 'sveltestrap/src/Button.svelte';
     import Table from 'sveltestrap/src/Table.svelte';
-
-
+    import { Alert } from 'sveltestrap';
+   
     let entry = {};
     let updatedCountry;
     let updatedYear;
-    let updatedexport;
-    let updatedimport;
-    let updatedbalance;
+    let updatedExport;
+    let updatedImport;
+    let updatedBalance;
+
+    let visibleError = false;
+	let visibleMsg = false;
+	let errorMsg = "";
+	let msg = "";
 
     onMount(getEntries);
+
     async function getEntries(){
         console.log("Fetching entries....");
-        const res = await fetch("/api/v1/trade-stats/"+params.country+"/"+params.year); 
+        const res = await fetch("/api/v2/trade-stats/"+params.country+"/"+params.year); 
         if(res.ok){
             const data = await res.json();
             entry = data;
             updatedCountry = entry.country;
             updatedYear = entry.year;
-            updatedexport = entry.export;
-            updatedimport = entry.import;
-            updatedbalance = entry.balance;
+            updatedExport = entry.export;
+            updatedImport = entry.import;
+            updatedBalance = entry.balance;
         }else{
-            Errores(res.status);
+            errors(res.status,params.country+"/"+params.year);
             pop();
         }
     }
     async function EditEntry(){
-        console.log("Updating entry...."+updatedCountry);
-        const res = await fetch("/api/v1/trade-stats/"+params.country+"/"+params.year,
+        console.log("Updating entry...."+ updatedCountry);
+        updatedExport = parseFloat(updatedExport);
+		updatedImport = parseFloat(updatedImport);
+		updatedBalance = parseFloat(updatedBalance);
+        const res = await fetch("/api/v2/trade-stats/"+params.country+"/"+params.year,
 			{
 				method: "PUT",
 				body: JSON.stringify({
                     country: updatedCountry,
                     year: updatedYear,
-                    export: updatedexport,
-                    import: updatedimport,
-                    balance: updatedbalance
+                    export: updatedExport,
+                    import: updatedImport,
+                    balance: updatedBalance
                 }),
 				headers: {
 					"Content-Type": "application/json"
 				}
-			}); 
+			}).then(function (res){
+                if(res.ok){
+					visibleError = false;
+					visibleMsg = true;
+					msg = "Entrada modificada con éxito";
+				}
+				else{
+					errors(res.status);
+				}
+            }); 
     }
-    async function Errores(code){
+
+    async function errors(code){
         
         let msg;
         if(code == 404){
@@ -72,6 +91,18 @@
 
 <main>
     <h1>Editar entrada "{params.country}"/"{params.year}"</h1>
+
+    <Alert color="danger" isOpen={visibleError} toggle={() => (visibleError = false)}>
+		{#if errorMsg}
+			<p>ERROR: {errorMsg}</p>
+		   {/if}
+	</Alert>
+	<Alert color="success" isOpen={visibleMsg} toggle={() => (visibleMsg = false)}>
+		{#if msg}
+			<p>Correcto: {msg}</p>
+		{/if}
+	</Alert>
+
     {#await entry}
     loading
         {:then entry}
@@ -82,18 +113,18 @@
                 <tr>
                     <th>País</th>
                     <th>Año</th>
-                    <th>Producciones</th>
                     <th>Exportaciones</th>
-                    <th>Consumo</th>
+                    <th>Importaciones</th>
+                    <th>Balance</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{updatedCountry}</td>
                     <td>{updatedYear}</td>
-                    <td><input bind:value="{updatedexport}"></td>
-                    <td><input bind:value="{updatedimport}"></td>
-                    <td><input bind:value="{updatedbalance}"></td>
+                    <td><input bind:value="{updatedExport}"></td>
+                    <td><input bind:value="{updatedImport}"></td>
+                    <td><input bind:value="{updatedBalance}"></td>
                     <td><Button outline color="primary" on:click="{EditEntry}">
                         Editar
                         </Button>
