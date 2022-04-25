@@ -32,7 +32,7 @@
     //GET
     async function getEntries(parametros="",b=false) {
 		console.log("Fetching data....");
-		const res = await fetch("/api/v1/coal-stats"+parametros);
+		const res = await fetch("/api/v2/coal-stats"+parametros);
 						
 		console.log(res.ok);
 		if (res.ok) {
