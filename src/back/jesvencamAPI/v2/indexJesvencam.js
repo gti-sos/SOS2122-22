@@ -1,8 +1,8 @@
 
 
 const bodyParser = require("body-parser");
-const BASE_API_URL = "/api/v1";
-const BASE_API_URL_="/api/v1/co2-stats";
+const BASE_API_URL = "/api/v2";
+const BASE_API_URL_="/api/v2/co2-stats";
 
 var co2 = [{		
     country : "mexico",
@@ -610,7 +610,7 @@ module.exports.register = (app,db) =>{
         res.sendStatus(200, "OK");
     });
 
-    app.delete(BASE_API_URL_+"/:country/:year",(req, res)=>{
+    app.delete(BASE_API_URL+"/co2-stats"+"/:country/:year",(req, res)=>{
         var countryR = req.params.country;
         var yearR = req.params.year;
 
@@ -635,8 +635,7 @@ module.exports.register = (app,db) =>{
             });
         });
 
-    })
-        
+    })        
     //Función paginación 
     function paginacion(req, lista){
 

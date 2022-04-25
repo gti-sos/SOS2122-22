@@ -26,7 +26,7 @@
     onMount(getEntries);
     async function getEntries(){
         console.log("Fetching entries....");
-		let cadena = `/api/v1/co2-stats?limit=${limit}&&offset=${offset*10}&&`;
+		let cadena = `/api/v2/co2-stats?limit=${limit}&&offset=${offset*10}&&`;
 		if (from != null) {
 			cadena = cadena + `from=${from}&&`
 		}
@@ -47,7 +47,7 @@
     }
 	async function insertEntry(){
         console.log("Inserting entry...."+JSON.stringify(newCo2_stat));
-        const res = await fetch("/api/v1/co2-stats",
+        const res = await fetch("/api/v2/co2-stats",
 			{
 				method: "POST",
 				body: JSON.stringify(newCo2_stat),
@@ -57,23 +57,31 @@
 			}).then(function (res){
                         console.log("iosdhfviosdbhfvioubsdfio");
                         Errores(res.status);
+                        setInterval("location.reload()",60000);
+                        getEntries();
+
                     }); 
+                    
+        console.log("ahoraaa");
+
     }
 	//Función para borrar una entrada
 	async function BorrarEntry(countryDelete, yearDelete){
         console.log("Deleting entry....");
-        const res = await fetch("/api/v1/co2-stats/"+countryDelete+"/"+yearDelete,
+        const res = await fetch("/api/v2/co2-stats/"+countryDelete+yearDelete,
 			{
 				method: "DELETE"
 			}).then(function (res){
+				
 				getEntries();
-				window.alert("Entrada eliminada con éxito");
+				//Código de Entrada eliminada con éxito
+				window.alert(res.status);
 			});
     }
 	//Función para borrar todas las entradas
 	async function BorrarEntries(){
         console.log("Deleting entries....");
-        const res = await fetch("/api/v1/co2-stats/",
+        const res = await fetch("/api/v2/co2-stats/",
 			{
 				method: "DELETE"
 			}).then(function (res){
@@ -84,7 +92,7 @@
 	//Función para cargar las entradas
 	async function LoadEntries(){
         console.log("Loading entries....");
-        const res = await fetch("/api/v1/co2-stats/loadInitialData",
+        const res = await fetch("/api/v2/co2-stats/loadInitialData",
 			{
 				method: "GET"
 			}).then(function (res){
@@ -192,13 +200,13 @@ loading
 
                 <td><Button outline color="primary" on:click="{insertEntry}">
                     Añadir
-                    </Button>
+                    </Button >
                 </td>
 
             </tr>
             {#each entries as co2_stat}
                 <tr>
-                    <td><a href="#/Co2StatsTable/{co2_stat.country}">{co2_stat.country}</a></td>
+                    <td><a href="#/co2StatsTable/{co2_stat.country}">{co2_stat.country}</a></td>
                     <td>{co2_stat.year}</td>
                     <td>{co2_stat.co2_kg}</td>
                     <td>{co2_stat.co2_tot}</td>
@@ -208,9 +216,10 @@ loading
                     }}>
                         Editar
                     </Button>
-                    <td><Button outline color="danger" on:click={BorrarEntry(co2_stat.country,co2_stat.year)}>
-                        Borrar
-                    </Button>
+                    <td>
+                    <Button outline color="danger" on:click={BorrarEntry(co2_stat.country,co2_stat.year)}>
+						Borrar
+					</Button>
                     </td>
                 </tr>
             {/each}
