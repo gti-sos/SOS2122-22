@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
 	import Table from 'sveltestrap/src/Table.svelte';
 	import Button from 'sveltestrap/src/Button.svelte';
+	import { Alert } from 'sveltestrap';
 
     let entries = [];
 	let from = null;
@@ -16,12 +17,12 @@
         co2_kg : "",
         co2_tpc : ""
     }
-    let errorMsg = "";
+    let checkMSG = "";
     let visible = false;
     let color = "danger";
     let page = 1;
     let totaldata=6;
-
+    let errorC=0;
 
     onMount(getEntries);
     async function getEntries(){
@@ -40,9 +41,29 @@
 			maxPagesFunction(cadenaPag[0]+cadenaPag[1]);
             const data = await res.json();
             entries = data;
-            console.log("Received entries: "+entries.length);
+
         }else{
-			Errores(res.status);
+			if(res.status == "400"){
+                visible = true;
+                color = "danger";
+                checkMSG = "Comprueba los parametros de busqueda";
+			}
+			if(res.status == "405"){
+                color = "danger";
+                checkMSG = "Método no permitido";
+				
+			}
+			if(res.status == "404"){
+                visible = true;
+                color = "danger";
+                checkMSG = "Elemento no encontrado";
+				
+			}
+			if(res.status == "500"){
+                color = "danger";
+                checkMSG = "INTERNAL SERVER ERROR";
+				
+			}
 		}
     }
 	async function insertEntry(){
@@ -56,9 +77,25 @@
 				}
 			}).then(function (res){
                         console.log("iosdhfviosdbhfvioubsdfio");
+                        if (res.status == 201){
+                            getEntries()
+                            totaldata++;
+                            visible = true;
+                            console.log("Data introduced");
+                            color = "success";
+                            checkMSG="Entrada introducida correctamente a la base de datos";
+                        }else if(res.status == 400){
+                            console.log("ERROR Data was not correctly introduced");
+                            color = "danger";
+                            checkMSG= "Los datos de la entrada no fueron introducidos correctamente";
+                        }else if(res.status == 409){
+                            console.log("ERROR There is already a data with that country and year in the da tabase");
+                            color = "danger";
+                            checkMSG= "Ya existe una entrada en la base de datos con el pais y el año introducido";
+                }
+                                                 
                         Errores(res.status);
                         setInterval("location.reload()",60000);
-                        getEntries();
 
                     }); 
                     
@@ -75,7 +112,14 @@
 				
 				getEntries();
 				//Código de Entrada eliminada con éxito
-				window.alert(res.status);
+				if(res.status ==200){
+                    visible = true;
+                    color="success";
+                    checkMSG = "Elemento eliminado correctamente";
+
+                }else{
+                    checkMSG = "malll";
+                }
 			});
     }
 	//Función para borrar todas las entradas
@@ -86,7 +130,12 @@
 				method: "DELETE"
 			}).then(function (res){
 				getEntries();
-				window.alert("Entradas elimidas con éxito");
+                if(res.status==200){
+                    visible = true;
+                    color = "success";
+                    checkMSG = "Eliminadas todas las entradas con exito";
+                }
+				//window.alert("Entradas elimidas con éxito");
 			});
     }
 	//Función para cargar las entradas
@@ -97,7 +146,20 @@
 				method: "GET"
 			}).then(function (res){
 				getEntries();
-				window.alert("Entradas cargadas con éxito");
+                errorC=200.4;
+				//window.alert("Entradas cargadas con éxito");
+                if (res.ok) {
+                    console.log("Ok:");
+                    visible = true;
+                    totaldata=11;
+                    console.log("Received " + entries.length + " entry data.");
+                    color = "success";
+                    checkMSG = "Datos cargados correctamente";
+                } else {
+                    color = "danger";
+                    checkMSG= res.status + ": " + "No se pudo cargar los datos";
+                    console.log("ERROR! ");
+        }
 			});
     }
 	//Función auxiliar para imprimir errores
@@ -144,6 +206,13 @@
 {#await entries}
 loading
 	{:then entries}
+    
+	
+    <Alert color={color} isOpen={visible} toggle={() => (visible = false)}>
+		{#if checkMSG}
+			{checkMSG}
+		{/if}
+	</Alert>
     
 	<Table bordered>
 		<thead>
