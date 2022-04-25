@@ -610,7 +610,7 @@ module.exports.register = (app,db) =>{
         res.sendStatus(200, "OK");
     });
 
-    app.delete(BASE_API_URL+"/co2-stats"+"/:country/:year",(req, res)=>{
+    app.delete(BASE_API_URL_+"/:country/:year",(req, res)=>{
         var countryR = req.params.country;
         var yearR = req.params.year;
 
@@ -635,7 +635,8 @@ module.exports.register = (app,db) =>{
             });
         });
 
-    })        
+    })
+        
     //Función paginación 
     function paginacion(req, lista){
 

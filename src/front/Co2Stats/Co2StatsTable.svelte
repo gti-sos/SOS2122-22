@@ -68,7 +68,7 @@
 	//Función para borrar una entrada
 	async function BorrarEntry(countryDelete, yearDelete){
         console.log("Deleting entry....");
-        const res = await fetch("/api/v2/co2-stats/"+countryDelete+yearDelete,
+        const res = await fetch("/api/v2/co2-stats/"+countryDelete+"/"+yearDelete,
 			{
 				method: "DELETE"
 			}).then(function (res){
