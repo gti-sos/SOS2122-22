@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 
-const BASI_API_COALSTATS = "/api/v1/coal-stats";
+const BASI_API_COALSTATS = "/api/v2/coal-stats";
 
 
 
@@ -51,6 +51,33 @@ var coalStats = [
         productions : 473265.78,
         exports : 1754.75,
         consumption : 0
+    },
+    {
+        country : "indonesia",
+        year : 2015,
+        productions : 508788.91,
+        exports : 403140.19,
+        consumption :95365.36
+    },
+    {
+        country : "rusia",
+        year : 2019,
+        productions : 481700.66,
+        exports : 239763.25,
+        consumption : 242156.56
+    },
+    {
+        country : "turquia",
+        year : 2020,
+        productions : 82066.24,
+        exports : 55.89,
+        consumption : 113734.81
+    },{
+        country : "eslovenia",
+        year : 2020,
+        productions : 3499.36,
+        exports : 3.06,
+        consumption : 3835.69
     }
 ]
 
@@ -86,7 +113,7 @@ module.exports.register = (app,db) =>{
     
     app.get(BASI_API_COALSTATS+"/docs",(req,res)=>
     {
-        res.redirect("https://documenter.getpostman.com/view/19996738/UVysxGDk")
+        res.redirect("https://documenter.getpostman.com/view/19481676/UVyn2ykY")
     })
     
     // GETs

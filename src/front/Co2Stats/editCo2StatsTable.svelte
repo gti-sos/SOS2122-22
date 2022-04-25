@@ -13,23 +13,23 @@
     let entry = {};
     let updatedCountry;
     let updatedYear;
-    let updatedproductions;
-    let updatedexports;
-    let updatedconsumption;
+    let updatedCo2_kg;
+    let updatedCo2_tot;
+    let updatedCo2_tpc;
     let errorMsg = "";
 
     onMount(getEntries);
     async function getEntries(){
         console.log("Fetching entries....");
-        const res = await fetch("/api/v2/coal-stats/"+params.country+"/"+params.year); 
+        const res = await fetch("/api/v2/co2-stats/"+params.country+"/"+params.year); 
         if(res.ok){
             const data = await res.json();
             entry = data;
             updatedCountry = entry.country;
             updatedYear = entry.year;
-            updatedproductions = entry.productions;
-            updatedexports = entry.exports;
-            updatedconsumption = entry.consumption;
+            updatedCo2_kg = entry.co2_kg;
+            updatedCo2_tot = entry.co2_tot;
+            updatedCo2_tpc = entry.co2_tpc;
         }else{
             visible = true;
             color = "danger"
@@ -39,15 +39,15 @@
     }
     async function EditEntry(){
         console.log("Updating entry...."+updatedCountry);
-        const res = await fetch("/api/v2/coal-stats/"+params.country+"/"+params.year,
+        const res = await fetch("/api/v2/co2-stats/"+params.country+"/"+params.year,
 			{
 				method: "PUT",
 				body: JSON.stringify({
                     country: updatedCountry,
                     year: parseInt(updatedYear),
-                    productions: parseFloat(updatedproductions),
-                    exports: parseFloat(updatedexports),
-                    consumption: parseFloat(updatedconsumption)
+                    co2_kg: parseFloat(updatedCo2_kg),
+                    co2_tot: parseFloat(updatedCo2_tot),
+                    co2_tpc: parseFloat(updatedCo2_tpc)
                 }),
 				headers: {
 					"Content-Type": "application/json"
@@ -65,6 +65,7 @@
                         errorMsg= "Compruebe los campos";
                     }
                 });	
+
     }
 </script>
 
@@ -86,18 +87,18 @@
                 <tr>
                     <th>País</th>
                     <th>Año</th>
-                    <th>Producciones</th>
-                    <th>Exportaciones</th>
-                    <th>Consumo</th>
+                    <th>C02_kg</th>
+                    <th>C02_tot</th>
+                    <th>C02_tpc</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><input bind:value="{updatedCountry}"></td>
                     <td><input bind:value = "{updatedYear}"></td>
-                    <td><input bind:value="{updatedproductions}"></td>
-                    <td><input bind:value="{updatedexports}"></td>
-                    <td><input bind:value="{updatedconsumption}"></td>
+                    <td><input bind:value="{updatedCo2_kg}"></td>
+                    <td><input bind:value="{updatedCo2_tot}"></td>
+                    <td><input bind:value="{updatedCo2_tpc}"></td>
                     <td><Button outline color="primary" on:click="{EditEntry}">
                         Editar
                         </Button>

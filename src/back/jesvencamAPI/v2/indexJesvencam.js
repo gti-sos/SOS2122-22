@@ -1,6 +1,8 @@
+
+
 const bodyParser = require("body-parser");
-const BASE_API_URL = "/api/v1";
-const BASE_API_URL_="/api/v1/co2-stats";
+const BASE_API_URL = "/api/v2";
+const BASE_API_URL_="/api/v2/co2-stats";
 
 var co2 = [{		
     country : "mexico",
@@ -9,6 +11,215 @@ var co2 = [{
     co2_kg : 0.13,
     co2_tpc : 4.62
 },
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "mexico",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+
+{		
+    country : "chile",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "chipre",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "uruguay",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+{		
+    country : "holanda",
+    year : 2020,
+    co2_tot : 214.817,
+    co2_kg : 0.13,
+    co2_tpc : 4.62
+},
+
 {
     country : "italia",
     year : 2017,
@@ -321,12 +532,15 @@ module.exports.register = (app,db) =>{
     
     // PUT de un recurso especifico
     
+
+
+
     app.put(BASE_API_URL_+"/:country/:year",(req, res)=>{
         
         //COMPROBAMOS FORMATO JSON
 
         if(test_Peticion(req)){
-            res.sendStatus(400,"BAD REQUEST");
+            res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
             return;
         }
         
@@ -340,7 +554,7 @@ module.exports.register = (app,db) =>{
                 return;
             }
 
-            
+            //COMPROBAMOS SI EXISTE EL ELEMENTO
 
             filteredList = filteredList.filter((reg)=>
             {
@@ -351,15 +565,16 @@ module.exports.register = (app,db) =>{
                 return;
             }
 
+            //COMPROBAMOS SI LOS CAMPOS ACTUALIZADOS SON IGUALES
 
             if(countryR != body.country || yearR != body.year){
                 res.sendStatus(400,"BAD REQUEST");
                 return;
             }
 
-        
+            //ACTUALIZAMOS VALOR
                 
-            db.update({country: countryR, year: yearR }, {$set: body}, {},function(err, updatedDb) {
+            db.update({$and:[{country: String(countryR)}, {year: parseInt(yearR)}]}, {$set: body}, {},function(err, numUpdated) {
                 if (err) {
                     res.sendStatus(500, "ERROR EN CLIENTE");
                 }else{
@@ -367,8 +582,11 @@ module.exports.register = (app,db) =>{
                 }
             });
         })
+            
+        
     
     })
+    
     
     
     //##########################################
@@ -392,20 +610,20 @@ module.exports.register = (app,db) =>{
         res.sendStatus(200, "OK");
     });
 
-    app.delete(BASE_API_URL + "/co2-stats/:country/:year",(req, res)=>{
+    app.delete(BASE_API_URL_+"/:country/:year",(req, res)=>{
         var countryR = req.params.country;
         var yearR = req.params.year;
 
-        db.find({country: countryR, year: parseInt(yearR)}, {}, (err, regisNew)=>{
+        db.find({country: countryR, year: parseInt(yearR)}, {}, (err, filteredList)=>{
             if (err){
                 res.sendStatus(500,"ERROR EN CLIENTE");
                 return;
             }
-            if(regisNew==0){
+            if(filteredList==0){
                 res.sendStatus(404,"NOT FOUND");
                 return;
             }
-            db.remove({country: countryR, year: yearR}, {}, (err, numRemoved)=>{
+            db.remove({country: countryR, year: parseInt(yearR)}, {}, (err, numRemoved)=>{
                 if (err){
                     res.sendStatus(500,"ERROR EN CLIENTE");
                     return;
@@ -418,7 +636,6 @@ module.exports.register = (app,db) =>{
         });
 
     })
-
         
     //Función paginación 
     function paginacion(req, lista){
@@ -437,3 +654,7 @@ module.exports.register = (app,db) =>{
 
     }
 }
+
+
+
+
