@@ -56,8 +56,7 @@
 				}
 			}).then(function (res){
                         console.log("iosdhfviosdbhfvioubsdfio");
-                        window.alert(res.status);
-
+                        Errores(res.status);
                     }); 
     }
 	//Función para borrar una entrada
@@ -101,10 +100,10 @@
             msg = "La fecha inicio no puede ser menor a la fecha fin"
         }
 		else if(code == 404){
-            msg = "El rango de fechas seleccionadas no tiene registros"
+            msg = "No se han encontrado registros en ese rango"
         }
         else if(code == 409){
-            msg = "error 409";
+            msg = "El recurso creado ya existe o hay un conflicto.";
         }
         else{
             msg = "todo ok";
