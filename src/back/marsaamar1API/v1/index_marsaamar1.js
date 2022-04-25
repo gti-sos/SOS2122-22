@@ -5,54 +5,43 @@ const BASI_API_tradeStats = "/api/v1/trade-stats";
 
 
 var tradeStats = [
-    {		
-        country : "spain",
-        year:2005,
-        export:123456,
-        import:63.70,
-        balance:49070.43
-    },
-    {
-        country:"australia",
-        year:2005,
-        export:21474.10,
-        import:1754.70,
-        balance:0
-    },{		
-        country : "china",
-        year : 2005,
-        export : 2607124.00,
-        import : 79068.70,
-        balance : 0
-    },
-    {		
-        country : "mexico",
-        year : 2017,
-        export : 12980.80,
-        import : 0,
-        balance : 22705.38
-    },
-    {		
-        country : "china",
-        year : 2017,
-        export : 3884057.75,
-        import : 8917.69,
-        balance : 0
-    },
-    {
-        country : "eeuu",
-        year : 2005,
-        export : 1131498.13,
-        import : 49942.21,
-        balance : 0
-    },{		
-        country : "india",
-        year : 2005,
-        export : 473265.78,
-        import : 1754.75,
-        balance : 0
-    }
-]
+        {		
+            country : "España",
+            year : 2010,
+            export : 293458.8,
+            import : 330635.8,
+            balance : -37177.1
+        },
+        {		
+            country : "Alemania",
+            year : 2013,
+            export : 1320732.4,
+            import : 1087431.3,
+            balance : 233301.1
+        },
+        {		
+            country : "Reino Unido",
+            year : 2018,
+            export : 412055.5,
+            import : 570546.8,
+            balance : -158491.3
+        },
+        {		
+            country : "Francia",
+            year : 2000,
+            export : 492964.1,
+            import : 572576.0,
+            balance : -79611.9
+        },
+        {		
+            country : "Italia",
+            year : 2018,
+            export : 465325.4,
+            import : 426045.7,
+            balance : 39279.7
+        }
+        
+    ];
 
 module.exports.register = (app,db) =>{
     /* 

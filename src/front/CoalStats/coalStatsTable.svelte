@@ -32,7 +32,7 @@
     //GET
     async function getEntries(parametros="",b=false) {
 		console.log("Fetching data....");
-		const res = await fetch("/api/v1/coal-stats"+parametros);
+		const res = await fetch("/api/v2/coal-stats"+parametros);
 						
 		console.log(res.ok);
 		if (res.ok) {
@@ -269,15 +269,17 @@
 			{checkMSG}
 		{/if}
 	</Alert>
-    <Table>
-        <thead>
-            <tr>
+    <Table  >
+        <thead  >
+            <tr class="table-secondary">
                 <th>Fecha_Inicio</th>
                 <th>Fecha_Fin</th>
+                <th></th>
+				<th> </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr >
                 <td><input bind:value={yFrom} type="number"/></td>
                 <td><input bind:value={yTo} type="number"/> </td>
                 <td><Button color="dark" on:click={getEntries(`?from=${yFrom}&to=${yTo}`,true)}>Buscar</Button></td>
@@ -291,11 +293,11 @@
     </Table>
     
     <!--<p>Buscar registros del año <input bind:value={Uyear} type="text"/> <Button color="info" on:click={busqueda_año(`${Uyear}`,true)}>Buscar</Button> </p>-->
-	<Table bordered>
+	<Table >
 		
 		
 		<thead id="titulitos">
-			<tr>
+			<tr class="table-dark" >
 				
 				<th>País</th>
 				<th>Año</th>
@@ -313,12 +315,12 @@
 				<td><input bind:value="{newEntry.productions}"></td>
                 <td><input bind:value="{newEntry.exports}"></td>
                 <td><input bind:value="{newEntry.consumption}"></td>
-				<td><Button outline color="primary" on:click="{insertEntry}">
+				<td><Button color="dark" on:click="{insertEntry}">
 					Añadir
 					</Button>
 				</td>
                 <td>
-                    <Button color="outline-info" on:click="{
+                    <Button color="outline-dark" on:click="{
                         ()=>{newEntry.country = null; newEntry.year = null; newEntry.productions = null; newEntry.exports = null;newEntry.consumption = null; getEntries();}
                     }">Limpiar</Button>
                 </td>
@@ -341,22 +343,24 @@
 					</td>
 				</tr>
 			{/each}
-			<tr>
-				<td><Button outline color="success" on:click={LoadEntries}>
-					Cargar datos
-				</Button></td>
-				<td><Button outline color="danger" on:click={BorrarEntries}>
-					Borrar todo
-				</Button></td>
-			</tr>
+			
 		</tbody>
 	</Table>
-    <Button id ="atrasbtn" on:click="{getPreviewPage}">
-        Atrás
+   <Button outline color="info" on:click={LoadEntries}>
+            Cargar datos
     </Button>
-    <Button id ="siguientebtn" on:click="{getNextPage}">
-        Siguiente
+    <Button outline color="danger" on:click={BorrarEntries}>
+            Borrar todo
     </Button>
+    <div align="center">
+        <Button id ="atrasbtn" on:click="{getPreviewPage}">
+            🢀
+        </Button>
+        <Button id ="siguientebtn" on:click="{getNextPage}">
+            🢂
+        </Button>
+    </div>
+    
     <div align="center">
         Página {numPage} 
     </div>
