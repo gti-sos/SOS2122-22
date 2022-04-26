@@ -68,7 +68,13 @@
     }
 	async function insertEntry(){
         console.log("Inserting entry...."+JSON.stringify(newCo2_stat));
-        const res = await fetch("/api/v2/co2-stats",
+        if(newCo2_stat.country=='' ||newCo2_stat.year==""){
+            visible = true;
+            console.log("Data introduced");
+            color = "danger";
+            checkMSG="El campo Pais o Año estan vacíos";
+        }else{
+            const res = await fetch("/api/v2/co2-stats",
 			{
 				method: "POST",
 				body: JSON.stringify(newCo2_stat),
@@ -94,10 +100,12 @@
                             checkMSG= "Ya existe una entrada en la base de datos con el pais y el año introducido";
                 }
                                                  
-                        Errores(res.status);
-                        setInterval("location.reload()",60000);
+                        //setInterval("location.reload()",60000);
 
                     }); 
+
+        }
+        
                     
         console.log("ahoraaa");
 
@@ -261,11 +269,11 @@ loading
         </thead>
         <tbody>
             <tr>
-                <td><input bind:value="{newCo2_stat.country}"></td>
-                <td><input bind:value="{newCo2_stat.year}"></td>
-                <td><input bind:value="{newCo2_stat.co2_kg}"></td>
-                <td><input bind:value="{newCo2_stat.co2_tot}"></td>
-                <td><input bind:value="{newCo2_stat.co2_tpc}"></td>
+                <td><input type="text" required bind:value="{newCo2_stat.country}"></td>
+                <td><input type="number" required bind:value="{newCo2_stat.year}"></td>
+                <td><input type="number" required bind:value="{newCo2_stat.co2_kg}"></td>
+                <td><input type="number" required bind:value="{newCo2_stat.co2_tot}"></td>
+                <td><input type="number" required bind:value="{newCo2_stat.co2_tpc}"></td>
 
                 <td><Button outline color="primary" on:click="{insertEntry}">
                     Añadir
