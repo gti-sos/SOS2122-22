@@ -4,7 +4,7 @@
 	import Home from "./Home.svelte";
 	import Co2StatsTable from './Co2Stats/Co2StatsTable.svelte';
 	import editCo2StatsTable from './Co2Stats/editCo2StatsTable.svelte';
-
+	import graph from "./graph.svelte";
 	import coalStatsTable from './CoalStats/coalStatsTable.svelte';
 	import editcoalStatsTable from './CoalStats/editcoalStatsTable.svelte';
 	import tradeStatsTable from './tradeStats/tradeStatsTable.svelte';
@@ -16,6 +16,7 @@
 		"/" : Home,
 		"/co2StatsTable": Co2StatsTable,
 		"/co2StatsTable/:country/:year" : editCo2StatsTable,
+		"/graph":graph,
 		"/coalStatsTable": coalStatsTable,
 		"/coalStatsTable/:country/:year" : editcoalStatsTable,
 		"/tradeStatsTable": tradeStatsTable,
