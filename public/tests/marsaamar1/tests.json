@@ -1,33 +1,61 @@
 {
 	"info": {
-		"_postman_id": "34af2293-804d-4330-ac45-8f7d32f8cc09",
-		"name": "Tests marsaamar1",
+		"_postman_id": "d473434c-930f-4987-aeb9-27a285e2677a",
+		"name": "SOS-21/22-22-MSM.v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Base de datos llena",
+			"name": "Get /trade-stats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}trade-stats",
+					"raw": "{{SERVER}}",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get /loadInitialData ERROR",
+			"name": "BD Inicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}trade-stats/loadInitialData",
+					"raw": "{{SERVER}}/loadInitialData",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
 					],
 					"path": [
 						"loadInitialData"
@@ -37,45 +65,14 @@
 			"response": []
 		},
 		{
-			"name": "Base de datos borrada",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{SERVER}}trade-stats",
-					"host": [
-						"{{SERVER}}trade-stats"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get /loadInitialData CREATED",
+			"name": "Get /trade-stats",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}trade-stats/loadInitialData",
+					"raw": "{{SERVER}}",
 					"host": [
-						"{{SERVER}}trade-stats"
-					],
-					"path": [
-						"loadInitialData"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Base de datos con 5 datos iniciales",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{SERVER}}trade-stats",
-					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
 					]
 				}
 			},
@@ -83,16 +80,60 @@
 		},
 		{
 			"name": "Get España OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}trade-stats/España",
+					"raw": "{{SERVER}}/España",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
 					],
 					"path": [
 						"España"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Portugal  FAILED",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/Portugal",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"Portugal"
 					]
 				}
 			},
@@ -100,16 +141,66 @@
 		},
 		{
 			"name": "POST España CONFLICTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"España\",\r\n\"year\": 2010,\r\n\"export\": 293458.8,\r\n\"import\": 330635.8,\r\n\"balance\": -37177.1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{SERVER}}trade-stats/Inglaterra",
+					"raw": "{{SERVER}}",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE España NOT FOUND",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/España/2018",
+					"host": [
+						"{{SERVER}}"
 					],
 					"path": [
-						"Inglaterra"
+						"España",
+						"2018"
 					]
 				}
 			},
@@ -117,16 +208,30 @@
 		},
 		{
 			"name": "DELETE España OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{SERVER}}trade-stats/España",
+					"raw": "{{SERVER}}/España/2010",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
 					],
 					"path": [
-						"España"
+						"España",
+						"2010"
 					]
 				}
 			},
@@ -134,13 +239,35 @@
 		},
 		{
 			"name": "POST España Method Not Allowed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"España\",\r\n\"year\": 2010,\r\n\"export\": 293458.8,\r\n\"import\": 330635.8,\r\n\"balance\": -37177.1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{SERVER}}trade-stats/España",
+					"raw": "{{SERVER}}/España",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
 					],
 					"path": [
 						"España"
@@ -150,13 +277,26 @@
 			"response": []
 		},
 		{
-			"name": "PUT FAILED",
+			"name": "POST España BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2018,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 330635.8,\r\n        \"balance\" : -37177.1}",
+					"raw": "{\r\n\"country\": \"España\",\r\n\"year\": 2010,\r\n\"export\": 293458.8,\r\n\"import\": 330635.8,\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -164,26 +304,195 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}trade-stats/España/2016",
+					"raw": "{{SERVER}}",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST España/2010 OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"España\",\r\n\"year\": 2010,\r\n\"export\": 293458.8,\r\n\"import\": 330635.8,\r\n\"balance\": -37177.1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}",
+					"host": [
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST España/2011 OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"country\": \"España\",\r\n\"year\": 2011,\r\n\"export\": 293458.8,\r\n\"import\": 330635.8,\r\n\"balance\": -37177.1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}",
+					"host": [
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get España OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/España",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"España"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get España/2010 OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}/España/2010",
+					"host": [
+						"{{SERVER}}"
 					],
 					"path": [
 						"España",
-						"2016"
+						"2010"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "PUT FAILED 2",
+			"name": "Get /trade-stats ACTUALIZADO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}",
+					"host": [
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2018,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 330635.8,\r\n        \"balance\" : -37177.1}",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2015,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 330635.8,\r\n        \"balance\" : -37177.1}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -191,16 +500,113 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}trade-stats",
+					"raw": "{{SERVER}}/España/2010",
 					"host": [
-						"{{SERVER}}trade-stats"
+						"{{SERVER}}"
+					],
+					"path": [
+						"España",
+						"2010"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "PUT OK",
+			"name": "PUT BAD REQUEST 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2015,\r\n        \"export\" : 23458.8,\r\n\r\n        \"balance\" : -37177.1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/España/2015",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"España",
+						"2015"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT NOT FOUND",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2020,\r\n        \"export\" : 23458.8,\r\n        \"import\" : 330635.8,\r\n        \"balance\" : -37177.1}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/España/2020",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"España",
+						"2020"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT METHOD NOT ALLOWED",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -214,17 +620,255 @@
 					}
 				},
 				"url": {
-					"raw": "{{SERVER}}trade-stats/España/2018",
+					"raw": "{{SERVER}}",
 					"host": [
-						"{{SERVER}}trade-stats"
-					],
-					"path": [
-						"España",
-						"2018"
+						"{{SERVER}}"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "PUT España/2011 OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"country\" : \"España\",\r\n        \"year\" : 2011,\r\n        \"export\" : 0,\r\n        \"import\" : 0,\r\n        \"balance\" : 0}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{SERVER}}/España/2011",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"España",
+						"2011"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /trade-stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}",
+					"host": [
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}?year=2010",
+					"host": [
+						"{{SERVER}}"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2010"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by period from-to",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}?from=2002&to=2022",
+					"host": [
+						"{{SERVER}}"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2002"
+						},
+						{
+							"key": "to",
+							"value": "2022"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET offset limit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}?offset=2&limit=3",
+					"host": [
+						"{{SERVER}}"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Base de datos borrada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}",
+					"host": [
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get /trade-stats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}",
+					"host": [
+						"{{SERVER}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SERVER",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
