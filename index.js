@@ -16,7 +16,7 @@ const Datastore = require('nedb');
 
 db_co2_stats = new Datastore();
 db_coal_stats = new Datastore();
-db_trade_stats_v1 = new Datastore();
+
 db_trade_stats = new Datastore();
 
 //co2_stats_API.register(app,db_co2_stats);
@@ -24,7 +24,6 @@ co2_stats_APIV2.register(app,db_co2_stats);
 
 coal_stats_API.register(app,db_coal_stats);
 coal_stats_APIV2.register(app,db_coal_stats);
-trade_stats_API.register(app,db_trade_stats_v1);
 trade_stats_APIV2.register(app,db_trade_stats);
 
 

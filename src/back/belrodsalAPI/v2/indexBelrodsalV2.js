@@ -115,6 +115,11 @@ module.exports.register = (app,db) =>{
     {
         res.redirect("https://documenter.getpostman.com/view/19481676/UVyn2ykY")
     })
+
+    app.get("/api/v1/coal-stats/docs",(req,res)=>
+    {
+        res.redirect("https://documenter.getpostman.com/view/19481676/UyrEiF9M")
+    })
     
     // GETs
     
