@@ -47,11 +47,7 @@
 
 	async function insertEntry(){
 		console.log("Inserting Entry...."+JSON.stringify(newEntry));
-		if(!!newEntry.country && !!newEntry.year){
-			newEntry.year = parseInt(newEntry.year);
-			newEntry.export = parseFloat(newEntry.export);
-			newEntry.balance = parseFloat(newEntry.balance);
-			newEntry.import = parseFloat(newEntry.import);
+		if(!!newEntry.country && !!newEntry.year && !!newEntry.export && !!newEntry.import && !!newEntry.balance ){
 			const res = await fetch("/api/v2/trade-stats",
 			{
 				method: "POST",
@@ -81,7 +77,7 @@
 		}else{
 			visibleMsg = false;
 			visibleError = true;
-			errorMsg = "Faltan los campos país y año";
+			errorMsg = "Faltan campos";
 		}
 		
 	}
@@ -295,10 +291,10 @@ loading
 		<tbody>
 			<tr>
 				<td><input bind:value="{newEntry.country}"></td>
-				<td><input bind:value="{newEntry.year}"></td>
-				<td><input bind:value="{newEntry.export}"></td>
-                <td><input bind:value="{newEntry.import}"></td>
-                <td><input bind:value="{newEntry.balance}"></td>
+				<td><input type = "number" bind:value="{newEntry.year}"></td>
+				<td><input type = "number" bind:value="{newEntry.export}"></td>
+                <td><input type = "number" bind:value="{newEntry.import}"></td>
+                <td><input type = "number" bind:value="{newEntry.balance}"></td>
 				<td><Button outline color="primary" on:click="{insertEntry}">
 					Añadir
 					</Button>

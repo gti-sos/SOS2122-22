@@ -75,7 +75,7 @@ module.exports.register = (app,db) =>{
     
     app.get(BASI_API_tradeStats+"/docs",(req,res)=>
     {
-        res.redirect("https://documenter.getpostman.com/view/19996738/UVysxGDk")
+        res.redirect("https://documenter.getpostman.com/view/19585767/UyrEhv7x")
     })
     
     // GETs
