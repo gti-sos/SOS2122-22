@@ -21,6 +21,7 @@
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs">https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs </a>(developed by <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a>)</p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/coal-stats/docs">https://sos2122-22.herokuapp.com/api/v2/coal-stats/docs </a>(developed by <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a>)</p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/trade-stats/docs">https://sos2122-22.herokuapp.com/api/v2/trade-stats/docs </a>(developed by <a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a>)</p>
+    <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/trade-stats/docs">https://sos2122-22.herokuapp.com/api/v1/trade-stats/docs </a>(developed by <a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a>)</p>
 </body>
 </main>
 
