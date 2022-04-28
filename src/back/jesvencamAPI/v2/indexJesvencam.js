@@ -283,6 +283,9 @@ module.exports.register = (app,db) =>{
         res.redirect("https://documenter.getpostman.com/view/19481636/UVyvwuou");
     
     });
+    app.get(BASE_API_URL+ "/co2-stats/data",(req,res)=>{
+        res.send(JSON.stringify([1234,2345,3456,4567,5678]))
+    })
     app.get(BASE_API_URL+ "/co2-stats/loadInitialData", (req, res) => {
         db.find({}, function (err, filteredList) {
             if (err) {
