@@ -53,7 +53,7 @@
         Highcharts.chart('container', {
 
             title: {
-                text: 'Grafico del equipo 22'
+                text: 'Grafico de Co2, por Jesús Vena Campos'
             },
 
             subtitle: {
