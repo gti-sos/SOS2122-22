@@ -5,190 +5,32 @@ const BASE_API_URL = "/api/v2";
 const BASE_API_URL_="/api/v2/co2-stats";
 
 var co2 = [{		
-    country : "mexico",
+    country : "españa",
     year : 2020,
     co2_tot : 214.817,
     co2_kg : 0.13,
     co2_tpc : 4.62
 },
 {		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
+    country : "españa",
+    year : 2019,
+    co2_tot : 255.831,
     co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
+    co2_tpc : 5.52
 },
 {		
-    country : "mexico",
+    country : "españa",
     year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
+    co2_tot : 275.864,
+    co2_kg : 0.15,
+    co2_tpc : 5.95
 },
 {		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-},
-{		
-    country : "mexico",
-    year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
+    country : "españa",
+    year : 2017,
+    co2_tot : 280.225,
+    co2_kg : 0.15,
+    co2_tpc : 6.05
 },
 
 {		
@@ -248,32 +90,34 @@ var co2 = [{
 },
 {
     country : "alemania",
-    year : 2017,
-    co2_tot : 250.177,
-    co2_kg : 0.15,
-    co2_tpc : 4.77
-},
-{		
-    country : "spain",
     year : 2020,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
+    co2_tot :636.876,
+    co2_kg : 0.15,
+    co2_tpc : 7.72
+},
+
+{
+    country : "alemania",
+    year : 2019,
+    co2_tot : 702.201,
+    co2_kg : 0.16,
+    co2_tpc : 8.52
 },
 {
     country : "alemania",
-    year : 2017,
-    co2_tot : 250.177,
-    co2_kg : 0.15,
-    co2_tpc : 4.77
+    year : 2018,
+    co2_tot : 757.343,
+    co2_kg : 0.17,
+    co2_tpc : 9.20
 },
-{		
-    country : "spain",
-    year : 2022,
-    co2_tot : 214.817,
-    co2_kg : 0.13,
-    co2_tpc : 4.62
-}];
+{
+    country : "francia",
+    year : 2020,
+    co2_tot : 279.991,
+    co2_kg : 0.16,
+    co2_tpc : 8.52
+},
+];
 
 
 module.exports.register = (app,db) =>{
