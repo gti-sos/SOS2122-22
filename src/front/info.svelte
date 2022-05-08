@@ -9,7 +9,10 @@
     <p> Tabla de datos de CO2, por Jesús Vena Campos</p>
     <p><a href="/#/coalStatsTable">Table of Coal Stats</a></p>
     <p><a href="/#/tradeStatsTable">Table of Trade Stats</a></p>
+    
     <h3>TEAM</h3>
+    <a href="/#/graph">GRAFICA GRUPAL</a>
+    <p></p>
     <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar </a> (Fuende de Datos: Coal-Stats)</p>
     <p>- <a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a></p>

@@ -74,7 +74,8 @@
 </svelte:head>
 
 <main>
-    <h2>Datos de Carbón</h2>
+    <h2>Datos de Carbón<h5>(en mil Toneladas Cortas)</h5></h2>
+     <div></div>
     <h4>Biblioteca: Chart.js</h4>
     <!--<button class="btn btn-primary hBack" type="button">Volver</button>
     <a href="/#/coal-stats" class="btn btn-primary hBack" role="button" >Volver</a> -->
@@ -82,6 +83,7 @@
          window.location.href = `/#/coalStatsTable/`
             }}>Volver
     </Button>
+    
     
 
     <canvas id="myChart" />

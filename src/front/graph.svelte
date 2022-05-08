@@ -1,6 +1,56 @@
 <script>
 
     import {onMount} from'svelte';
+    import {Button} from 'sveltestrap';
+
+    //Belrodsal APi ----------------------------------------------------
+
+    let data = [];
+    let stats_country_date = [];
+    let stats_productions = [];
+    let stats_exports = [];
+    let stats_consumption = [];
+
+    async function LoadEntries() {
+ 
+ console.log("Fetching entry data...");
+ await fetch(BASE_API_PATH + "/loadInitialData");
+ const res = await fetch(BASE_API_PATH + "?limit=10&offset=0");
+ if (res.ok) {
+     console.log("Ok:");
+     const json = await res.json();
+     entries = json;
+     visible = true;
+     totaldata=11;
+     console.log("Received " + entries.length + " entry data.");
+     color = "success";
+     checkMSG = "Datos cargados correctamente";
+ } else {
+     color = "danger";
+     checkMSG= res.status + ": " + "No se pudo cargar los datos";
+     console.log("ERROR! ");
+ }
+}
+
+    async function getCoalStats() {
+        console.log("Fetching stats....");
+        const res = await fetch("/api/v2/coal-stats");
+        if (res.ok) {
+            const data = await res.json();
+            console.log("Estadísticas recibidas: " + data.length);
+            data.forEach((stat) => {
+                stats_country_date.push(stat.country + "-" + stat.year);
+                stats_productions.push(stat["productions"]);
+                stats_exports.push(stat["exports"]);
+                stats_consumption.push(stat["consumption"]);             
+            });
+            //loadGraph();
+        } else {
+            console.log("Error cargando los datos");
+        }
+    }
+
+    //-----------------------------------------
 
     let apiData = [];
     const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -52,6 +102,10 @@
 
         Highcharts.chart('container', {
 
+            chart:{
+                type:'line'
+            },
+
             title: {
                 text: 'Grafico del equipo 22'
             },
@@ -70,7 +124,8 @@
                 accessibility: {
                     title :{
                         text:'año'
-                    }
+                    },
+                    
                 
                 }
             },
@@ -102,7 +157,21 @@
                 {
                     name: 'Co2 por Kg',
                     data: kg
-                },],
+                },
+                {
+                    name: 'Carbon Producciones en mil toneladas',
+                    data: stats_productions
+                },
+                {
+                    name: 'Carbon Exportaciones en mil toneladas',
+                    data: stats_exports
+                },
+                {
+                    name:'Carbon Consumo en mil toneladas',
+                    data:stats_consumption
+                }
+            
+            ],
 
             responsive: {
                 rules: [{
@@ -124,10 +193,14 @@
 
     }
     onMount(getData);
+    onMount(getCoalStats);
    
 </script>
 <main>
 
+    <Button class="btn-sm"outline color="dark" on:click={LoadEntries}>
+        Cargar datos Carbon
+    </Button>
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
@@ -136,6 +209,7 @@
             enhanced readability.
         </p>
     </figure>
+    <Button outline color="secondary" href="/">Volver</Button>
 
 </main>
 
