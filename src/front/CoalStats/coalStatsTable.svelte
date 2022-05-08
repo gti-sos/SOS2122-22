@@ -288,6 +288,7 @@
                         ()=>{yFrom = null; yTo = null; getEntries();}
                     }">Limpiar Busqueda</Button>
                 </td>
+                
             </tr>
         </tbody>
     </Table>
@@ -324,6 +325,7 @@
                         ()=>{newEntry.country = null; newEntry.year = null; newEntry.productions = null; newEntry.exports = null;newEntry.consumption = null; getEntries();}
                     }">Limpiar</Button>
                 </td>
+                
 			</tr>
 			{#each entries as entry}
 				<tr>
@@ -346,11 +348,16 @@
 			
 		</tbody>
 	</Table>
+    
    <Button outline color="info" on:click={LoadEntries}>
             Cargar datos
     </Button>
     <Button outline color="danger" on:click={BorrarEntries}>
             Borrar todo
+    </Button>
+    <Button color="outline-dark" on:click={function (){
+        window.location.href = `/#/coalStatsTable/chart`
+    }}>Gráfica
     </Button>
     <div align="center">
         <Button id ="atrasbtn" on:click="{getPreviewPage}">

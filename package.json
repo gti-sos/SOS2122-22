@@ -6,12 +6,11 @@
     "test-c02-stats": "npx newman run ./public/tests/jesvencam/test-jesvencam.json -e ./public/tests/jesvencam/api_jesvencam_enviroment.json",
     "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json",
     "test-trade-stats": "npx newman run ./public/tests/marsaamar1/tests.json -e ./public/tests/marsaamar1/env.json",
-    "test":"npm run test-c02-stats && npm run test-trade-stats && npm run test-coal-stats "
-
-
+    "test": "npm run test-c02-stats && npm run test-trade-stats && npm run test-coal-stats "
   },
   "dependencies": {
     "body-parser": "^1.19.2",
+    "chart.js": "^3.7.1",
     "express": "^4.17.3",
     "nedb": "^1.8.0",
     "svelte-spa-router": "^3.2.0",
@@ -27,5 +26,4 @@
     "rollup-plugin-terser": "^7.0.0",
     "svelte": "^3.0.0"
   }
-
 }
