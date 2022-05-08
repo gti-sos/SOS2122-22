@@ -49,23 +49,24 @@
 
 
     async function loadGraph(){
-
         Highcharts.chart('container', {
-
+            chart: {
+                type: 'areaspline'
+            },
             title: {
-                text: 'Grafico del equipo 22'
+                text: 'Datos de CO2'
             },
-
-            subtitle: {
-                text: ''
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 150,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
-
-            yAxis: {
-                title: {
-                    text: 'valor'
-                }
-            },
-
             xAxis: {
                 accessibility: {
                     title :{
@@ -89,37 +90,36 @@
                     pointStart: 2010
                 }
             },
-
+            yAxis: {
+                title: {
+                    text: 'Values'
+                }
+            },
+            tooltip: {
+                shared: true,
+                valueSuffix: ' units'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                areaspline: {
+                    fillOpacity: 0.5
+                }
+            },
             series: [{
-                
-                    name: 'Co2 por Tpc',
-                    data: tpc
-                },
-                {
-                    name: 'Co2 Total',
-                    data: tot
-                },
-                {
-                    name: 'Co2 por Kg',
-                    data: kg
-                },],
-
-            responsive: {
-                rules: [{
-                    condition: {
-                        maxWidth: 500
-                    },
-                    chartOptions: {
-                        legend: {
-                            layout: 'horizontal',
-                            align: 'center',
-                            verticalAlign: 'bottom'
-                        }
-                    }
-                }]
-            }
-
+                name: 'Co2 por tpc',
+                data: tpc
+            }, {
+                name: 'Co2 por kg ',
+                data: kg
+            },
+            {
+                 name: 'Total Co2',
+                data: tot
+            }]
         });
+        
 
 
     }
@@ -131,9 +131,8 @@
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            Basic line chart showing trends in a dataset. This chart includes the
-            <code>series-label</code> module, which adds a label to each line for
-            enhanced readability.
+            Using an area-splitline graph.
+            
         </p>
     </figure>
 
@@ -142,9 +141,10 @@
 <svelte:head>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js" on:load="{loadGraph}"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    
+   
 
 </svelte:head>
