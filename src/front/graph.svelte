@@ -11,27 +11,6 @@
     let stats_exports = [];
     let stats_consumption = [];
 
-    async function LoadEntries() {
- 
- console.log("Fetching entry data...");
- await fetch(BASE_API_PATH + "/loadInitialData");
- const res = await fetch(BASE_API_PATH + "?limit=10&offset=0");
- if (res.ok) {
-     console.log("Ok:");
-     const json = await res.json();
-     entries = json;
-     visible = true;
-     totaldata=11;
-     console.log("Received " + entries.length + " entry data.");
-     color = "success";
-     checkMSG = "Datos cargados correctamente";
- } else {
-     color = "danger";
-     checkMSG= res.status + ": " + "No se pudo cargar los datos";
-     console.log("ERROR! ");
- }
-}
-
     async function getCoalStats() {
         console.log("Fetching stats....");
         const res = await fetch("/api/v2/coal-stats");
@@ -198,9 +177,6 @@
 </script>
 <main>
 
-    <Button class="btn-sm"outline color="dark" on:click={LoadEntries}>
-        Cargar datos Carbon
-    </Button>
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
