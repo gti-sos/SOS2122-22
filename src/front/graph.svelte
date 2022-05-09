@@ -171,8 +171,8 @@
 
 
     }
-    onMount(getData);
-    onMount(getCoalStats);
+    onMount(getData,getCoalStats);
+    //onMount(getCoalStats);
    
 </script>
 <main>

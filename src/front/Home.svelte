@@ -9,6 +9,10 @@
     <p><a href="/#/coalStatsTable">Table of Coal Stats</a></p>
     <p><a href="/#/tradeStatsTable">Table of Trade Stats</a></p>
     <p><a href="/#/info">INFO</a></p>
+
+    <p><a href="/#/graph">GRAFICA GRUPAL </a></p>
+
+
     <h3>TEAM</h3>
     <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a></p>
