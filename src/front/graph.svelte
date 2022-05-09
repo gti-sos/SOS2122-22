@@ -29,6 +29,28 @@
         }
     }
 
+    //GET INITIALDATA
+    async function LoadEntries() {
+ 
+ console.log("Fetching entry data...");
+ await fetch(BASE_API_PATH + "/loadInitialData");
+ const res = await fetch(BASE_API_PATH + "?limit=10&offset=0");
+ if (res.ok) {
+     console.log("Ok:");
+     const json = await res.json();
+     entries = json;
+     visible = true;
+     totaldata=11;
+     console.log("Received " + entries.length + " entry data.");
+     color = "success";
+     checkMSG = "Datos cargados correctamente";
+ } else {
+     color = "danger";
+     checkMSG= res.status + ": " + "No se pudo cargar los datos";
+     console.log("ERROR! ");
+ }
+}
+
     //-----------------------------------------
 
     let apiData = [];
@@ -104,6 +126,7 @@
                     title :{
                         text:'año'
                     },
+                    labels: stats_country_date
                     
                 
                 }
