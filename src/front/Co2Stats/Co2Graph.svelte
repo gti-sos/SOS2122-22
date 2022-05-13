@@ -5,7 +5,7 @@
     let apiData = [];
     const delay = ms => new Promise(res => setTimeout(res, ms));
     async function getData(){
-        const res = await fetch("remoteAPI/loadInitialData");
+        const res = await fetch("api/v2/co2-stats/loadInitialData");
         if (res.ok){
             const json = await res.json();
             console.log("datos cargados..."+JSON.stringify(json));

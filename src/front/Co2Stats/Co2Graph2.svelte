@@ -99,7 +99,7 @@
 <main>        
     <br>
     <br>
-    <Button id='back' outline color="secondary" onclick="window.location.href='#/registration-stats'">Volver</Button>
+    <Button id='back' outline color="secondary" onclick="window.location.href='#/co2StatsTable'">Volver</Button>
         <div style="margin:auto;"> 
         <figure class="highcharts-figure">
             <div id="container"></div>
