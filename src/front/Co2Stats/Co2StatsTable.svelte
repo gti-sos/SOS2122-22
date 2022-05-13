@@ -86,7 +86,7 @@
 			}).then(function (res){
                         console.log("iosdhfviosdbhfvioubsdfio");
                         if (res.status == 201){
-                            getEntries()
+                            getEntries();
                             totaldata++;
                             visible = true;
                             console.log("Data introduced");
@@ -151,7 +151,8 @@
 	//Función para cargar las entradas
 	async function LoadEntries(){
         console.log("Loading entries....");
-        //const res = await fetch("/remoteAPI/loadInitialData",
+        //const res = await fetch("/remoteAPI/loadInitialData",      HAY QUE PONERLO TANTO AQUI COMO EN EL GETDATA 
+
 
         const res = await fetch("/api/v2/co2-stats/loadInitialData",
 			{
