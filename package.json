@@ -11,8 +11,12 @@
   "dependencies": {
     "body-parser": "^1.19.2",
     "chart.js": "^3.7.1",
+    "chartist": "^0.11.4",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "nedb": "^1.8.0",
+    "node-chartist": "^1.0.5",
+    "request": "^2.88.2",
     "svelte-spa-router": "^3.2.0",
     "sveltestrap": "^5.9.0"
   },

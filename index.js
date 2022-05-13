@@ -1,8 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
-app.use(bodyParser.json());
 const port = process.env.PORT || 8080;
+const request = require('request');
+const cors = require('cors'); //opciones de cors por defecto para simplificar. 
+const co = require('co');
+const generate = require('node-chartist');
+
+
+
+app.use(bodyParser.json());
+
+app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
 
 
 const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
@@ -31,6 +40,16 @@ trade_stats_APIV2.register(app,db_trade_stats);
 const BASE_API_URL = "/api/v1";
 
 
+
+
+var paths='/remoteAPI';
+var apiServerHost = 'https://sos2122-22.herokuapp.com/api/v2/co2-stats';
+
+app.use(paths, function(req, res) {
+  var url = apiServerHost + req.url;
+  console.log('piped: ' + req.url);
+  req.pipe(request(url)).pipe(res);
+});
 
 app.use("/",express.static('./public'));
 

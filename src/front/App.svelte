@@ -6,6 +6,8 @@
 	import editCo2StatsTable from './Co2Stats/editCo2StatsTable.svelte';
 	import graph from "./graph.svelte";
 	import co2Graph from "./Co2Stats/Co2Graph.svelte";
+	import co2Chartist from "./Co2Stats/Co2Chartist.svelte";
+
 	import coalStatsTable from './CoalStats/coalStatsTable.svelte';
 	import editcoalStatsTable from './CoalStats/editcoalStatsTable.svelte';
 	import tradeStatsTable from './tradeStats/tradeStatsTable.svelte';
@@ -20,6 +22,8 @@
 		"/co2StatsTable/:country/:year" : editCo2StatsTable,
 		"/graph":graph,
 		"/co2Graph":co2Graph,
+		"/co2Chartist":co2Chartist,
+
 		"/coalStatsTable": coalStatsTable,
 		"/coalStatsTable/:country/:year" : editcoalStatsTable,
 		"/tradeStatsTable": tradeStatsTable,
