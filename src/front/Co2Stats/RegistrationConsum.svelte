@@ -5,8 +5,8 @@
     let apiData = [];
     const delay = ms => new Promise(res => setTimeout(res, ms));
     async function getData(){
-        const res = await fetch("remoteAPI/loadInitialData");
-        if (res.ok){
+        const res = await fetch("https://sos2122-31.herokuapp.com/api/v2/registration-stats");
+        if (res.ok){    
             const json = await res.json();
             console.log("datos cargados..."+JSON.stringify(json));
             apiData = json;
@@ -20,8 +20,7 @@
         }else{
             console.log("Error en la peticion de los datos iniciales para el grafico");
 
-            await delay(1000);
-            loadGraph();
+            
         }
     }
 
@@ -32,21 +31,22 @@
         for(let i = 0; i<json.length; i++){
                 let aux = [];
                 aux.push(json[i].year);
-                aux.push(json[i].co2_kg);
+                aux.push(json[i].primarylevel);
                 kg.push(aux);
 
                 aux = [];
                 aux.push(json[i].year);
-                aux.push(json[i].co2_tot);
+                aux.push(json[i].secondarylevel);
                 tot.push(aux);
                 
                 aux = [];
                 aux.push(json[i].year);
-                aux.push(json[i].co2_tpc);
+                aux.push(json[i].tertiarylevel);
                 tpc.push(aux);
             }
     }
 
+    
 
     async function loadGraph(){
         Highcharts.chart('container', {

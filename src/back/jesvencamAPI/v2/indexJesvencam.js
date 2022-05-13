@@ -1,8 +1,29 @@
 
 
 const bodyParser = require("body-parser");
+const co = require('co');
+const generate = require('node-chartist');
+app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
+
+
 const BASE_API_URL = "/api/v2";
 const BASE_API_URL_="/api/v2/co2-stats";
+
+
+
+
+//Proxy
+
+var paths='/remoteAPI';
+var apiServerHost = 'https://sos2122-22.herokuapp.com/api/v2/registration-stats';
+
+app.use(paths, function(req, res) {
+  var url = apiServerHost + req.url;
+  console.log('piped: ' + req.url);
+  req.pipe(request(url)).pipe(res);
+});
+
+
 
 var co2 = [{		
     country : "españa",

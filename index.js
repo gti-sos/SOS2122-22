@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 const request = require('request');
 const cors = require('cors'); //opciones de cors por defecto para simplificar. 
 const co = require('co');
@@ -42,14 +42,6 @@ const BASE_API_URL = "/api/v1";
 
 
 
-var paths='/remoteAPI';
-var apiServerHost = 'https://sos2122-22.herokuapp.com/api/v2/co2-stats';
-
-app.use(paths, function(req, res) {
-  var url = apiServerHost + req.url;
-  console.log('piped: ' + req.url);
-  req.pipe(request(url)).pipe(res);
-});
 
 app.use("/",express.static('./public'));
 
