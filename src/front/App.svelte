@@ -8,6 +8,8 @@
 	import co2Graph from "./Co2Stats/Co2Graph.svelte";
 	import co2Graph2 from "./Co2Stats/Co2Graph2.svelte";
 	import registrationConsum from "./Co2Stats/RegistrationConsum.svelte";
+	import EnergyConsum from "./Co2Stats/EnergyConsum.svelte";
+
 
 	import co2Canvas from "./Co2Stats/Co2Canvas.svelte";
 
@@ -28,6 +30,7 @@
 		"/co2Graph2":co2Graph2,
 		"/co2Canvas":co2Canvas,
 		"/registrationConsum":registrationConsum,
+		"/energyConsum":EnergyConsum,
 
 
 		"/coalStatsTable": coalStatsTable,
