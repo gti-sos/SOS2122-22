@@ -10,10 +10,8 @@
       const res = await fetch("/api/v2/co2-stats/loadInitialData");
       if (res.ok){
           const json = await res.json();
-          console.log("lsdknfipndv"+JSON.stringify(json));
-          apiData = json;
+          console.log("dentro del ok "+JSON.stringify(json));
           guardaD(json);
-          console.log("cargando el grafo con los datos nuevos"+apiData);
 
           
          
