@@ -30,26 +30,26 @@
         let resP;
 
         res1 = await fetch("/api/v2/co2-stats/loadInitialData");
-        //resP = await fetch("/remoteApiEnergy");
+        resP = await fetch("/remoteApiEnergy");
 
-        res = await fetch("https://sos2122-10.herokuapp.com/api/v2/energy-consumptions");
+        //res = await fetch("https://sos2122-10.herokuapp.com/api/v2/energy-consumptions");
         console.log("aquiiii");
         
-        if (res.ok && res1.ok) {
+        if (resP.ok && res1.ok) {
             console.log("en el  ok");
 
-            const json = await res.json();
-            const json1 = await res1.json();
+            const json = await res1.json();
+            const json1 = await resP.json();
 
-            console.log("datossss"+JSON.stringify(json));
+            console.log("datossss"+JSON.stringify(json1));
 
-            for (let i = 0; i < json.length; i++) {
-                categorias.push(json[i].year);
-                total.push(json[i].percentages_access_elecetricity);
-                nrenewable.push(json[i].non_renewable_energy_consumptions);
-                renewable.push(json[i].renewable_energy_consumptions);
+            for (let i = 0; i < json1.length; i++) {
+                categorias.push(json1[i].year);
+                total.push(json1[i].percentages_access_elecetricity);
+                nrenewable.push(json1[i].non_renewable_energy_consumptions);
+                renewable.push(json1[i].renewable_energy_consumptions);
             }
-            json1.forEach(data => {
+            json.forEach(data => {
                 fechas.push(data.year);
                 co2_tot.push(data.co2_tot);
                 co2_tpc.push(data.co2_tpc);
