@@ -20,9 +20,11 @@
     <h3>Repository:</h3><a href="https://github.com/gti-sos/SOS2122-22.git">gti-sos/SOS2122-22</a>
     <h3>URL:</h3><a href="http://sos2122-22.herokuapp.com">http://sos2122-22.herokuapp.com</a>
     <h3>APIS:</h3>
+    <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/co2-stats/"> CO2-STATS API V1</a></p>
+    <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/co2-stats/"> CO2-STATS API V2</a></p>
+
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/coal-stats/"> COAL-STATS API</a></p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/coal-stats/"> COAL-STATS API V1</a></p>
-    <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/co2-stats/"> CO2-STATS API</a></p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/trade-stats/"> TRADE-STATS API</a></p>
     <h3>DOCUMENTACION:</h3>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs">https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs </a>(developed by <a href="https://github.com/jesvencam">Jesús Vena Campos</a>)</p>

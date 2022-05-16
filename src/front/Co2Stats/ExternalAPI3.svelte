@@ -10,7 +10,7 @@
     async function getData(){
        
         const res = await fetch("api/v2/co2-stats/loadInitialData");
-        const res2 = await fetch("https://apiv3.apifootball.com/?action=get_standings&league_id=302&APIkey=238fa8f2f748e83ca2569474a8f848897110a90bb6837bd17d6cdc66a02eb14a");
+        const res2 = await fetch("https://api.coincap.io/v2/assets");
         if (res.ok){
             const json = await res.json();
             console.log("datos cargados..."+JSON.stringify(json));
@@ -20,9 +20,13 @@
             //loadGraph();
 
             const json2 = await res2.json();
-            console.log("DATOS2"+JSON.stringify(json2[0].home_league_PTS));
-            apiData2 = parseInt(json2[0].home_league_PTS);
+            console.log("DATOS2"+JSON.stringify(json2.data));
+            let data = json2.data;
+            for (let i=0;i<data.length;i++){
+                apiData2.push(parseInt(data[i].priceUsd));
 
+            }
+            console.log(apiData2)
             
 
             await delay(1000);
@@ -62,50 +66,64 @@
     async function loadChart(){
     
         Highcharts.chart('container', {
-            chart: {
-                type: 'pie',
-               
-            },
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: 'Integración de la api del precio del Bitcoin con la propia de Co2'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        
+        tickmarkPlacement: 'on',
         title: {
-            text: 'Integracion de los datos de CO2 con los de la api de Digimon'
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b> ({point.y:,.0f})',
-                    softConnector: true
-                },
-                center: ['50%', '50%'],
-                width: '60%'
-            }
-        },
-        legend: {
             enabled: false
-        },
-        series: [{
-            name: 'Digimons',
-            data: apiData2
-        }],
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    plotOptions: {
-                        series: {
-                            dataLabels: {
-                                inside: true
-                            },
-                            center: ['50%', '50%'],
-                            width: '100%'
-                        }
-                    }
-                }
-            }]
         }
-    });
+    },
+    yAxis: {
+        title: {
+            text: 'price'
+        },
+        labels: {
+            formatter: function () {
+                return this.value / 1000;
+            }
+        }
+    },
+    tooltip: {
+        split: true,
+        valueSuffix: ''
+    },
+    plotOptions: {
+        area: {
+            stacking: 'normal',
+            lineColor: '#666666',
+            lineWidth: 1,
+            marker: {
+                lineWidth: 1,
+                lineColor: '#666666'
+            }
+        }
+    },
+    series: [{
+        name: 'Datos del precio del bitcoin',
+        data: apiData2
+    },{
+        name : "Co2 mt ",
+        data : kg
+    },
+    {
+        name : "Co2 por tpc",
+        data : tpc
+    },
+    {
+        name : "Co2 tot",
+        data : tot
+    }
+]
+});
     }
 </script>
 <svelte:head>
