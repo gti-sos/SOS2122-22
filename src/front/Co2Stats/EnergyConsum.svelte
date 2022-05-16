@@ -2,7 +2,6 @@
 
 <script>
     import { onMount } from "svelte";
-    export let params = {};
     import Button from "sveltestrap/src/Button.svelte";
     import { pop } from "svelte-spa-router";
     import UncontrolledAlert from "sveltestrap/src/UncontrolledAlert.svelte";
@@ -152,7 +151,7 @@
         </UncontrolledAlert>
     {/if}
     <br />
-    <h1 align="center">Gráficas de {params.country}</h1>
+    <h1 align="center">Integracion de los datos de consumo de energia con los de Co2 </h1>
   
         
     <br />

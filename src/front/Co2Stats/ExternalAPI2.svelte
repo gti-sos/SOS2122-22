@@ -19,9 +19,6 @@
            
         }else{
             console.log("Error en la peticion de los datos iniciales para el grafico");
-
-            await delay(1000);
-            loadGraph();
         }
     }
 
@@ -68,57 +65,57 @@
         clasesDigimons.sort(function(a, b) {
             return a[1] - b[1];
         });
-    Highcharts.chart('container', {
-        chart: {
-            type: 'pie',
-            options3d: {
-            enabled: true,
-            alpha: 45
-        }
-        },
-    title: {
-        text: 'Integracion de los datos de CO2 con los de la api de Digimon'
-    },
-    plotOptions: {
-        series: {
-            dataLabels: {
+        Highcharts.chart('container', {
+            chart: {
+                type: 'pie',
+                options3d: {
                 enabled: true,
-                format: '<b>{point.name}</b> ({point.y:,.0f})',
-                softConnector: true
+                alpha: 45
+            }
             },
-            center: ['50%', '50%'],
-            width: '60%'
-        }
-    },
-    legend: {
-        enabled: false
-    },
-    series: [{
-        name: 'Digimons',
-        data: clasesDigimons
-    },{
-        name: 'Co2',
-        data: tpc
-    }],
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                plotOptions: {
-                    series: {
-                        dataLabels: {
-                            inside: true
-                        },
-                        center: ['50%', '50%'],
-                        width: '100%'
+        title: {
+            text: 'Integracion de los datos de CO2 con los de la api de Digimon'
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b> ({point.y:,.0f})',
+                    softConnector: true
+                },
+                center: ['50%', '50%'],
+                width: '60%'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            name: 'Digimons',
+            data: clasesDigimons
+        },{
+            name: 'Co2',
+            data: tpc
+        }],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                inside: true
+                            },
+                            center: ['50%', '50%'],
+                            width: '100%'
+                        }
                     }
                 }
-            }
-        }]
-    }
-});
+            }]
+        }
+    });
     }
 </script>
 <svelte:head>
