@@ -13,14 +13,6 @@ app.use(bodyParser.json());
 
 app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
 
-
-var remoteAPI1 = "http://api.quotable.io/random"
-var pathQuote = "/random"
-app.use(pathQuote, function(req,res){
-	console.log("Piped:" + req.baseUrl + req.url);
-	req.pipe(request(remoteAPI1)).pipe(res);
-});
-
 const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
 //const co2_stats_API = require("./src/back/jesvencamAPI/v1/indexJesvencam.js");
@@ -64,6 +56,10 @@ app.use(paths2, function(req, res) {
 
 
 app.use("/",express.static('./public'));
+
+
+app.use("/jesvencam",express.static('./public/jesvencam'));
+
 
 
 //trade_stats_APIV2V2(app);

@@ -15,6 +15,8 @@
 
     <h3>TEAM</h3>
     <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
+    <p><a href="/jesvencam">Página de Jesús Vena </a></p>
+                    
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a></p>
     <p>- <a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a></p>
     <h3>Project description:</h3> Nuesto proyecto consta en analizar la relación existente entre las emisiones de CO2, la produccion de carbón y la balanza comercial entre diferentes paises en relacion a los ultimos años. 
