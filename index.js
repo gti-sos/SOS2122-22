@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8082;
 const request = require('request');
 const cors = require('cors'); //opciones de cors por defecto para simplificar. 
 const co = require('co');
@@ -13,6 +13,13 @@ app.use(bodyParser.json());
 
 app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
 
+
+var remoteAPI1 = "http://api.quotable.io/random"
+var pathQuote = "/random"
+app.use(pathQuote, function(req,res){
+	console.log("Piped:" + req.baseUrl + req.url);
+	req.pipe(request(remoteAPI1)).pipe(res);
+});
 
 const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
@@ -40,6 +47,19 @@ trade_stats_APIV2.register(app,db_trade_stats);
 const BASE_API_URL = "/api/v1";
 
 
+
+
+
+
+//Proxy Jesús Vena: 
+
+var paths2='/remoteApiEnergy';
+var apiServerHost2 = 'https://sos2122-10.herokuapp.com/api/v2/energy-consumptions';
+
+app.use(paths2, function(req, res) {
+  var url = apiServerHost2 + req.url;
+  req.pipe(request(url)).pipe(res);	
+});
 
 
 

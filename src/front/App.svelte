@@ -10,7 +10,9 @@
 	import registrationConsum from "./Co2Stats/RegistrationConsum.svelte";
 	import EnergyConsum from "./Co2Stats/EnergyConsum.svelte";
 	import co2Canvas from "./Co2Stats/Co2Canvas.svelte";
-	import externalApi from "./Co2Stats/ExternalApiConsum.svelte";
+	import externalApi1 from "./Co2Stats/ExternalAPI1.svelte";
+	import externalApi2 from "./Co2Stats/ExternalAPI2.svelte";
+	import externalApi3 from "./Co2Stats/ExternalAPI3.svelte";
 
 
 	import coalStatsTable from './CoalStats/coalStatsTable.svelte';
@@ -31,7 +33,9 @@
 		"/co2Canvas":co2Canvas,
 		"/registrationConsum":registrationConsum,
 		"/energyConsum":EnergyConsum,
-		"/externalApi":externalApi,
+		"/externalApi1":externalApi1,
+		"/externalApi2":externalApi2,
+		"/externalApi3":externalApi3,
 
 
 		"/coalStatsTable": coalStatsTable,

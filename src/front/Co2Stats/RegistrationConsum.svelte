@@ -90,7 +90,7 @@
                 type: 'areaspline'
             },
             title: {
-                text: 'Datos de Niveles Escolares del grupo 31, Ismael'
+                text: 'Integracion de los datos de niveles escolares y de co2'
             },
             legend: {
                 layout: 'vertical',
@@ -181,6 +181,7 @@
         <div id="container"></div>
         <p class="highcharts-description">
             Using an area-splitline graph.
+            Intregracion de la API de CO2 propia y de la API registration de Ismael del grupo 22. 
             
         </p>
     </figure>

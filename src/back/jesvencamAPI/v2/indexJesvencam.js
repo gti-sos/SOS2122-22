@@ -26,6 +26,13 @@ app.use(paths, function(req, res) {
   req.pipe(request(url)).pipe(res);
 });
 
+var remoteAPI1 = "http://api.quotable.io/random"
+var pathQuote = "/random"
+app.use(pathQuote, function(req,res){
+	console.log("Piped:" + req.baseUrl + req.url);
+	req.pipe(request(remoteAPI1)).pipe(res);
+});
+
 
 
 var co2 = [{		
