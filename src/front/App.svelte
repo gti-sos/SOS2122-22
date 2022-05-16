@@ -14,6 +14,8 @@
 	import externalApi2 from "./Co2Stats/ExternalAPI2.svelte";
 	import externalApi3 from "./Co2Stats/ExternalAPI3.svelte";
 	import integrations from "./integrations.svelte";
+	import graph2 from "./graph2.svelte";
+
 
 
 
@@ -39,6 +41,8 @@
 		"/externalApi2":externalApi2,
 		"/externalApi3":externalApi3,
 		"/integrations":integrations,
+		"/graph2":graph2,
+
 
 
 
