@@ -9,6 +9,7 @@
     "test": "npm run test-c02-stats && npm run test-coal-stats "
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "body-parser": "^1.19.2",
     "bootstrap": "^5.1.3",
     "canvasjs": "^1.8.3",
