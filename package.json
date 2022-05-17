@@ -3,10 +3,10 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "node index.js",
-    "test-c02-stats": "npx newman run ./public/tests/jesvencam/test.json -e ./public/tests/jesvencam/enviroment.json",
+    "test-c02-stats": "npx newman run ./public/tests/jesvencam/testjesvencam.json -e ./public/tests/jesvencam/api_jesvencam_enviroment.json",
     "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json",
     "test-trade-stats": "npx newman run ./public/tests/marsaamar1/tests.json -e ./public/tests/marsaamar1/env.json",
-    "test": "npm run test-c02-stats"
+    "test": "npm run test-c02-stats && npm run test-trade-stats && npm run test-coal-stats "
   },
   "dependencies": {
     "body-parser": "^1.19.2",
@@ -16,7 +16,6 @@
     "express": "^4.17.3",
     "highcharts": "^10.1.0",
     "nedb": "^1.8.0",
-    "newman": "^5.3.2",
     "node-chartist": "^1.0.5",
     "request": "^2.88.2",
     "svelte-fusioncharts": "^1.0.0",
