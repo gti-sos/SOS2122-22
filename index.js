@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 8080;
 const request = require('request');
 const cors = require('cors'); //opciones de cors por defecto para simplificar. 
 const co = require('co');
@@ -16,12 +16,15 @@ app.use(cors());    //Debe de estar antes de registrar alguna ruta.
 const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
 const contamination_API = require("./src/back/belrodsalAPI/v2/indexApi1.js");
+
 //const co2_stats_API = require("./src/back/jesvencamAPI/v1/indexJesvencam.js");
 const co2_stats_APIV2 = require("./src/back/jesvencamAPI/v2/indexJesvencam.js");
+
 const trade_stats_API = require("./src/back/marsaamar1API/v1/index_marsaamar1.js");
 const trade_stats_APIV2 = require("./src/back/marsaamar1API/v2/index_marsaamar1_v2.js");
 
 const Datastore = require('nedb');
+
 
 db_co2_stats = new Datastore();
 db_coal_stats = new Datastore();

@@ -30,7 +30,7 @@
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/coal-stats/"> COAL-STATS API V1</a></p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/trade-stats/"> TRADE-STATS API</a></p>
     <h3>DOCUMENTACION:</h3>
-    <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs">https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs </a>(developed by <a href="https://github.com/jesvencam">Jesús Vena Campos</a>)</p>
+    <p>- <a href="https://documenter.getpostman.com/view/19481636/UVyrVwjh">https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs </a>(developed by <a href="https://github.com/jesvencam">Jesús Vena Campos</a>)</p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/co2-stats/docs">https://sos2122-22.herokuapp.com/api/v2/co2-stats/docs </a>(developed by <a href="https://github.com/jesvencam">Jesús Vena Campos</a>)</p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/coal-stats/docs">https://sos2122-22.herokuapp.com/api/v2/coal-stats/docs </a>(developed by <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a>)</p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs">https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs </a>(developed by <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a>)</p>

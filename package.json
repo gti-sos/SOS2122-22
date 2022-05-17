@@ -3,10 +3,10 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "node index.js",
-    "test-c02-stats": "npx newman run ./public/tests/jesvencam/test-jesvencam.json -e ./public/tests/jesvencam/api_jesvencam_enviroment.json",
+    "test-c02-stats": "npx newman run ./public/tests/jesvencam/testjesvencam.json -e ./public/tests/jesvencam/enviroment.json",
     "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json",
     "test-trade-stats": "npx newman run ./public/tests/marsaamar1/tests.json -e ./public/tests/marsaamar1/env.json",
-    "test": "npm run test-c02-stats && npm run test-trade-stats && npm run test-coal-stats "
+    "test": "npm run test-c02-stats && npm run test-coal-stats "
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -23,6 +23,7 @@
     "svelte-spa-router": "^3.2.0",
     "sveltestrap": "^5.9.0"
   },
+
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",

@@ -28,7 +28,7 @@
         type: 'area'
     },
     title: {
-        text: 'Grafico acerca de la produccion de CO2 por pais y año'
+        text: 'Grafico Grupo 22 '
     },
     xAxis: {
         categories: fechas,
