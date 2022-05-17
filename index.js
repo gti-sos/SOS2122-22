@@ -22,6 +22,7 @@ const trade_stats_APIV2 = require("./src/back/marsaamar1API/v2/index_marsaamar1_
 
 const Datastore = require('nedb');
 
+
 db_co2_stats = new Datastore();
 db_coal_stats = new Datastore();
 db_trade_stats_v1 = new Datastore();
