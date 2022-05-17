@@ -27,6 +27,7 @@
     <h3>URL:</h3><a href="http://sos2122-22.herokuapp.com">http://sos2122-22.herokuapp.com</a>
     <h3>APIS:</h3>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/co2-stats/"> CO2-STATS API V2</a></p>
+    <p>- <a href="https://documenter.getpostman.com/view/19481636/UVyrVwjh">Documentacion de la V1 de la api de co2 </a>(developed by <a href="https://github.com/jesvencam">Jesús Vena Campos</a>)</p>
 
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v2/co2-stats/docs">Documentacion de la API V2 de co2</a>(developed by <a href="https://github.com/jesvencam">Jesús Vena Campos</a>)</p>
     <p>- <a href="https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs">https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs </a>(developed by <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a>)</p>
