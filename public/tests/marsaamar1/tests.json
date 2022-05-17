@@ -682,7 +682,39 @@
 			},
 			"response": []
 		},
-		
+		{
+			"name": "GET by year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{SERVER}}?year=2010",
+					"host": [
+						"{{SERVER}}"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2010"
+						}
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "GET by period from-to",
 			"event": [
