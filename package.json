@@ -22,6 +22,7 @@
     "svelte-spa-router": "^3.2.0",
     "sveltestrap": "^5.9.0"
   },
+  
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
