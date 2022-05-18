@@ -16,6 +16,8 @@
 	import integrations from "./integrations.svelte";
 	import graph2 from "./graph2.svelte";
 	import analytics from "./graph2.svelte";
+	import about from "./about.svelte";
+
 
 
 
@@ -46,6 +48,8 @@
 		"/integrations":integrations,
 		"/graph2":graph2,
 		"/analytics":analytics,
+		"/about":about,
+
 
 
 
