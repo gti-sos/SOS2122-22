@@ -17,8 +17,7 @@
 
 
     <h3>TEAM</h3>
-    <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
-    <p><a href="/jesvencam">Página de Jesús Vena </a></p>
+    <p>- <a href="/jesvencam">Jesús Vena Campos</a></p>
                     
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar</a></p>
     <p>- <a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a></p>
