@@ -8,7 +8,7 @@
 - **Repository**: [gti-sos/SOS2122-22](https://github.com/gti-sos/SOS2122-22.git)
 - **URL**: [http://sos2122-22.herokuapp.com](http://sos2122-22.herokuapp.com)
 -  **APIs**:
-    -  [[https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs](https://documenter.getpostman.com/view/19481636/UVyrVwjh)](https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs) (developed by [Jesús Vena Campos](https://github.com/jesvencam))
+    -  [[https://sos2122-22.herokuapp.com/api/v1/co2-stats/docs](https://documenter.getpostman.com/view/19481636/UVyrVwjh)]) (developed by [Jesús Vena Campos](https://github.com/jesvencam))
     - [https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs](https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs) (developed by [Belén Rodríguez Salazar](https://github.com/beldruxs))
     - [https://sos2122-22.herokuapp.com/api/v2/coal-stats/docs](https://sos2122-22.herokuapp.com/api/v1/coal-stats/docs) (developed by [Belén Rodríguez Salazar](https://github.com/beldruxs))
     - [https://sos2122-22.herokuapp.com/api/v1/trade-stats/docs](https://sos2122-22.herokuapp.com/api/v1/trade-stats/docs) (developed by [Marcos Saa Martínez](https://github.com/MarcoSaa01))
