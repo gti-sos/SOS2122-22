@@ -13,9 +13,10 @@
           console.log("dentro del ok "+JSON.stringify(json));
           guardaD(json);
 
-          
+           
          
       }else{
+          
           console.log("Error in request");
 
           await delay(1000);
