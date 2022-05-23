@@ -30,6 +30,8 @@
 	import editTradeStatsTable from './tradeStats/editTradeStatsTable.svelte';
 	import info from './info.svelte';
 	import Chart from "./CoalStats/chart.svelte";
+	import Chart2 from "./CoalStats/chart2.svelte";
+	import integration1 from "./CoalStats/integration1.svelte";
 
 	const routes ={
 
@@ -60,7 +62,9 @@
 		"/tradeStatsTable": tradeStatsTable,
 		"/tradeStatsTable/:country/:year" : editTradeStatsTable,
 		"/info" : info,
-		"/coalStatsTable/chart" : Chart
+		"/coalStatsTable/chart" : Chart,
+		"/coalStatsTable/chart2" : Chart2,
+		"/integration1" : integration1
 	};
 
 </script>

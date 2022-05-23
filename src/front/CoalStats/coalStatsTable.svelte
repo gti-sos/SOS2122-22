@@ -357,7 +357,11 @@
     </Button>
     <Button color="outline-dark" on:click={function (){
         window.location.href = `/#/coalStatsTable/chart`
-    }}>Gráfica
+    }}>Gráfica1
+    </Button>
+    <Button color="outline-dark" on:click={function (){
+        window.location.href = `/#/coalStatsTable/chart2`
+    }}>Gráfica2
     </Button>
     <div align="center">
         <Button id ="atrasbtn" on:click="{getPreviewPage}">

@@ -1,28 +1,137 @@
 <script>
     import Button from "sveltestrap/src/Button.svelte";
     import Highcharts from "highcharts";
+
+
+
+
+
+
+    //-----------------------------------------
+
     let datos = [];
     let fechas = [];
     let co2_tot = [];
     let co2_tpc = [];
     let co2_kg = [];
+
+    let datos1=[];
+    let stats_country_date = [];
+    let stats_productions = [];
+    let stats_exports = [];
+    let stats_consumption = [];
+
     async function loadGraph(){
         const res = await fetch("/api/v2/co2-stats");
+        const res1 = await fetch("/api/v2/coal-stats");
         if(res.ok){
             datos = await res.json();
+            datos1 = await res1.json();
+
             console.log(datos);
             console.log(JSON.stringify(datos, null, 2))
             datos.forEach(data => {
-                fechas.push(data["country"] + "-" + data.year);
+                fechas.push(data.country + "-" + data.year);
                 co2_tot.push(data.co2_tot);
                 co2_tpc.push(data.co2_tpc);
-                co2_kg.push(data.co2_kg);   
+                co2_kg.push(data.co2_kg);
+                   
+            })
+          
+            console.log(datos1);
+            console.log(JSON.stringify(datos1, null, 2))
+            datos1.forEach(stat => {
+                stats_country_date.push(stat.country + "-" + stat.year);
+                stats_productions.push(stat["productions"]);
+                stats_exports.push(stat["exports"]);
+                stats_consumption.push(stat["consumption"]); 
             });
+
         }else{
             window.alert("No hay datos para este pais");
             console.log("ERROR EN LA PETICION DE LOS DATOS ");
             window.location.href = `/#/co2StatsTable`;
         }
+
+        /*
+        Highcharts.chart('container', {
+            chart:{
+                type:'area'
+            },
+
+            title: {
+                text: 'Grafico del equipo 22'
+            },
+
+            subtitle: {
+                text: ''
+            },
+
+            yAxis: {
+                title: {
+                    text: 'valor'
+                }
+            },
+
+            xAxis: {
+        categories: stats_country_date,
+        title: {
+            text: 'Pais y Año'
+        }
+        
+    },
+    tooltip:{
+        split: true,
+        valueSuffix: "%",
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 2010
+                }
+            },
+
+    series: [{
+        name: 'Emisiones totales de C02',
+        data: co2_tot,
+    },{
+        name: 'C02 por 1000 Dolares del PIB',
+        data: co2_tpc,
+    },{
+        name: 'C02 toneladas per capita',
+        data: co2_kg,
+    },
+    {
+        name: 'Producciones totales de Carbón',
+        data: stats_productions,
+    },
+    {
+        name: 'Exportaciones totales de Carbón',
+        data: stats_exports,
+    },
+    {
+        name: 'Consumo total de Carbón',
+        data: stats_consumption,
+    },
+],
+    });
+  }
+        */
         Highcharts.chart('container', {
     chart: {
         type: 'area'
@@ -31,7 +140,7 @@
         text: 'Grafico Grupo 22 '
     },
     xAxis: {
-        categories: fechas,
+        categories: stats_country_date.concat(fechas),
         title: {
             text: 'Pais y Año'
         }
@@ -46,10 +155,7 @@
             overflow: 'justify'
         }
     },
-    tooltip:{
-        split: true,
-        valueSuffix: "%",
-    },
+   
     plotOptions: {
         bar: {
             dataLabels: {
@@ -81,7 +187,20 @@
     },{
         name: 'C02 toneladas per capita',
         data: co2_kg,
-    },],
+    },
+    {
+        name: 'Producciones totales de Carbón',
+        data: stats_productions,
+    },
+    {
+        name: 'Exportaciones totales de Carbón',
+        data: stats_exports,
+    },
+    {
+        name: 'Consumo total de Carbón',
+        data: stats_consumption,
+    },
+],
     });
   }
 </script>
@@ -99,7 +218,7 @@
 <main>        
     <br>
     <br>
-    <Button id='back' outline color="secondary" onclick="window.location.href='#/co2StatsTable'">Volver</Button>
+    <Button id='back' outline color="secondary" onclick="window.location.href='#/info'">Volver</Button>
         <div style="margin:auto;"> 
         <figure class="highcharts-figure">
             <div id="container"></div>

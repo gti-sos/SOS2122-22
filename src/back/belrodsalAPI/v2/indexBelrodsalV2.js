@@ -6,7 +6,7 @@ const BASI_API_COALSTATS = "/api/v2/coal-stats";
 
 var coalStats = [
     {		
-        country : "spain",
+        country : "españa",
         year:2005,
         productions:123456,
         exports:63.70,

@@ -3,15 +3,13 @@ const axios = require('axios').default;
 
 module.exports.register = (app) =>{
 
-    
-
     const options = {
       method: 'GET',
       url: 'https://air-quality.p.rapidapi.com/forecast/airquality',
-      params: {lat: '35.779', lon: '-78.638', hours: '72'},
+      params: {lat: '37.3826', lon: '-5.99629', hours: '72'},
       headers: {
-        'X-RapidAPI-Host': '',
-        'X-RapidAPI-Key': ''
+        'X-RapidAPI-Host': 'air-quality.p.rapidapi.com',
+        'X-RapidAPI-Key': '6a66802649msh0cd821c29111ed4p11ba77jsn91b933e119db'
       }
     };
 
