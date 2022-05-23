@@ -17,6 +17,8 @@
 	import graph2 from "./graph2.svelte";
 	import analytics from "./graph2.svelte";
 	import about from "./about.svelte";
+	import login from "./Co2Stats/login.svelte";
+
 
 
 
@@ -51,6 +53,9 @@
 		"/graph2":graph2,
 		"/analytics":analytics,
 		"/about":about,
+		"/login":login,
+
+
 
 
 
