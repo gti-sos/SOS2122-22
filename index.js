@@ -1,10 +1,11 @@
+require("dotenv");
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
+
 const port = process.env.PORT || 8081;
 const request = require('request');
 const cors = require('cors'); //opciones de cors por defecto para simplificar. 
-const co = require('co');
 const generate = require('node-chartist');
 
 
