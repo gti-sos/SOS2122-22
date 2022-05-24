@@ -11,13 +11,11 @@
             console.log("datos cargados..."+JSON.stringify(json));
             apiData = json;
             guardaD1(json);
-            console.log("cargando el grafo con los datos nuevos"+apiData);
-            const res1 = await fetch("https://sos2122-31.herokuapp.com/api/v2/registration-stats/loadInitialData");
+            const res1 = await fetch("https://sos2122-31.herokuapp.com/api/v2/registration-stats");
             if (res1.ok){    
-                const json = await res1.json();
-                console.log("datos cargados..."+JSON.stringify(json));
-                apiData = json;
-                guardaD(json);
+                const json2 = await res1.json();
+                apiData = json2;
+                guardaD(json2);
                 console.log("cargando el grafo con los datos nuevos"+apiData);
 
                 await delay(1000);
