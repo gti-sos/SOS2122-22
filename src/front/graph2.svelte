@@ -223,7 +223,7 @@
         <figure class="highcharts-figure">
             <div id="container"></div>
             <p class="highcharts-description">
-              Grafico acerca de la produccion de CO2 por pais y año 
+              Grafico acerca de la produccion de CO2 por pais y año y los datos de producción, exportación y consumo del carbón.
             </p>
         </figure>  
     </main>
