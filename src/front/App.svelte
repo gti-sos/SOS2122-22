@@ -26,6 +26,7 @@
 
 
 
+
 	import coalStatsTable from './CoalStats/coalStatsTable.svelte';
 	import editcoalStatsTable from './CoalStats/editcoalStatsTable.svelte';
 	import tradeStatsTable from './tradeStats/tradeStatsTable.svelte';

@@ -29,7 +29,7 @@
         console.log("Fetching entries....");
         //		let cadena = `/remoteAPI?limit=${limit}&&offset=${offset*10}&&`;
 
-		let cadena = process.env.BACKEND+`/api/v2/co2-stats?limit=${limit}&&offset=${offset*10}&&`;
+		let cadena = `/api/v2/co2-stats?limit=${limit}&&offset=${offset*10}&&`;
 		if (from != null) {
 			cadena = cadena + `from=${from}&&`
 		}
@@ -154,7 +154,7 @@
         //const res = await fetch("/remoteAPI/loadInitialData",      HAY QUE PONERLO TANTO AQUI COMO EN EL GETDATA 
 
 
-        const res = await fetch(process.env.BACKEND+"/api/v2/co2-stats/loadInitialData",
+        const res = await fetch("/api/v2/co2-stats/loadInitialData",
 			{
 				method: "GET"
 			}).then(function (res){
