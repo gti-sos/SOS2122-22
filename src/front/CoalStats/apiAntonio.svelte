@@ -15,7 +15,7 @@
         );
         if (res1.ok) {
             const res = await fetch(
-                "https://sos2122-27.herokuapp.com/api/v2/tennis"
+                "https://sos2122-23.herokuapp.com/api/v2/tennis"
             );
             if (res.ok) {
                 const data = await res.json();

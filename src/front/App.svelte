@@ -37,6 +37,7 @@
 	import integration1 from "./CoalStats/integration1.svelte";
 	import apiPlaneta from "./CoalStats/apiPlaneta.svelte";
 	import apiAntonio from "./CoalStats/apiAntonio.svelte";
+	import apiMaria from "./CoalStats/apiMaria.svelte";
 
 	const routes ={
 
@@ -74,7 +75,8 @@
 		"/coalStatsTable/chart2" : Chart2,
 		"/integration1" : integration1,
 		"/apiPlaneta" : apiPlaneta,
-		"/apiAntonio" : apiAntonio
+		"/apiAntonio" : apiAntonio,
+		"/apiMaria" : apiMaria
 	};
 
 </script>
