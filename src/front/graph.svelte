@@ -30,6 +30,38 @@
     }
 
 
+    //marsaamar1 APi ----------------------------------------------------
+
+    let stats_country_date_trade = [];
+    let stats_imports = [];
+    let stats_exports_trade = [];
+    let stats_balance = [];
+
+    async function getDataTrade(){
+        const loaData = await fetch("/api/v2/trade-stats/loadInitialData");
+        if (loaData.ok) {
+            const res = await fetch("/api/v2/trade-stats");
+            console.log(res);
+            if (res.ok) {
+                const data = await res.json();
+                console.log("Estadísticas recibidas de TradeStats: " + data.length);
+                data.forEach((stat) => {
+                    stats_country_date_trade.push(stat.country + " " + stat.year);
+                    stats_imports.push(stat["import"]);
+                    stats_exports_trade.push(stat["export"]);
+                    stats_balance.push(stat["balance"]);             
+                });
+                loadGraph();
+            } else {
+                console.log("Error cargando los datos");
+            }
+        } else {
+                console.log("Error cargando los datos iniciales");
+            }
+    }
+
+
+
 
     //-----------------------------------------
 
@@ -106,7 +138,8 @@
                     title :{
                         text:'año'
                     },
-                    labels: stats_country_date
+                    labels: stats_country_date.concat(stats_country_date_trade)
+                    
                     
                 
                 }
@@ -128,7 +161,18 @@
             },
 
             series: [{
-                
+                    name: 'Importaciones',
+                    data: stats_imports
+                },
+                {
+                    name: 'Exportaciones',
+                    data: stats_exports_trade
+                },
+                {
+                    name: 'Balance',
+                    data: stats_balance
+                },
+                {
                     name: 'Co2 por Tpc',
                     data: tpc
                 },
@@ -176,6 +220,7 @@
     }
     onMount(getCoalStats);
     onMount(getData);
+    onMount(getDataTrade);
     
    
 </script>

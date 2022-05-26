@@ -38,6 +38,11 @@
 	import apiPlaneta from "./CoalStats/apiPlaneta.svelte";
 	import apiAntonio from "./CoalStats/apiAntonio.svelte";
 
+
+
+	import MyGraph from "./tradeStats/MyGraph.svelte";
+	import MyGraphC3 from "./tradeStats/MyGraphc3.svelte";
+
 	const routes ={
 
 		"/" : Home,
@@ -67,14 +72,22 @@
 
 		"/coalStatsTable": coalStatsTable,
 		"/coalStatsTable/:country/:year" : editcoalStatsTable,
-		"/tradeStatsTable": tradeStatsTable,
-		"/tradeStatsTable/:country/:year" : editTradeStatsTable,
 		"/info" : info,
 		"/coalStatsTable/chart" : Chart,
 		"/coalStatsTable/chart2" : Chart2,
 		"/integration1" : integration1,
 		"/apiPlaneta" : apiPlaneta,
-		"/apiAntonio" : apiAntonio
+		"/apiAntonio" : apiAntonio,
+
+
+
+
+		"/tradeStatsTable": tradeStatsTable,
+		"/tradeStatsTable/:country/:year" : editTradeStatsTable,
+		"/tradeStatsGraph" : MyGraph,
+		"/tradeStatsGraphC3" : MyGraphC3
+
+
 	};
 
 </script>
