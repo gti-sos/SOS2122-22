@@ -42,6 +42,8 @@
 
 	import MyGraph from "./tradeStats/MyGraph.svelte";
 	import MyGraphC3 from "./tradeStats/MyGraphC3.svelte";
+	import apiRaul from "./tradeStats/apiRaul.svelte";
+	import apiRoque from "./tradeStats/apiRoque.svelte";
 
 	const routes ={
 
@@ -85,7 +87,10 @@
 		"/tradeStatsTable": tradeStatsTable,
 		"/tradeStatsTable/:country/:year" : editTradeStatsTable,
 		"/tradeStatsGraph" : MyGraph,
-		"/tradeStatsGraphC3" : MyGraphC3
+		"/tradeStatsGraphC3" : MyGraphC3,
+		"/GraphApiRaul" : apiRaul,
+		"/GraphApiRoque" : apiRoque
+		
 
 
 	};

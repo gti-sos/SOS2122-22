@@ -6,26 +6,26 @@
 
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     let stats_country_date = [];
-    let stats_imports = ['Importaciones'];
-    let stats_exports = ['Exportaciones'];
-    let stats_balance = ['Balance comercial'];
+    let ages_zero_fifty = ["Menores de 50"];
+    let ages_fifty_seventy = ["Entre 50 y 70 años"];
+    let ages_seventy = ["Mayores de 70 años"];
 
 
     async function getData(){
-        const loaData = await fetch("/api/v2/trade-stats/loadInitialData");
+        const loaData = await fetch("https://sos2122-24.herokuapp.com/api/v2/cancerdeaths-stats/loadInitialData");
         if (loaData.ok) {
-            const res = await fetch("/api/v2/trade-stats");
+            const res = await fetch("https://sos2122-24.herokuapp.com/api/v2/cancerdeaths-stats");
             console.log(res);
             if (res.ok) {
                 const data = await res.json();
                 console.log("Estadísticas recibidas: " + data.length);
                 data.forEach((stat) => {
                     stats_country_date.push(stat.country + " " + stat.year);
-                    stats_imports.push(stat["import"]);
-                    stats_exports.push(stat["export"]);
-                    stats_balance.push(stat["balance"]);             
+                    ages_zero_fifty.push(stat["ages_zero_fifty"]);
+                    ages_fifty_seventy.push(stat["ages_fifty_seventy"]);
+                    ages_seventy.push(stat["ages_seventy"]);             
                 });
-                await delay(1000);
+                await delay(1500);
                 loadGraph();
             } else {
                 console.log("Error cargando los datos");
@@ -41,16 +41,11 @@
     data: {
         
         columns: [
-            stats_imports,
-            stats_exports,
-            stats_balance
+            ages_zero_fifty,
+            ages_fifty_seventy,
+            ages_seventy
         ],
-        type:'bar'
-    },
-    bar: {
-        width: {
-            ratio: 0.5 
-        }
+        type:'spline'
     },
     axis: {
         x: {
@@ -70,10 +65,10 @@
 
 <main>
     <figure>
-        <h3 class="title"> Gráfica Librería C3 Trade-Stats API (M€) </h3>
+        <h3 class="title"> Gráfica Librería C3 API Externa SOS Cancerdeaths-Stats </h3>
         <div id="chart"></div>
         <p class="description">
-            Gráfica acerca de exportaciones, importaciones y balances comerciales de diferentes paises a lo largo de los últimos años.
+            Grafica de muertes producidad por cancer
         </p>
     </figure>
     
