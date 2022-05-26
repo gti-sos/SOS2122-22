@@ -9,6 +9,7 @@
     let stats_imports = ['Importaciones'];
     let stats_exports = ['Exportaciones'];
     let stats_balance = ['Balance comercial'];
+    
 
     async function getData(){
         const loaData = await fetch("/api/v2/trade-stats/loadInitialData");
