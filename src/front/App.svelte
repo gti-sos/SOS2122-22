@@ -41,7 +41,7 @@
 
 
 	import MyGraph from "./tradeStats/MyGraph.svelte";
-	import MyGraphC3 from "./tradeStats/MyGraphc3.svelte";
+	import MyGraphC3 from "./tradeStats/MyGraphC3.svelte";
 
 	const routes ={
 
