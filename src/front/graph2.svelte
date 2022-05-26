@@ -21,12 +21,20 @@
     let stats_exports = [];
     let stats_consumption = [];
 
+    let datos2=[];
+    let stats_country_date_trade = [];
+    let stats_imports = [];
+    let stats_exports_trade = [];
+    let stats_balance = [];
+
     async function loadGraph(){
         const res = await fetch("/api/v2/co2-stats");
         const res1 = await fetch("/api/v2/coal-stats");
+        const res2 = await fetch("/api/v2/trade-stats");
         if(res.ok){
             datos = await res.json();
             datos1 = await res1.json();
+            datos2 = await res2.json();
 
             console.log(datos);
             console.log(JSON.stringify(datos, null, 2))
@@ -46,6 +54,16 @@
                 stats_exports.push(stat["exports"]);
                 stats_consumption.push(stat["consumption"]); 
             });
+
+            console.log(datos2);
+            console.log(JSON.stringify(datos2, null, 2))
+            datos2.forEach(stat => {
+                stats_country_date_trade.push(stat.country + " " + stat.year);
+                stats_imports.push(stat["import"]);
+                stats_exports_trade.push(stat["export"]);
+                stats_balance.push(stat["balance"]);      
+                   
+            })
 
         }else{
             window.alert("No hay datos para este pais");
@@ -140,7 +158,7 @@
         text: 'Grafico Grupo 22 '
     },
     xAxis: {
-        categories: stats_country_date.concat(fechas),
+        categories: stats_country_date.concat(fechas.concat(stats_country_date_trade)),
         title: {
             text: 'Pais y Año'
         }
@@ -179,6 +197,17 @@
         enabled: false
     },
     series: [{
+        name: 'Importaciones',
+        data: stats_imports
+    },
+    {
+        name: 'Exportaciones',
+        data: stats_exports_trade
+    },
+    {
+        name: 'Balance',
+        data: stats_balance
+    },{
         name: 'Emisiones totales de C02',
         data: co2_tot,
     },{

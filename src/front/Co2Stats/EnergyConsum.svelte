@@ -1,19 +1,7 @@
-
-
 <script>
-    import { onMount } from "svelte";
-    import Button from "sveltestrap/src/Button.svelte";
-    import { pop } from "svelte-spa-router";
+    
     import UncontrolledAlert from "sveltestrap/src/UncontrolledAlert.svelte";
-   
-
- 
-
-
-
-
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-    let categorias = [];
     let total = [];
     let nrenewable = [];
     let renewable = [];
@@ -23,9 +11,8 @@
     let co2_tpc = [];
     let co2_kg = [];
     let d =[];
-    let result = [];
+    let unicos=[];
     async function getData() {
-        let res;
         let res1;
         let resP;
 
@@ -42,33 +29,32 @@
             const json1 = await resP.json();
 
             console.log("datossss"+JSON.stringify(json1));
-
-            for (let i = 0; i < json1.length; i++) {
-                categorias.push(json1[i].year);
-                total.push(json1[i].percentages_access_elecetricity);
-                nrenewable.push(json1[i].non_renewable_energy_consumptions);
-                renewable.push(json1[i].renewable_energy_consumptions);
-            }
+            json1.forEach(data => {
+                fechas.push(data.year);
+                total.push(data.percentages_access_elecetricity);
+                nrenewable.push(data.non_renewable_energy_consumptions);
+                renewable.push(data.renewable_energy_consumptions);   
+            });
             json.forEach(data => {
                 fechas.push(data.year);
                 co2_tot.push(data.co2_tot);
                 co2_tpc.push(data.co2_tpc);
                 co2_kg.push(data.co2_kg);   
             });
-            categorias = categorias.sort();
-            result = categorias.filter((item,index)=>{
-            return categorias.indexOf(item) === index;
-            })
+            
             d.push(co2_tot,co2_kg,co2_tpc);
-            console.log(fechas);
-           
+            fechas = fechas.filter((valor, indice) => {
+                return fechas.indexOf(valor) === indice;
+            });
+
+            //o se come algunos años o muestra años por duplicado, podemos mostrarlo como queramos. 
+            
+
+            console.log("eooooo" +unicos);
             await delay(1000);
             loadGraph();
         } else {
             errorC = 404;
-            total = [];
-            nrenewable = [];
-            renewable = [];
             await delay(1000);
             loadGraph();
         }
@@ -87,14 +73,14 @@
     },
     xAxis: {
         categories: 
-           categorias  
+           fechas  
         ,
         crosshair: true
     },
     yAxis: {
         min: 0,
         title: {
-            text: 'Rainfall (mm)'
+            text: ''
         }
     },
     tooltip: {
@@ -147,7 +133,7 @@
 <main>
     {#if errorC === 404}
         <UncontrolledAlert color="danger">
-            El país introducido no tiene registros.
+                Error
         </UncontrolledAlert>
     {/if}
     <br />

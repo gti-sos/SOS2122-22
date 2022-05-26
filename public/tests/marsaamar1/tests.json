@@ -176,37 +176,6 @@
 			"response": []
 		},
 		{
-			"name": "DELETE España NOT FOUND",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {\r",
-							"    pm.response.to.have.status(404);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{SERVER}}/España/2018",
-					"host": [
-						"{{SERVER}}"
-					],
-					"path": [
-						"España",
-						"2018"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "DELETE España OK",
 			"event": [
 				{

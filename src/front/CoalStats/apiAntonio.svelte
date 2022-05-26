@@ -14,8 +14,9 @@
             "https://sos2122-23.herokuapp.com/api/v2/tennis/loadinitialdata"
         );
         if (res1.ok) {
+            //proxy
             const res = await fetch(
-                "https://sos2122-23.herokuapp.com/api/v2/tennis"
+                "/remoteApiTennis"
             );
             if (res.ok) {
                 const data = await res.json();
