@@ -35,7 +35,7 @@
 
         Highcharts.chart('container', {
             chart: {
-                type: 'xrange'
+                type: 'column'
             },
             title: {
                 text: 'Gráfica Trade-Stats API (M€)'

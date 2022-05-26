@@ -6,10 +6,9 @@
 
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     let stats_country_date = [];
-    let stats_imports = [];
-    let stats_exports = [];
-    let stats_balance = [];
-    //creo 2 let datos para poder ordenado los datos por año
+    let stats_imports = ['Importaciones'];
+    let stats_exports = ['Exportaciones'];
+    let stats_balance = ['Balance comercial'];
 
     async function getData(){
         const loaData = await fetch("/api/v2/trade-stats/loadInitialData");
@@ -40,10 +39,8 @@
             
     data: {
         
-        columns: [{
-                name: 'Importaciones',
-                data: stats_imports
-                },
+        columns: [
+            stats_imports,
             stats_exports,
             stats_balance
         ],
@@ -51,10 +48,8 @@
     },
     bar: {
         width: {
-            ratio: 0.5 // this makes bar width 50% of length between ticks
+            ratio: 0.5 
         }
-        // or
-        //width: 100 // this makes bar width 100px
     },
     axis: {
         x: {
@@ -68,15 +63,8 @@
 </script>
 
 <svelte:head>
-   
- <!-- Load c3.css -->
+
  <link rel="stylesheet" href="./jscd/c3/c3.css"  >
-<script type="text/javascript" src="./jscd/d3/dist/d3.js" ></script>
-<script type="text/javascript" src="./jscd/c3/c3.js" on:load="{loadGraph}"></script>
-
-
-
-
 </svelte:head>
 
 <main>
