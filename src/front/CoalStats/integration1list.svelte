@@ -8,7 +8,7 @@
     onMount(getEntries);
     async function getEntries(){
         console.log("Fetching entries....");
-        const res = await fetch("/api/v1/apiIntegrada"); 
+        const res = await fetch("/api/v2/apiIntegrada"); 
         if(res.ok){
             const data = await res.json();
             entries = data;
@@ -23,24 +23,47 @@
 
 	<figure class="text-center">
 		<blockquote class="blockquote">
-		  <h1>API: public-expenditure-stats</h1>
+		  <h1>API: Calidad del Aire en Sevilla</h1>
 		</blockquote>
 		
 	  </figure>
 	  <td align="center">
-		<Button color="success" on:click={function (){
+		<Button color="info" on:click={function (){
 			window.location.href = `https://sos2122-22.herokuapp.com/#/integration1`
 		}}>
 			Gráfica
 		</Button>
 	</td>
+	<p></p>
 {#await entries}
 loading
 	{:then entries}
 	<Table bordered>
-		
-		
-		hola
+		<thead id="titulitos">
+			<tr>
+				<th>tiempo</th>
+				<th>calidad</th>
+				
+				
+               		
+		</tr>
+		</thead>
+		<tbody>
+			<tr>		
+			</tr>
+			{#each entries as entry}
+				<tr>
+					<td>{entry.datetime}</td>
+					<td>{entry.aqi}</td>
+					
+                    
+                   
+
+                  				
+				</tr>
+			{/each}
+			
+		</tbody>
 	</Table>
 {/await}
 

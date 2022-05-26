@@ -74,6 +74,23 @@ app.use("/",express.static('./public'));
 
 app.use("/jesvencam",express.static('./public/jesvencam'));
 
+//Proxy Belén Rodriguez: 
+
+var paths3='/remoteApiTennis';
+var apiServerHost3 = 'https://sos2122-23.herokuapp.com/api/v2/tennis';
+
+app.use(paths3, function(req, res) {
+  var url1 = apiServerHost3 + req.url;
+  req.pipe(request(url1)).pipe(res);	
+});
+
+
+
+app.use("/",express.static('./public'));
+
+
+app.use("/jesvencam",express.static('./public/jesvencam'));
+
 
 
 //trade_stats_APIV2V2(app);

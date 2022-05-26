@@ -20,6 +20,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "highcharts": "^10.1.0",
+    "highcharts-more": "^0.1.7",
     "nedb": "^1.8.0",
     "node-chartist": "^1.0.5",
     "request": "^2.88.2",
