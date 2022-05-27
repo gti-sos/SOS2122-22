@@ -11,7 +11,7 @@
     async function getStats() {
         console.log("Fetching stats....");
         const res1 = await fetch(
-            "https://sos2122-23.herokuapp.com/api/v2/tennis/loadinitialdata"
+            "/remoteApiTennisLoadinitialdata"
         );
         if (res1.ok) {
             //proxy

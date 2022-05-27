@@ -54,22 +54,25 @@
             <h6>Uso Api Externa1 (Calidad Aire Sevilla)</h6>
                 <ul>
                     <a href="/#/integration1"><li type="circle"> Gráfica chart.js</li></a>
-                    <a href="/#/integration1List"><li type="circle"> Uso Textual</li></a>
                     <a href="/api/v2/apiIntegrada"><li type="circle"> Archivo Json</li></a>
                 </ul>
             <hr />
             <h6>Uso Api Externa2 (Estrellas)</h6>
                 <ul>
                     <a href="/#/apiPlaneta"><li type="circle"> Gráfica Highcharts.js tipo columnpyramid</li></a>
-                    <a href="/#/apiPlanetaList"><li type="circle"> Uso Textual</li></a>
                     <a href="/api/v2/apiIntegradaPlaneta"><li type="circle"> Archivo Json</li></a>
                 </ul>
             <hr />
             <h6>Uso Api Externa3 (League of Legends)</h6>
                 <ul>
                     <a href="/#/apiLol"><li type="circle"> Gráfica chart.js tipo horizontalBar</li></a>
-                    <a href="/#/apiLolList"><li type="circle"> Uso Textual</li></a>
                     <a href="/api/v2/apiLol"><li type="circle"> Archivo Json</li></a>
+                </ul>
+            <hr />
+            <h6>Uso Api Externa4 (Calificaciones Pelis)</h6>
+                <ul>
+                    <a href="/#/apiTiempo"><li type="circle"> Gráfica chart.js</li></a>
+                    <a href="/api/v2/apiTiempo"><li type="circle"> Archivo Json</li></a>
                 </ul>
             <hr />
             <h6>Uso Api Compañero SOS (Antonio G23)</h6>
