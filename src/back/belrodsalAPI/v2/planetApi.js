@@ -3,7 +3,6 @@ const axios = require('axios').default;
 
 module.exports.register = (app) =>{
 
-    const axios = require("axios");
 
     const options = {
         method: 'GET',
@@ -16,8 +15,6 @@ module.exports.register = (app) =>{
 
     axios.request(options).then(function (response) {
         star = response.data;
-        console.log("------------------------");
-        console.log(star);
         }).catch(function (error) {
             console.error(error);
         }); 

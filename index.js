@@ -3,12 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 const request = require('request');
 const cors = require('cors'); //opciones de cors por defecto para simplificar. 
 const generate = require('node-chartist');
-
-
 
 app.use(bodyParser.json());
 
@@ -20,6 +18,8 @@ const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
 const contamination_API = require("./src/back/belrodsalAPI/v2/indexApi1.js");
 const planets_API = require("./src/back/belrodsalAPI/v2/planetApi.js");
+const Lol_API = require("./src/back/belrodsalAPI/v2/LolApi.js");
+const tiempo_API = require("./src/back/belrodsalAPI/v2/apiTiempo.js");
 //------------------------------------------------------------------------------
 
 //const co2_stats_API = require("./src/back/jesvencamAPI/v1/indexJesvencam.js");
@@ -47,8 +47,10 @@ co2_stats_APIV2.register(app,db_co2_stats);
 //Belen ------------------------------------------
 contamination_API.register(app);
 planets_API.register(app);
+Lol_API.register(app);
 coal_stats_API.register(app,db_coal_stats);
 coal_stats_APIV2.register(app,db_coal_stats);
+tiempo_API.register(app);
 //------------------------------------------------
 
 trade_stats_API.register(app,db_trade_stats_v1);
@@ -61,6 +63,7 @@ Anime_API.register(app);
 
 const BASE_API_URL = "/api/v1";
 
+<<<<<<< HEAD
 
 //PROXY marsaamar1
 
@@ -84,6 +87,8 @@ app.use(pathsRaul, function(req, res) {
 
 
 
+=======
+>>>>>>> b82e69db255c7b7d7e7ea549e32ed96b57290159
 //Proxy Jesús Vena: 
 
 var paths2='/remoteApiEnergy';
@@ -104,11 +109,17 @@ app.use("/jesvencam",express.static('./public/jesvencam'));
 //Proxy Belén Rodriguez: 
 
 var paths3='/remoteApiTennis';
+var paths4='/remoteApiTennisLoadInitialData';
 var apiServerHost3 = 'https://sos2122-23.herokuapp.com/api/v2/tennis';
+var apiServerHost4 = 'https://sos2122-23.herokuapp.com/api/v2/tennis/loadInitialData';
 
 app.use(paths3, function(req, res) {
   var url1 = apiServerHost3 + req.url;
   req.pipe(request(url1)).pipe(res);	
+});
+app.use(paths4, function(req, res) {
+  var url2 = apiServerHost4 + req.url;
+  req.pipe(request(url2)).pipe(res);	
 });
 
 
