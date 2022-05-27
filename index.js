@@ -8,8 +8,6 @@ const request = require('request');
 const cors = require('cors'); //opciones de cors por defecto para simplificar. 
 const generate = require('node-chartist');
 
-
-
 app.use(bodyParser.json());
 
 app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
