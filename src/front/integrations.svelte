@@ -7,16 +7,17 @@
     <h1>SOS2122-22</h1>	
         <h2>Página con los enlaces a todas las Integraciones del Grupo</h2>
 
-    <p><a href="/#/info">INFO</a></p>
+        <h5><a href="/#/info">Página de Info </a></h5> 
 
-
+        <ul></ul>
     <h5 id="titulo">Gráficas Grupales</h5>
-    <ul></ul>
-    <p><a href="/#/graph">GRAFICA GRUPAL de tipo line </a></p>
-    <p><a href="/#/graph2">GRAFICA GRUPAL de tipo area </a></p>
+    
+    <li><a href="/#/graph">GRAFICA GRUPAL1</a></li>
+        <li><a href="/#/analytics">GRAFICA GRUPAL2</a></li>
 
    
 
+    <ul></ul>
     <div class="row">
 
    
