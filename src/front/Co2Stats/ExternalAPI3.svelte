@@ -9,7 +9,7 @@
     const delay = ms => new Promise(res => setTimeout(res, ms));
     async function getData(){
        
-        const res = await fetch("api/v2/co2-stats/loadInitialData");
+        const res = await fetch("api/v2/co2-stats");
         const res2 = await fetch("https://api.coincap.io/v2/assets");
         if (res.ok){
             const json = await res.json();

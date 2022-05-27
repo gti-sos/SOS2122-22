@@ -7,7 +7,7 @@
 
 
   async function getData(){
-      const res = await fetch("/api/v2/co2-stats/loadInitialData");
+      const res = await fetch("/api/v2/co2-stats");
       if (res.ok){
           const json = await res.json();
           console.log("dentro del ok "+JSON.stringify(json));
@@ -37,10 +37,6 @@
             tot.push(aux);
               
           }
-          //countries = temporal.filter((valor, indice) => {
-            //return temporal.indexOf(valor) === indice;
-                //}
-                    //);
   }
     async function loadGraph(){
         
