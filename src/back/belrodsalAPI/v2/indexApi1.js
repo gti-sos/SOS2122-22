@@ -15,7 +15,7 @@ module.exports.register = (app) =>{
 
     axios.request(options).then(function (response) {
         air=response.data.data;
-        console.log(air);
+        
     }).catch(function (error) {
         console.error(error);
     });   

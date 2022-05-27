@@ -20,6 +20,7 @@ const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
 const contamination_API = require("./src/back/belrodsalAPI/v2/indexApi1.js");
 const planets_API = require("./src/back/belrodsalAPI/v2/planetApi.js");
+const Lol_API = require("./src/back/belrodsalAPI/v2/LolApi.js");
 //------------------------------------------------------------------------------
 
 //const co2_stats_API = require("./src/back/jesvencamAPI/v1/indexJesvencam.js");
@@ -42,6 +43,7 @@ co2_stats_APIV2.register(app,db_co2_stats);
 //Belen ------------------------------------------
 contamination_API.register(app);
 planets_API.register(app);
+Lol_API.register(app);
 coal_stats_API.register(app,db_coal_stats);
 coal_stats_APIV2.register(app,db_coal_stats);
 //------------------------------------------------
