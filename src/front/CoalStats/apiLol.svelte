@@ -39,7 +39,7 @@
             myChart.destroy();
         }
         myChart = new Chart(ctx, {
-            type: "bar",
+            type: "horizontalBar",
             data: {
                 labels: stats_name,
                 datasets: [

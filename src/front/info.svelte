@@ -7,14 +7,15 @@
     <h1>SOS2122-22</h1>	
     <p><a href="/#/Co2StatsTable">Table of CO2 Stats</a></p>
     <p><a href="/">Página de Jesús Vena Campos</a></p>
-
-    <p> Tabla de datos de CO2, por Jesús Vena Campos</p>
     <p><a href="/#/coalStatsTable">Table of Coal Stats</a></p>
     <p><a href="/#/tradeStatsTable">Table of Trade Stats</a></p>
 
     
     <h3>TEAM</h3>
     <a href="/#/graph">GRAFICA GRUPAL</a>
+    
+    <p><a href="/#/integrations">Integraciones</a></p>
+    
     <p></p>
     <p>- <a href="https://github.com/jesvencam">Jesús Vena Campos</a></p>
     <p>- <a href="https://github.com/beldruxs">Belén Rodríguez Salazar </a> (Fuende de Datos: Coal-Stats)</p>

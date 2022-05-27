@@ -64,6 +64,13 @@
                     <a href="/api/v2/apiIntegradaPlaneta"><li type="circle"> Archivo Json</li></a>
                 </ul>
             <hr />
+            <h6>Uso Api Externa3 (League of Legends)</h6>
+                <ul>
+                    <a href="/#/apiLol"><li type="circle"> Gráfica chart.js tipo horizontalBar</li></a>
+                    <a href="/#/apiLolList"><li type="circle"> Uso Textual</li></a>
+                    <a href="/api/v2/apiLol"><li type="circle"> Archivo Json</li></a>
+                </ul>
+            <hr />
             <h6>Uso Api Compañero SOS (Antonio G23)</h6>
                 <ul>
                     <a href="/#/apiAntonio">Api Tennis</a>
