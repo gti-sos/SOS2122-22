@@ -82,7 +82,6 @@ var tradeStats = [
 
 
 module.exports.register = (app,db) =>{
-
     //GET
 
     app.get(BASE_API_URL+"/trade-stats",(req,res)=>{
