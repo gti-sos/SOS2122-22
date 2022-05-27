@@ -8,7 +8,7 @@
     onMount(getEntries);
     async function getEntries(){
         console.log("Fetching entries....");
-        const res = await fetch("/api/v2/apiIntegrada"); 
+        const res = await fetch("/api/v2/apiIntegradaPlaneta"); 
         if(res.ok){
             const data = await res.json();
             entries = data;
@@ -23,13 +23,13 @@
 
 	<figure class="text-center">
 		<blockquote class="blockquote">
-		  <h1>API: Calidad del Aire en Sevilla</h1>
+		  <h1>API: Distancia a años Luz de estrellas</h1>
 		</blockquote>
 		
 	  </figure>
 	  <td align="center">
 		<Button color="info" on:click={function (){
-			window.location.href = `https://sos2122-22.herokuapp.com/#/integration1`
+			window.location.href = `https://sos2122-22.herokuapp.com/#/apiPlaneta`
 		}}>
 			Gráfica
 		</Button>
@@ -41,8 +41,10 @@ loading
 	<Table bordered>
 		<thead id="titulitos">
 			<tr>
-				<th>tiempo</th>
-				<th>calidad</th>
+				<th>Nombre Estrella</th>
+				<th>Distancia a años luz</th>
+				<th>Info</th>
+
 				
 				
                		
@@ -53,8 +55,10 @@ loading
 			</tr>
 			{#each entries as entry}
 				<tr>
-					<td>{entry.datetime}</td>
-					<td>{entry.aqi}</td>
+					<td>{entry.name}</td>
+					<td>{entry.distance}</td>
+					<td>
+					<a href="{entry.link}">{entry.link}</a></td>
 					
                     
                    

@@ -2,6 +2,10 @@
     import { onMount } from "svelte";
     import Button from 'sveltestrap/src/Button.svelte';
     import Highcharts from "highcharts";
+    import more from 'highcharts/highcharts-more';
+    more(Highcharts);
+    
+    
 
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     let data = [];
@@ -31,7 +35,8 @@
         console.log("hola",stats_name,stats_distance);
         Highcharts.chart('container', {
             chart: {
-                type: 'column'
+                type: 'columnpyramid'
+                
             },
             title: {
                 text: 'Datos sobre la distancia a años luz de la tierra'
@@ -51,11 +56,7 @@
                 },
                 categories: stats_name,
             },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
+           
             
             series: [
                 {
@@ -73,7 +74,7 @@
                         legend: {
                             layout: 'horizontal',
                             align: 'center',
-                            verticalAlign: 'bottom'
+                            verticalAlign: 'top'
                         }
                     }
                 }]
@@ -87,35 +88,14 @@
 
 <svelte:head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"  on:load="{loadGraph}"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://github.highcharts.com/master/modules/exporting.js" on:load="{loadGraph}"></script>
     
-   
 </svelte:head>
 
-<main>        
-    <br>
-    <br>
-    <Button id='back' outline color="secondary" onclick="window.location.href='#/coalStatsTable'">Volver</Button>
-        <div style="margin:auto;"> 
-        <figure class="highcharts-figure">
-            <div id="container"></div>
-            <p class="highcharts-description">
-              Grafico acerca de las distancias a años luz de las estrellas
-            </p>
-        </figure>  
-    </main>
 
-<style>
-    .highcharts-figure {
-      min-width: 100%;
-      max-width:100%;
-      margin: 1em auto;
-    }
-    #container {
-      height: 600px;
-    }
+<figure class="highcharts-figure">
+    <div id="container"></div>
     
-</style>
+</figure>

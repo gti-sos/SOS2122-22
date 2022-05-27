@@ -20,6 +20,7 @@ const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
 const contamination_API = require("./src/back/belrodsalAPI/v2/indexApi1.js");
 const planets_API = require("./src/back/belrodsalAPI/v2/planetApi.js");
+const Lol_API = require("./src/back/belrodsalAPI/v2/LolApi.js");
 //------------------------------------------------------------------------------
 
 //const co2_stats_API = require("./src/back/jesvencamAPI/v1/indexJesvencam.js");
@@ -42,6 +43,7 @@ co2_stats_APIV2.register(app,db_co2_stats);
 //Belen ------------------------------------------
 contamination_API.register(app);
 planets_API.register(app);
+Lol_API.register(app);
 coal_stats_API.register(app,db_coal_stats);
 coal_stats_APIV2.register(app,db_coal_stats);
 //------------------------------------------------
@@ -52,11 +54,6 @@ trade_stats_APIV2.register(app,db_trade_stats);
 
 const BASE_API_URL = "/api/v1";
 
-
-
-
-
-
 //Proxy Jesús Vena: 
 
 var paths2='/remoteApiEnergy';
@@ -65,6 +62,23 @@ var apiServerHost2 = 'https://sos2122-10.herokuapp.com/api/v2/energy-consumption
 app.use(paths2, function(req, res) {
   var url = apiServerHost2 + req.url;
   req.pipe(request(url)).pipe(res);	
+});
+
+
+
+app.use("/",express.static('./public'));
+
+
+app.use("/jesvencam",express.static('./public/jesvencam'));
+
+//Proxy Belén Rodriguez: 
+
+var paths3='/remoteApiTennis';
+var apiServerHost3 = 'https://sos2122-23.herokuapp.com/api/v2/tennis';
+
+app.use(paths3, function(req, res) {
+  var url1 = apiServerHost3 + req.url;
+  req.pipe(request(url1)).pipe(res);	
 });
 
 

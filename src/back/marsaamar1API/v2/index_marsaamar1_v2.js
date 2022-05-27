@@ -5,16 +5,101 @@ const BASI_API_tradeStats = "/api/v2/trade-stats";
 
 
 var tradeStats = [
+
         {		
             country : "España",
             year : 2010,
+            export : 191911.9,
+            import : 246673.9,
+            balance : -54762.0
+        },
+        {		
+            country : "Francia",
+            year : 2010,
+            export : 395087.2,
+            import : 460941.2,
+            balance : -65854.1
+        },
+        {		
+            country : "Alemania",
+            year : 2013,
+            export : 1088071.0,
+            import : 889415.7,
+            balance : 198655.3
+        },
+        {		
+            country : "Francia",
+            year : 2015,
+            export : 456514.7,
+            import : 514613.1,
+            balance : -58098.4
+        },
+        {		
+            country : "Italia",
+            year : 2015,
+            export : 412291.3,
+            import : 370484.4,
+            balance : 41806.9
+        },
+        {		
+            country : "Alemania",
+            year : 2016,
+            export : 1205488.8,
+            import : 953760.9,
+            balance : 251727.8
+        },
+        {		
+            country : "Reino Unido",
+            year : 2016,
+            export : 369901.9,
+            import : 575087.0,
+            balance : -205185.1
+        },
+        {		
+            country : "España",
+            year : 2017,
+            export : 283094.6,
+            import : 311651.2,
+            balance : -28556.6
+        },
+        {		
+            country : "Alemania",
+            year : 2017,
+            export : 1281946.5,
+            import : 1029652.5,
+            balance : 252294.0
+        },
+        {		
+            country : "Reino Unido",
+            year : 2017,
+            export : 390718.0,
+            import : 569583.2,
+            balance : -178865.2
+        },
+        {		
+            country : "Francia",
+            year : 2017,
+            export : 473814.8,
+            import : 548626.4,
+            balance : -74811.6
+        },
+        {		
+            country : "Italia",
+            year : 2017,
+            export : 449129.0,
+            import : 401487.2,
+            balance : 47641.8
+        },
+        {		
+            country : "España",
+            year : 2018,
             export : 293458.8,
             import : 330635.8,
             balance : -37177.1
         },
         {		
             country : "Alemania",
-            year : 2013,
+            year : 2018,
             export : 1320732.4,
             import : 1087431.3,
             balance : 233301.1
@@ -28,7 +113,7 @@ var tradeStats = [
         },
         {		
             country : "Francia",
-            year : 2000,
+            year : 2018,
             export : 492964.1,
             import : 572576.0,
             balance : -79611.9
@@ -39,7 +124,15 @@ var tradeStats = [
             export : 465325.4,
             import : 426045.7,
             balance : 39279.7
+        },
+        {		
+            country : "España",
+            year : 2018,
+            export : 293458.8,
+            import : 330635.8,
+            balance : -37177.1
         }
+       
         
     ];
 
@@ -549,4 +642,6 @@ module.exports.register = (app,db) =>{
     }
 
 
-}
+
+
+};

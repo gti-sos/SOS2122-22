@@ -229,6 +229,26 @@
 		}
 	}
 
+	async function LoadEntriesCleanSearch(){
+        console.log("Loading Entries....");
+        const res = await fetch("/api/v2/trade-stats/loadInitialData",
+			{
+				method: "GET"
+			}).then(function (res){
+				if(res.ok){
+					getEntries();
+					visibleError = false;
+					visibleMsg = true;
+					msg = "Filtro limpiado";
+					printPagingEstate();
+
+				}
+				else{
+					errors(res.status);
+				}
+			});
+    }
+
 </script>
 
 
@@ -269,6 +289,9 @@ loading
 				<td colspan="2"><Button block outline color="success" on:click={getEntriesByYear}>
 					Filtrar
 				</Button></td>
+				<td colspan="2"><Button block outline color="danger" on:click={LoadEntriesCleanSearch}>
+					Limpiar filtro
+				</Button></td>
 			</tr>
 		</tbody>
 	</Table>
@@ -281,9 +304,9 @@ loading
 				
 				<th>País</th>
 				<th>Año</th>
-				<th>Exportaciones</th>
-				<th>Importaciones</th>
-                <th>Balance</th>
+				<th>Exportaciones (M€)</th>
+				<th>Importaciones (M€)</th>
+                <th>Balance (M€)</th>
 				<th></th>
 				<th> </th>
 			</tr>
