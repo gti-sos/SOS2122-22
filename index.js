@@ -63,8 +63,6 @@ Anime_API.register(app);
 
 const BASE_API_URL = "/api/v1";
 
-<<<<<<< HEAD
-
 //PROXY marsaamar1
 
 var pathsLoadRaul='/remoteApiLoadRaul';
@@ -87,8 +85,6 @@ app.use(pathsRaul, function(req, res) {
 
 
 
-=======
->>>>>>> b82e69db255c7b7d7e7ea549e32ed96b57290159
 //Proxy Jesús Vena: 
 
 var paths2='/remoteApiEnergy';
@@ -129,9 +125,6 @@ app.use("/",express.static('./public'));
 
 app.use("/jesvencam",express.static('./public/jesvencam'));
 
-
-
-//trade_stats_APIV2V2(app);
 
 //----------------------------------------------------
 
