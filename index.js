@@ -25,8 +25,13 @@ const planets_API = require("./src/back/belrodsalAPI/v2/planetApi.js");
 //const co2_stats_API = require("./src/back/jesvencamAPI/v1/indexJesvencam.js");
 const co2_stats_APIV2 = require("./src/back/jesvencamAPI/v2/indexJesvencam.js");
 
+
+//Marcos ------------------------------------------------------------------------
 const trade_stats_API = require("./src/back/marsaamar1API/v1/index_marsaamar1.js");
 const trade_stats_APIV2 = require("./src/back/marsaamar1API/v2/index_marsaamar1_v2.js");
+const Covid_API = require("./src/back/marsaamar1API/v2/apiCOVID.js");
+const Criptos_API = require("./src/back/marsaamar1API/v2/apiCripto.js");
+const Anime_API = require("./src/back/marsaamar1API/v2/apiAnime.js");
 
 const Datastore = require('nedb');
 
@@ -48,12 +53,34 @@ coal_stats_APIV2.register(app,db_coal_stats);
 
 trade_stats_API.register(app,db_trade_stats_v1);
 trade_stats_APIV2.register(app,db_trade_stats);
+Covid_API.register(app);
+Criptos_API.register(app);
+Anime_API.register(app);
+
 
 
 const BASE_API_URL = "/api/v1";
 
 
+//PROXY marsaamar1
 
+var pathsLoadRaul='/remoteApiLoadRaul';
+var apiServerHostRaul = 'https://sos2122-24.herokuapp.com/api/v2/cancerdeaths-stats/loadInitialData';
+
+app.use(pathsLoadRaul, function(req, res) {
+  var url = apiServerHostRaul + req.url;
+  console.log('piped: ' + req.url);
+  req.pipe(request(url)).pipe(res);
+});
+
+var pathsRaul='/remoteApiRaul';
+var apiServerHostRaul2 = 'https://sos2122-24.herokuapp.com/api/v2/cancerdeaths-stats';
+
+app.use(pathsRaul, function(req, res) {
+  var url = apiServerHostRaul2 + req.url;
+  console.log('piped: ' + req.url);
+  req.pipe(request(url)).pipe(res);
+});
 
 
 

@@ -48,6 +48,9 @@
 	import MyGraphC3 from "./tradeStats/MyGraphC3.svelte";
 	import apiRaul from "./tradeStats/apiRaul.svelte";
 	import apiRoque from "./tradeStats/apiRoque.svelte";
+	import apiExterna_covid from "./tradeStats/apiExterna_covid.svelte";
+	import apiExterna_criptos from "./tradeStats/apiExterna_criptos.svelte";
+	import apiExterna_anime from "./tradeStats/TextoApiExterna_anime.svelte";
 
 	const routes ={
 
@@ -95,7 +98,10 @@
 		"/tradeStatsGraph" : MyGraph,
 		"/tradeStatsGraphC3" : MyGraphC3,
 		"/GraphApiRaul" : apiRaul,
-		"/GraphApiRoque" : apiRoque
+		"/GraphApiRoque" : apiRoque,
+		"/apiExterna1" : apiExterna_covid,
+		"/apiExterna2" : apiExterna_criptos,
+		"/apiExternaTexto" : apiExterna_anime
 		
 
 

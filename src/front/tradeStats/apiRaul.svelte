@@ -12,9 +12,9 @@
 
 
     async function getData(){
-        const loaData = await fetch("https://sos2122-24.herokuapp.com/api/v2/cancerdeaths-stats/loadInitialData");
+        const loaData = await fetch("/remoteApiLoadRaul");
         if (loaData.ok) {
-            const res = await fetch("https://sos2122-24.herokuapp.com/api/v2/cancerdeaths-stats");
+            const res = await fetch("/remoteApiRaul");
             console.log(res);
             if (res.ok) {
                 const data = await res.json();

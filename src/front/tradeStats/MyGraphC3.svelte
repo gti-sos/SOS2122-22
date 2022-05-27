@@ -25,14 +25,14 @@
                     stats_exports.push(stat["export"]);
                     stats_balance.push(stat["balance"]);             
                 });
-                await delay(1000);
-                loadGraph();
+              
             } else {
                 console.log("Error cargando los datos");
             }
         } else {
                 console.log("Error cargando los datos iniciales");
             }
+        loadGraph();
     }
 
     async function loadGraph(){

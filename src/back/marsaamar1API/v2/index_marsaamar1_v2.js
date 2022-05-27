@@ -1,6 +1,13 @@
 const bodyParser = require("body-parser");
-
 const BASI_API_tradeStats = "/api/v2/trade-stats";
+
+const express = require("express");
+const app = express();
+const cors = require('cors'); 
+
+app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
+
+
 
 
 
