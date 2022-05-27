@@ -171,9 +171,9 @@ module.exports.register = (app,db) =>{
                     for (var i = 0; i < co2.length; i++) {
                         db.insert(co2[i]);
                     }
-                    res.send(JSON.stringify(co2,null,2));
+                    res.sendStatus(200,"OK");
                 } else {
-                    res.send(JSON.stringify(co2,null,2));
+                    res.sendStatus(200,"OK");
                 }
             });
 
