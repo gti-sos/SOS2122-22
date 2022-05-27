@@ -352,7 +352,8 @@ module.exports.register = (app,db) =>{
         //##########################################
 
 
-        //Metodo aux 
+        //Metodo aux para ver si la petion es correcta. 
+            
 
         function test_Peticion(req) {
             console.log(req.body)
@@ -374,7 +375,7 @@ module.exports.register = (app,db) =>{
             db.find({},function(err,filteredList){
 
                 if(err){
-                    res.sendStatus(500, "ERROR EN CLIENTE");
+                    res.sendStatus(500, "CLIENT ERROR");
                     return;
                 }
 
@@ -418,7 +419,7 @@ module.exports.register = (app,db) =>{
         //COMPROBAMOS FORMATO JSON
 
         if(test_Peticion(req)){
-            res.sendStatus(400,"BAD REQUEST - Parametros incorrectos");
+            res.sendStatus(400,"BAD REQUEST - UNCORRECT PARAMS");
             return;
         }
         
@@ -428,7 +429,7 @@ module.exports.register = (app,db) =>{
 
         db.find({},function(err,filteredList){
             if(err){
-                res.sendStatus(500, "ERROR EN CLIENTE");
+                res.sendStatus(500, "CLIENT ERROR");
                 return;
             }
 
@@ -439,14 +440,14 @@ module.exports.register = (app,db) =>{
                 return (reg.country == countryR && reg.year == yearR);
             });
             if (filteredList==0){
-                res.sendStatus(404, "NO EXISTE");
+                res.sendStatus(404, "404-NOT EXISTS");
                 return;
             }
 
             //COMPROBAMOS SI LOS CAMPOS ACTUALIZADOS SON IGUALES
 
             if(countryR != body.country || yearR != body.year){
-                res.sendStatus(400,"BAD REQUEST");
+                res.sendStatus(400,"400-BAD REQUEST");
                 return;
             }
 
@@ -454,9 +455,9 @@ module.exports.register = (app,db) =>{
                 
             db.update({$and:[{country: String(countryR)}, {year: parseInt(yearR)}]}, {$set: body}, {},function(err, numUpdated) {
                 if (err) {
-                    res.sendStatus(500, "ERROR EN CLIENTE");
+                    res.sendStatus(500, "500-CLIENTERROR");
                 }else{
-                    res.sendStatus(200,"UPDATED");
+                    res.sendStatus(200,"200-UPDATED");
                 }
             });
         })
@@ -475,7 +476,7 @@ module.exports.register = (app,db) =>{
                 res.sendStatus(500, "INTERNAL SERVER ERROR");
                 return;
             }
-            res.sendStatus(200, "DELETED");
+            res.sendStatus(200, "200-DELETED");
             return;
         });
     })
@@ -485,7 +486,7 @@ module.exports.register = (app,db) =>{
         co2.filter((cont) => {
             return (cont.country != countryName);
         });
-        res.sendStatus(200, "OK");
+        res.sendStatus(200, "200-OK");
     });
 
     app.delete(BASE_API_URL_+"/:country/:year",(req, res)=>{
@@ -494,7 +495,7 @@ module.exports.register = (app,db) =>{
 
         db.find({country: countryR, year: parseInt(yearR)}, {}, (err, filteredList)=>{
             if (err){
-                res.sendStatus(500,"ERROR EN CLIENTE");
+                res.sendStatus(500,"CLIENT ERROR");
                 return;
             }
             if(filteredList==0){
@@ -503,7 +504,7 @@ module.exports.register = (app,db) =>{
             }
             db.remove({country: countryR, year: parseInt(yearR)}, {}, (err, numRemoved)=>{
                 if (err){
-                    res.sendStatus(500,"ERROR EN CLIENTE");
+                    res.sendStatus(500,"CLIENT ERROR");
                     return;
                 }
             

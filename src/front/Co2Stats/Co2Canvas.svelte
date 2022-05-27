@@ -12,13 +12,8 @@
           const json = await res.json();
           console.log("dentro del ok "+JSON.stringify(json));
           guardaD(json);
-
-           
-         
       }else{
-          
           console.log("Error in request");
-
           await delay(1000);
       }
       console.log("cargando el grafo ");
@@ -29,48 +24,27 @@
   let kg = [];
   let tot = [];
   let temporal=[];
-  let countries = [];
-
+  
   async function guardaD(json){
       for(let i = 0; i<json.length; i++){
             let aux = [];
 
-            temporal.push(json[i].country);
-            aux.push(json[i].country);
-
-            aux.push(json[i].year);
-            aux.push(json[i].co2_kg);
-
-            kg.push(aux);
-
-            aux = [];
+            temporal.push({y:json[i].year,label:json[i].country});
+            kg.push({y:json[i].co2_kg,label:json[i].country});
+            tpc.push({y:json[i].co2_tpc,label:json[i].country});
             aux.push(json[i].year);
             aux.push(json[i].co2_tot);
             tot.push(aux);
               
-            aux = [];
-            aux.push(json[i].year);
-            aux.push(json[i].co2_tpc);
-            tpc.push(aux);
           }
-          countries = temporal.filter((valor, indice) => {
-            return temporal.indexOf(valor) === indice;
+          //countries = temporal.filter((valor, indice) => {
+            //return temporal.indexOf(valor) === indice;
+                //}
+                    //);
   }
-);
-          console.log("DATOOOOOOOO"+countries);
-          console.log(countries[0]);
-  }
-
-
-
     async function loadGraph(){
         
-        console.log("grafo cargado");
-        
-       
-     
-
-
+        console.log("entrando en loadgraph...");
         var chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             theme: "light2", // "light1", "light2", "dark1", "dark2"
@@ -83,18 +57,27 @@
             }],
             axisY: {
                 prefix: "Mt:",
-                scaleBreaks: {
-                    customBreaks: [{
-                        startValue: 10000,
-                        endValue: 35000
-                    }]
-                }
+                
             },
             data: [{
                 type: "column",
-                 yValueFormatString: "Megatoneladas de Co2: #,##0.00",
-                
-                dataPoints: [
+                showInLegend:true,
+                dataPoints: kg,
+            },{
+                type: "column",
+                showInLegend:true,
+                dataPoints: tpc,
+            },
+            {
+                type: "colum",
+                showInLegend:true,
+                dataPoints: temporal,
+            },
+        ]
+        });
+        chart.render();
+
+/*[
                     
 
                     
@@ -112,12 +95,7 @@
 
 
                     
-                ]
-            }]
-        });
-        chart.render();
-
-
+                ]*/
     
     }
     
