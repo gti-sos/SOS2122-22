@@ -38,6 +38,7 @@
 	import integration1 from "./CoalStats/integration1.svelte";
 	import apiPlaneta from "./CoalStats/apiPlaneta.svelte";
 	import apiLol from "./CoalStats/apiLol.svelte";
+	import apiValorant from "./CoalStats/apiValorant.svelte";
 	import apiTiempo from "./CoalStats/apiTiempo.svelte";
 	import apiAntonio from "./CoalStats/apiAntonio.svelte";
 	import apiMaria from "./CoalStats/apiMaria.svelte";
@@ -89,7 +90,8 @@
 		"/integration1" : integration1,
 		"/apiPlaneta" : apiPlaneta,
 		"/apiLol" : apiLol,
-		"/apiTiempo" : apiTiempo,
+		"/apiValorant" : apiValorant,
+		"/apiPelis" : apiTiempo,
 		"/apiAntonio" : apiAntonio,
 		"/apiMaria" : apiMaria,
 

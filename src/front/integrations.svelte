@@ -71,8 +71,14 @@
             <hr />
             <h6>Uso Api Externa4 (Calificaciones Pelis)</h6>
                 <ul>
-                    <a href="/#/apiTiempo"><li type="circle"> Gráfica chart.js</li></a>
+                    <a href="/#/apiPelis"><li type="circle"> Gráfica chart.js</li></a>
                     <a href="/api/v2/apiTiempo"><li type="circle"> Archivo Json</li></a>
+                </ul>
+            <hr />
+            <h6>Uso Api Externa5 (Valorant)</h6>
+                <ul>
+                    <a href="/#/apiValorant"><li type="circle"> Uso Textual</li></a>
+                    <a href="/api/v2/apiValorant"><li type="circle"> Archivo Json</li></a>
                 </ul>
             <hr />
             <h6>Uso Api Compañero SOS (Antonio G23)</h6>
