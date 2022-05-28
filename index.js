@@ -29,9 +29,9 @@ const co2_stats_APIV2 = require("./src/back/jesvencamAPI/v2/indexJesvencam.js");
 //Marcos ------------------------------------------------------------------------
 const trade_stats_API = require("./src/back/marsaamar1API/v1/index_marsaamar1.js");
 const trade_stats_APIV2 = require("./src/back/marsaamar1API/v2/index_marsaamar1_v2.js");
-const Covid_API = require("./src/back/marsaamar1API/v2/apiCOVID.js");
-const Criptos_API = require("./src/back/marsaamar1API/v2/apiCripto.js");
-const Anime_API = require("./src/back/marsaamar1API/v2/apiAnime.js");
+//const Covid_API = require("./src/back/marsaamar1API/v2/apiCOVID.js");
+//const Criptos_API = require("./src/back/marsaamar1API/v2/apiCripto.js");
+//const Anime_API = require("./src/back/marsaamar1API/v2/apiAnime.js");
 
 const Datastore = require('nedb');
 
@@ -55,9 +55,9 @@ tiempo_API.register(app);
 
 trade_stats_API.register(app,db_trade_stats_v1);
 trade_stats_APIV2.register(app,db_trade_stats);
-Covid_API.register(app);
-Criptos_API.register(app);
-Anime_API.register(app);
+//Covid_API.register(app);
+//Criptos_API.register(app);
+//Anime_API.register(app);
 
 
 
