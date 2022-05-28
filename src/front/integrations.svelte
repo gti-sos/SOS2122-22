@@ -81,12 +81,12 @@
                     <a href="/api/v2/apiValorant"><li type="circle"> Archivo Json</li></a>
                 </ul>
             <hr />
-            <h6>Uso Api Compañero SOS (Antonio G23)</h6>
+            <h6>Integracion Api Compañero SOS (Antonio G23)</h6>
                 <ul>
                     <a href="/#/apiAntonio">Api Tennis</a>
                 </ul>
             <hr />
-            <h6>Uso Api Compañero SOS (Maria G21)</h6>
+            <h6>Integracion Api Compañero SOS (Maria G21)</h6>
                 <ul>
                     <a href="/#/apiMaria">Api productions-vehicles</a>
                 </ul>

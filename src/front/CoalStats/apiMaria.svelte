@@ -1,66 +1,94 @@
 <script>
-    import { onMount } from "svelte";
-    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+    import {onMount} from 'svelte';    
+    import {Button} from 'sveltestrap';
+    const delay = ms => new Promise(res => setTimeout(res,ms));
     let stats = [];
+    let xLabel = [];
+
     let stats_country_date = [];
     let stats_veh_comm = [];
     let stats_veh_pass = [];
     let stats_veh_annprod = [];
-    async function getPEStats() {
-        console.log("Fetching stats....");
+    //CoalStats
+    let CoalStats = [];
+    let productions_stats = [];
+    let consumption_stats = [];
+    let exports_stats = []; 
+    async function getData(){
+        await fetch("api/v2/coal-stats/loadinitialdata");
         const res1 = await fetch(
             "https://sos2122-21.herokuapp.com/api/v1/productions-vehicles/loadinitialdata"
         );
-        if (res1.ok) {
-            const res = await fetch(
-                "https://sos2122-21.herokuapp.com/api/v1/productions-vehicles"
+        
+        const Coalstats = await fetch("api/v2/coal-stats/");
+        //proxy
+        const res = await fetch(
+                "http://sos2122-21.herokuapp.com/api/v1/productions-vehicles"
             );
-            if (res.ok) {
-                const data = await res.json();
-                stats = data;
-                console.log("Estadísticas recibidas: " + stats.length);
-                //inicializamos los arrays para mostrar los datos
-                stats.forEach((stat) => {
+        if (Coalstats.ok && res.ok){
+            
+            stats = await res.json();
+            CoalStats = await Coalstats.json();
+            
+            //Tennis
+            stats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+            stats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+            stats.forEach((stat) => {
                     stats_country_date.push(stat.country + "-" + stat.year);
                     stats_veh_comm.push(stat["veh_comm"]);
                     stats_veh_pass.push(stat["veh_pass"]);
                     stats_veh_annprod.push(stat["veh_annprod"]);
                 });
-                //esperamos para que se carrguen los datos
-                await delay(500);
-                loadGraph();
-            } else {
-                console.log("Error cargando los datos");
-            }
-        }
+            
+            CoalStats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+            CoalStats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+            CoalStats.forEach(element=>{
+                productions_stats.push(parseFloat(element.productions));
+                exports_stats.push(parseFloat(element.exports));
+                consumption_stats.push(parseFloat(element.consumption));
+            });
+            
+            stats.forEach(element =>{
+                xLabel.push(element.country+","+parseInt(element.year));
+            });
+            CoalStats.forEach(element =>{
+                xLabel.push(element.country+","+parseInt(element.year));
+            });
+            xLabel=new Set(xLabel);
+            xLabel=Array.from(xLabel);
+            xLabel.sort();
+            await delay(500);
+            loadGraph();
+        }   
     }
-    async function loadGraph() {
-        Highcharts.chart("container", {
+    async function loadGraph(){
+        Highcharts.chart('container', {
             chart: {
-                type: "bar",
+                type: 'bar'
             },
             title: {
-                text: "Estadísticas de producción de vehículos",
+                text: 'Gráficas conjuntas'
             },
             subtitle: {
-                text: "API Integrada 1",
+                text: 'Integracion Vehicles + CoalStats | Tipo: Bar'
             },
             yAxis: {
                 title: {
-                    text: "Valor",
-                },
+                    text: 'Valor'
+                }
             },
             xAxis: {
                 title: {
                     text: "País-Año",
                 },
-                categories: stats_country_date,
+               // categories: stats_country_date,
+               categories: xLabel,
             },
             legend: {
-                layout: "vertical",
-                align: "right",
-                verticalAlign: "middle",
-            },
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },            
             series: [
                 {
                     name: "Vehículos comerciales",
@@ -74,26 +102,39 @@
                     name: "Producción anual de vehículos",
                     data: stats_veh_annprod,
                 },
+                {
+                name: 'Producciones',
+                data: productions_stats
+                },
+                {
+                name: 'Exportaciones',
+                data: exports_stats,
+                },
+                {
+                name: 'Consumo',
+                data: consumption_stats
+                },
+                //NBA
             ],
             responsive: {
-                rules: [
-                    {
-                        condition: {
-                            maxWidth: 500,
-                        },
-                        chartOptions: {
-                            legend: {
-                                layout: "horizontal",
-                                align: "center",
-                                verticalAlign: "bottom",
-                            },
-                        },
+                rules: [{
+                    condition: {
+                        maxWidth: 500
                     },
-                ],
-            },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
         });
     }
-    onMount(getPEStats);
+   
+    onMount(getData);
+    
 </script>
 
 <svelte:head>
@@ -101,11 +142,16 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>    
 </svelte:head>
 
 <main>
     <figure class="highcharts-figure">
-        <div id="container" />
+        <div id="container"></div>
+        <p class="highcharts-description">
+            
+        </p>
     </figure>
+
+    <Button outline color="secondary" href="/#/integrations">Volver</Button>
 </main>

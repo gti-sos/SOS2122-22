@@ -1,99 +1,154 @@
 <script>
-    import { onMount } from "svelte";
-    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-    let stats = [];
-    let stats_country_date = [];
-    let most_grand_slam = [];
-    let masters_finals = [];
-    let olympic_gold_medals = [];
-
-    
-    async function getStats() {
-        console.log("Fetching stats....");
-        const res1 = await fetch(
-            "/remoteApiTennisLoadinitialdata"
-        );
-        if (res1.ok) {
-            //proxy
-            const res = await fetch(
-                "/remoteApiTennis"
-            );
-            if (res.ok) {
-                const data = await res.json();
-                stats = data;
-                console.log("Estadísticas recibidas: " + stats.length);
-                //inicializamos los arrays para mostrar los datos
-                stats.forEach((stat) => {
-                    stats_country_date.push(stat.country + "-" + stat.year);
-                    most_grand_slam.push(stat["most_grand_slam"]);
-                    masters_finals.push(stat["masters_finals"]);
-                    olympic_gold_medals.push(stat["olympic_gold_medals"]);
-                });
-                //esperamos para que se carrguen los datos
-                await delay(500);
-                loadGraph();
-            } else {
-                console.log("Error cargando los datos");
-            }
-        }
+    import {onMount} from 'svelte';    
+    import {Button} from 'sveltestrap';
+    const delay = ms => new Promise(res => setTimeout(res,ms));
+    let xLabel = [];
+    //TENNIS
+    let TennisStats = [];
+    let stats_mostgrandslams = [];
+    let stats_mastersfinals = [];
+    let stats_olympicgoldmedals = []; 
+    //CoalStats
+    let CoalStats = [];
+    let productions_stats = [];
+    let consumption_stats = [];
+    let exports_stats = []; 
+    async function getData(){
+        await fetch("api/v2/coal-stats/loadinitialdata");
+        //proxy
+        await fetch("/remoteApiTennisLoadInitialData");
+        
+        const Coalstats = await fetch("api/v2/coal-stats/");
+        //proxy
+        const tennis2 = await fetch("/remoteApiTennis");
+        if (Coalstats.ok && tennis2.ok){
+            
+            TennisStats = await tennis2.json();
+            CoalStats = await Coalstats.json();
+            
+            //Tennis
+            TennisStats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+            TennisStats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+            TennisStats.forEach(element=>{
+                stats_mostgrandslams.push(parseFloat(element.most_grand_slam));
+                stats_mastersfinals.push(parseFloat(element.masters_finals));
+                stats_olympicgoldmedals.push(parseFloat(element.olympic_gold_medals));
+            });
+            //Premier
+            CoalStats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
+            CoalStats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+            CoalStats.forEach(element=>{
+                productions_stats.push(parseFloat(element.productions));
+                exports_stats.push(parseFloat(element.exports));
+                consumption_stats.push(parseFloat(element.consumption));
+            });
+            
+            TennisStats.forEach(element =>{
+                xLabel.push(element.country+","+parseInt(element.year));
+            });
+            CoalStats.forEach(element =>{
+                xLabel.push(element.country+","+parseInt(element.year));
+            });
+            xLabel=new Set(xLabel);
+            xLabel=Array.from(xLabel);
+            xLabel.sort();
+            await delay(500);
+            loadGraph();
+        }   
     }
-    async function loadGraph() {
-        var ctx = document.getElementById("myChart").getContext("2d");
-        var trace_olympic_gold_medals = new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: stats_country_date,
-                datasets: [
-                    {
-                        label: "Grandslams ganados",
-                        backgroundColor: "rgb(0, 128, 128)",
-                        borderColor: "rgb(255, 255, 255)",
-                        data: most_grand_slam,
-                    },
-                    {
-                        label: "Masters ganados",
-                        backgroundColor: "rgb(255, 0 ,0)",
-                        borderColor: "rgb(255, 255, 255)",
-                        data: masters_finals,
-                    },
-                    {
-                        label: "Medallas olimpicas",
-                        backgroundColor: "rgb(255, 255, 0)",
-                        borderColor: "rgb(255, 255, 255)",
-                        data: olympic_gold_medals,
-                    },
-                ],
+    async function loadGraph(){
+        Highcharts.chart('container', {
+            chart: {
+                type: 'area'
             },
-            options: {},
+            title: {
+                text: 'Gráficas conjuntas'
+            },
+            subtitle: {
+                text: 'Integracion Tennis + CoalStats | Tipo: Area'
+            },
+            yAxis: {
+                title: {
+                    text: 'Valor'
+                }
+            },
+            xAxis: {
+                title: {
+                    text: "País-Año",
+                },
+               // categories: stats_country_date,
+               categories: xLabel,
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },            
+            series: [
+                //Tennis
+                {
+                name: 'Grand Slams Ganados',
+                data: stats_mostgrandslams
+                },
+                {
+                name: 'Medallas Olimpicas',
+                data: stats_olympicgoldmedals
+                },
+                {
+                name: 'Finales de masters',
+                data: stats_mastersfinals
+                },
+                //PremierLeauge
+                {
+                name: 'Producciones',
+                data: productions_stats
+                },
+                {
+                name: 'Exportaciones',
+                data: exports_stats,
+                },
+                {
+                name: 'Consumo',
+                data: consumption_stats
+                },
+                //NBA
+            ],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
         });
-       
-       
     }
-    onMount(getStats);
+   
+    onMount(getData);
+    
 </script>
 
 <svelte:head>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"
-        on:load={loadGraph}></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>    
 </svelte:head>
 
 <main>
-    <h2>Más torneos ganados</h2>
-    <h4>Biblioteca: Chart.js</h4>
-    <!--<button class="btn btn-primary hBack" type="button">Volver</button>
-    <a href="/#/tennis" class="btn btn-primary hBack" role="button" >Volver</a> -->
-    <a href="/#/integrations" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Volver</a>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            
+        </p>
+    </figure>
 
-    <canvas id="myChart" />
-
+    <Button outline color="secondary" href="/">Volver</Button>
 </main>
-
-<style>
-    h2 {
-        text-align: center;
-    }
-    h4 {
-        text-align: center;
-    }
-</style>
