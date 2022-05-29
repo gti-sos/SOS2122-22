@@ -20,8 +20,8 @@
             <div class="col-4">
                 <h6>Marcos Saa</h6>
                 <p><a href="/#/tradeStatsTable">Table of Trade Stats</a></p>
-                <p><a href="/">Página personal Marcos Saa</a></p>
-                <p><a href="/jesvencam">Video de Marcos Saa</a></p>
+                <p><a href="/marsaamar1">Página personal Marcos Saa</a></p>
+                <p><a href="https://youtu.be/04IrE1k2tek">Video de Marcos Saa</a></p>
 
             </div>
         </div>

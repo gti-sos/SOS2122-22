@@ -379,7 +379,10 @@ loading
 				<PaginationLink next href="#/tradeStatsTable" on:click={() => changePage(c_page + 1, c_offset + 10)}/>
 		  </PaginationItem>
 		</Pagination>
+
   </div>
+
+  
 
 {/await}
 
