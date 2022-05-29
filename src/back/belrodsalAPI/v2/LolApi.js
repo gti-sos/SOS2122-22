@@ -17,7 +17,7 @@ module.exports.register = (app) =>{
       };
       
       axios.request(options).then(function (response) {
-          console.log(response.data.mostPlayedChamps);
+          
           lol = response.data.mostPlayedChamps;
         }).catch(function (error) {
           console.error(error);

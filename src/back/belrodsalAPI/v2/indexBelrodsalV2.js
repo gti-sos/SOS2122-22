@@ -501,9 +501,13 @@ module.exports.register = (app,db) =>{
     
     function comprobar_body(req){
         return (req.body.country == null |
+                isNaN(req.body.year) |
                  req.body.year == null | 
                  req.body.productions == null | 
+                 isNaN(req.body.productions) |
                  req.body.exports == null | 
+                 isNaN(req.body.exports) |
+                 isNaN(req.body.consumption) |
                  req.body.consumption  == null);
     }
 

@@ -4,6 +4,7 @@
             <h1>SOS2122-22 INFO</h1>
             <p></p>
             <div class="col-4">
+                
             
             <h6>Jesus Vena</h6>
             <p><a href="/#/Co2StatsTable">Table of CO2 Stats</a></p>
@@ -13,6 +14,7 @@
             <div class="col-4">
                 <h6>Belén Rodriguez</h6>
                 <p><a href="/#/coalStatsTable">Table of Coal Stats</a></p>
+                <p><a href="https://youtu.be/sB-JIgaTuFg">Video Belén Rodríguez </a></p>
             </div>
 
             <div class="col-4">
@@ -30,6 +32,7 @@
         <li><a href="/#/analytics">GRAFICA GRUPAL2</a></li>
     
         <li><a href="/#/integrations">Integraciones</a></li>
+        <li><a href="/#/about">About</a></li>
         <br>
         <p>- <a href="/jesvencam">Jesús Vena Campos</a></p>
                     
