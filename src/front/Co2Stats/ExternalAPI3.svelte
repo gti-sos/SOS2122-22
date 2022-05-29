@@ -17,8 +17,6 @@
             apiData = json;
             guardaD(json);
             console.log("cargando el grafo con los datos nuevos"+apiData);
-            //loadGraph();
-
             const json2 = await res2.json();
             console.log("DATOS2"+JSON.stringify(json2.data));
             let data = json2.data;
@@ -27,8 +25,6 @@
 
             }
             console.log(apiData2)
-            
-
             await delay(1000);
             loadChart();
            

@@ -14,8 +14,6 @@
             apiData = json;
             guardaD(json);
             console.log("cargando el grafo con los datos nuevos"+apiData);
-            //loadGraph();
-
             await delay(1000);
             loadGraph();
            
@@ -26,7 +24,6 @@
             loadGraph();
         }
     }
-
     let tpc = [];
     let kg = [];
     let tot = [];
