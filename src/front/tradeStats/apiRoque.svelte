@@ -1,6 +1,7 @@
 <script>
     import * as c3 from "c3";
     import { onMount } from 'svelte';
+    import Button from 'sveltestrap/src/Button.svelte';
 
 
 
@@ -38,24 +39,6 @@
     async function loadGraph(){
         var chart = c3.generate({
 
-        /*data: {
-        
-        columns: [
-            ['data1', stats_public_expenditure],
-            ['data3', stats_PE_to_gdp]
-        ],
-        type: {
-            data1: 'area',
-            data3: 'area-spline'
-        }
-    },
-    axis: {
-        x: {
-            type: 'category',
-            categories: stats_country_date
-        }
-    } */           
-            
     data: {
         
         columns: [
@@ -88,6 +71,10 @@
         <p class="description">
            Grafic about public expenditure stats by country and year
         </p>
+        <Button id="btn" color="outline-dark" on:click={function (){
+            window.location.href = `/#/integrations/`
+               }}>Integrations
+        </Button>
     </figure>
     
 

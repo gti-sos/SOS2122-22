@@ -92,6 +92,66 @@
                 </ul>
             <hr />
         </div>
+
+        <div class="col-4">
+            <h5><a href="https://github.com/MarcoSaa01">Marcos Saa Martinez</a></h5>
+            <h6>Gráficas Trade-Stat API</h6>
+                    <ul>
+                        <a href="/#/tradeStatsGraph"><li type="square"> Gráfica Highcharts (Column)</li></a>
+                        <a href="/#/tradeStatsGraphC3"><li type="square"> Gráfica C3.js</li></a>
+                    </ul>
+            <hr />
+
+            <h6>Api SOS (Raúl G24)</h6>
+            <ul>
+                <a href="/#/GraphApiRaul"><li type="square">Gráfica Uso Cancer-Deaths-Stats</li></a>
+                <a href="/#/GraphApiRaulIntegrada"><li type="square">Gráfica Integración Cancer-Deaths-Stats y Trade-Stats</li></a>
+                <a href="/remoteApiRaul"><li type="square">Json (Proxy)</li></a>
+            </ul>
+            <hr />
+
+            <h6>Api SOS (Roque G27)</h6>
+                <ul>
+                    <a href="/#/GraphApiRoque"><li type="square">Gráfica Uso Public-Expenditure-Stats</li></a>
+                    <a href="/#/GraphApiRoqueIntegrada"><li type="square">Gráfica Integración Public-Expenditure-Stats y Trade-Stats</li></a>
+                </ul>
+            <hr />
+
+            <h6>Uso Api Externa 1 (Muertes Covid)</h6>
+                <ul>
+                    <a href="/#/apiExterna1"><li type="square"> Gráfica C3.js Tipo Pie</li></a>
+                    <a href="/api/v2/apiCovid"><li type="square">Json</li></a>
+                </ul>
+            <hr />
+
+            <h6>Uso Api Externa 2 (Precio Criptomonedas)</h6>
+                <ul>
+                    <a href="/#/apiExterna2"><li type="square"> Gráfica C3.js Tipo Donut</li></a>
+                    <a href="/api/v2/apiCriptos"><li type="square">Json</li></a>
+                </ul>
+            <hr />
+
+            <h6>Uso Api Externa 3 (Precio Acciones NSE)</h6>
+                <ul>
+                    <a href="/#/apiExterna3"><li type="square"> Gráfica Plotly.js Tipo Column</li></a>
+                    <a href="/api/v2/apiAcciones"><li type="square">Json</li></a>
+                </ul>
+            <hr />
+
+            <h6>Uso Api Externa 4 (Area paises de Europa)</h6>
+                <ul>
+                    <a href="/#/apiExterna4"><li type="square"> Gráfica Plotly.js Tipo Bar</li></a>
+                    <a href="/api/v2/apiArea"><li type="square">Json</li></a>
+                </ul>
+            <hr />
+
+            <h6>Uso Texto Api Externa 5 (Lista Animes)</h6>
+            <ul>
+                <a href="/#/apiExternaTexto"><li type="square"> Tabla animes</li></a>
+                <a href="/api/v2/apiAnime"><li type="square">Json</li></a>
+            </ul>
+
+        </div>
     </div>
 
 

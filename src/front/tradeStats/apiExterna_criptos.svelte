@@ -2,6 +2,7 @@
 <script>
     import * as c3 from "c3";
     import { onMount } from 'svelte';
+    import Button from 'sveltestrap/src/Button.svelte';
 
 
 
@@ -23,7 +24,7 @@
                 await delay(1500);
                 loadGraph();
         } else {
-                console.log("Error cargando los datos iniciales");
+                console.log("Error cargando los datos");
             }
     }
 
@@ -32,20 +33,6 @@
         var chart = c3.generate({
             
     data: {
-
-        /*data: {
-        
-        columns: [
-            [nombres[0], precios[0]],
-            [nombres[1], precios[1]],
-
-        ],
-        types: {
-            [nombres[1]]: 'area',
-            [nombres[0]]: 'area-spline'
-        }
-
-    },*/
         
         columns: [
             [nombres[0], precios[0]],
@@ -79,6 +66,14 @@
             Gráfica acerca del porcentaje de los precios de algunas criptomonedas conocidas.
         </p>
     </figure>
+    <Button id="btn" color="outline-dark" on:click={function (){
+        window.location.href = `/#/integrations/`
+           }}>Integrations
+    </Button>
+   <Button id="btn" color="outline-dark" on:click={function (){
+    window.location.href = `/api/v2/apiCriptos`
+       }}>JSON
+    </Button>
     
 
     

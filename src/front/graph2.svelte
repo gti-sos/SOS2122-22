@@ -247,13 +247,16 @@
 <main>        
     <br>
     <br>
-    <Button id='back' outline color="secondary" onclick="window.location.href='#/info'">Volver</Button>
         <div style="margin:auto;"> 
         <figure class="highcharts-figure">
             <div id="container"></div>
             <p class="highcharts-description">
               Grafico acerca de la produccion de CO2 por pais y año y los datos de producción, exportación y consumo del carbón.
             </p>
+            <Button id="btn" color="outline-dark" on:click={function (){
+                window.location.href = `/#/integrations/`
+                   }}>Integrations
+            </Button>
         </figure>  
     </main>
     

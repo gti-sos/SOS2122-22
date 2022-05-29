@@ -33,6 +33,8 @@ const trade_stats_APIV2 = require("./src/back/marsaamar1API/v2/index_marsaamar1_
 const Covid_API = require("./src/back/marsaamar1API/v2/ApiCOVID.js");
 const Criptos_API = require("./src/back/marsaamar1API/v2/ApiCripto.js");
 const Anime_API = require("./src/back/marsaamar1API/v2/ApiAnime.js");
+const Acciones_API = require("./src/back/marsaamar1API/v2/ApiAcciones.js");
+const Area_API = require("./src/back/marsaamar1API/v2/ApiArea.js");
 
 const Datastore = require('nedb');
 
@@ -64,6 +66,8 @@ trade_stats_APIV2.register(app,db_trade_stats);
 Covid_API.register(app);
 Criptos_API.register(app);
 Anime_API.register(app);
+Acciones_API.register(app);
+Area_API.register(app)
 
 
 
@@ -90,6 +94,7 @@ app.use(pathsRaul, function(req, res) {
 });
 
 
+app.use("/marsaamar1",express.static('./public/marsaamar1'));
 
 //Proxy Jesús Vena: 
 

@@ -17,6 +17,7 @@
         let resP;
 
         res1 = await fetch("/api/v2/co2-stats");
+
         resP = await fetch("/remoteApiEnergy");
 
         //res = await fetch("https://sos2122-10.herokuapp.com/api/v2/energy-consumptions");

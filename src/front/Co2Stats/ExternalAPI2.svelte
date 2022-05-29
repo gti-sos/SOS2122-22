@@ -12,8 +12,6 @@
             apiData = json;
             guardaD(json);
             console.log("cargando el grafo con los datos nuevos"+apiData);
-            //loadGraph();
-
             await delay(1000);
             loadChart();
            

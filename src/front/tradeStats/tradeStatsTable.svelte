@@ -351,6 +351,14 @@ loading
 				<td><Button outline color="danger" on:click={BorrarEntries}>
 					Borrar todo
 				</Button></td>
+				<td><Button color="outline-dark" on:click={function (){
+					window.location.href = `/#/tradeStatsGraph`
+				}}>Gráfica1
+				</Button></td>
+				<td><Button color="outline-dark" on:click={function (){
+					window.location.href = `/#/tradeStatsGraphC3`
+				}}>Gráfica2
+				</Button></td>
 			</tr>
 		</tbody>
 	</Table>
@@ -371,7 +379,10 @@ loading
 				<PaginationLink next href="#/tradeStatsTable" on:click={() => changePage(c_page + 1, c_offset + 10)}/>
 		  </PaginationItem>
 		</Pagination>
+
   </div>
+
+  
 
 {/await}
 

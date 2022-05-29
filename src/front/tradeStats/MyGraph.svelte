@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import Button from 'sveltestrap/src/Button.svelte';
 
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     let stats_country_date = [];
@@ -80,7 +81,12 @@
         <p class="highcharts-description" >
             Gráfica acerca de exportaciones, importaciones y balances comerciales de diferentes paises a lo largo de los últimos años.
         </p>
+        <Button id="btn" color="outline-dark" on:click={function (){
+            window.location.href = `/#/tradeStatsTable/`
+               }}>Trade-stats API
+       </Button>
     </figure>
+
 
 </main>
 

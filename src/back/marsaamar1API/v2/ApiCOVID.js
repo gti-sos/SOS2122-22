@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const axios = require('axios').default;
+var datasDeath;
 
 module.exports.register = (app) =>{
 

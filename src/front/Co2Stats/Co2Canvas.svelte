@@ -4,8 +4,6 @@
   
   let apiData = [];
   const delay = ms => new Promise(res => setTimeout(res, ms));
-
-
   async function getData(){
       const res = await fetch("/api/v2/co2-stats");
       if (res.ok){
