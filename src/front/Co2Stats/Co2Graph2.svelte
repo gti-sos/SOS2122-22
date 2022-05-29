@@ -7,7 +7,8 @@
     let co2_tpc = [];
     let co2_kg = [];
     async function loadGraph(){
-        const res = await fetch("/api/v2/co2-stats");
+        const res1 = await fetch("api/v2/co2-stats/loadInitialData");
+        const res = await fetch("api/v2/co2-stats");
         if(res.ok){
             datos = await res.json();
             console.log(datos);

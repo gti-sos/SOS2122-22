@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "445a8df4-01cc-49f2-a866-0f2f09fc3a18",
 		"name": "SOS2122-22-JesusVena",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19481636"
 	},
 	"item": [
 		{
@@ -59,10 +60,7 @@
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
-							"pm.test(\"Response is an Array\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(Array.isArray(jsonData)).to.eql(true);",
-							"});",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -114,7 +112,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{HEROKU}}/api/v2/co2-stats/spain/2020",
+					"raw": "{{HEROKU}}/api/v2/co2-stats/españa/2020",
 					"host": [
 						"{{HEROKU}}"
 					],
@@ -122,7 +120,7 @@
 						"api",
 						"v2",
 						"co2-stats",
-						"spain",
+						"españa",
 						"2020"
 					],
 					"query": [
@@ -188,7 +186,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{HEROKU}}/api/v2/co2-stats/mexico/2020",
+					"raw": "{{HEROKU}}/api/v2/co2-stats/chipre/2020",
 					"host": [
 						"{{HEROKU}}"
 					],
@@ -196,7 +194,7 @@
 						"api",
 						"v2",
 						"co2-stats",
-						"mexico",
+						"chipre",
 						"2020"
 					]
 				}
@@ -222,14 +220,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{HEROKU}}/api/v2/co2-stats2026",
+					"raw": "{{HEROKU}}/api/v2/co2-stats/2026",
 					"host": [
 						"{{HEROKU}}"
 					],
 					"path": [
 						"api",
 						"v2",
-						"co2-stats2026"
+						"co2-stats",
+						"2026"
 					]
 				}
 			},
@@ -289,6 +288,47 @@
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"country\": \"polonia\",\n\"year\": 2015,\n\"co2_tot\": 117.177,\n\"co2_kg\": 0.17,\n\"co2_tpc\": 4.17\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HEROKU}}/api/v2/co2-stats",
+					"host": [
+						"{{HEROKU}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"co2-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Polonia /co2-stats Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -512,7 +552,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"country\": \"spain\",\n\"year\": 2020 ,\n\"co2_tot\": 0.0 ,\n\"co2_kg\": 0,\n\"co2_tpc\": 0.0  \n}",
+					"raw": "{\n\"country\": \"españa\",\n\"year\": 2020 ,\n\"co2_tot\": 0.0 ,\n\"co2_kg\": 0,\n\"co2_tpc\": 0.0  \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -520,7 +560,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{HEROKU}}/api/v2/co2-stats/spain/2020",
+					"raw": "{{HEROKU}}/api/v2/co2-stats/españa/2020",
 					"host": [
 						"{{HEROKU}}"
 					],
@@ -528,7 +568,7 @@
 						"api",
 						"v2",
 						"co2-stats",
-						"spain",
+						"españa",
 						"2020"
 					],
 					"query": [

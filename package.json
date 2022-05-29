@@ -3,7 +3,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "node index.js",
-    "test-c02-stats": "npx newman run ./public/tests/jesvencam/testjesvencam.json -e ./public/tests/jesvencam/enviroment.json",
+    "test-c02-stats": "npx newman run ./public/tests/jesvencam/testFinal.json -e ./public/tests/jesvencam/enviroment.json",
     "test-coal-stats": "npx newman run ./public/tests/belrodsal/backend.json -e ./public/tests/belrodsal/env/heroku.json",
     "test-trade-stats": "npx newman run ./public/tests/marsaamar1/tests.json -e ./public/tests/marsaamar1/env.json",
     "test": "npm run test-c02-stats && npm run test-coal-stats  && npm run test-coal-stats"
