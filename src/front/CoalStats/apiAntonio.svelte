@@ -25,18 +25,14 @@
             
             TennisStats = await tennis2.json();
             CoalStats = await Coalstats.json();
-            
-            //Tennis
-            TennisStats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
-            TennisStats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+     
             TennisStats.forEach(element=>{
                 stats_mostgrandslams.push(parseFloat(element.most_grand_slam));
                 stats_mastersfinals.push(parseFloat(element.masters_finals));
                 stats_olympicgoldmedals.push(parseFloat(element.olympic_gold_medals));
             });
-            //Premier
-            CoalStats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
-            CoalStats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+
+    
             CoalStats.forEach(element=>{
                 productions_stats.push(parseFloat(element.productions));
                 exports_stats.push(parseFloat(element.exports));
@@ -49,9 +45,9 @@
             CoalStats.forEach(element =>{
                 xLabel.push(element.country+","+parseInt(element.year));
             });
+
             xLabel=new Set(xLabel);
             xLabel=Array.from(xLabel);
-            xLabel.sort();
             await delay(500);
             loadGraph();
         }   
@@ -98,7 +94,7 @@
                 name: 'Finales de masters',
                 data: stats_mastersfinals
                 },
-                //PremierLeauge
+                
                 {
                 name: 'Producciones',
                 data: productions_stats
@@ -111,7 +107,7 @@
                 name: 'Consumo',
                 data: consumption_stats
                 },
-                //NBA
+               
             ],
             responsive: {
                 rules: [{

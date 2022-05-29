@@ -30,18 +30,14 @@
             stats = await res.json();
             CoalStats = await Coalstats.json();
             
-            //Tennis
-            stats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
-            stats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+
             stats.forEach((stat) => {
                     stats_country_date.push(stat.country + "-" + stat.year);
                     stats_veh_comm.push(stat["veh_comm"]);
                     stats_veh_pass.push(stat["veh_pass"]);
                     stats_veh_annprod.push(stat["veh_annprod"]);
                 });
-            
-            CoalStats.sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0));
-            CoalStats.sort((a,b) => (a.country > b.country) ? 1 : ((b.country > a.country) ? -1 : 0));
+      
             CoalStats.forEach(element=>{
                 productions_stats.push(parseFloat(element.productions));
                 exports_stats.push(parseFloat(element.exports));
@@ -56,7 +52,7 @@
             });
             xLabel=new Set(xLabel);
             xLabel=Array.from(xLabel);
-            xLabel.sort();
+           
             await delay(500);
             loadGraph();
         }   

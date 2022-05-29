@@ -3,6 +3,8 @@
 	import Table from 'sveltestrap/src/Table.svelte';
 	import Button from 'sveltestrap/src/Button.svelte';
 	import { Alert } from 'sveltestrap';
+
+
     const delay = ms => new Promise(res => setTimeout(res, ms));
 	var BASE_API_PATH = "/api/v2/coal-stats";
     let entries = [];
@@ -31,6 +33,7 @@
     onMount(getEntries);
     //GET
     async function getEntries(parametros="",b=false) {
+        
 		console.log("Fetching data....");
 		const res = await fetch("/api/v2/coal-stats"+parametros);
 						

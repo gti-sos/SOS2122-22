@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const BASI_API_COALSTATS = "/api/v2/coal-stats";
 
 
+console.log("C");
 
 var coalStats = [
     {		
@@ -87,6 +88,8 @@ module.exports.register = (app,db) =>{
     */
     
     // Cargar datos iniciales
+    
+    console.log("E");
     
     app.get(BASI_API_COALSTATS+"/loadInitialData",(req, res)=>{
 
