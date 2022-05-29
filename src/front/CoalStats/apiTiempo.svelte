@@ -75,7 +75,7 @@
 </svelte:head>
 
 <main>
-    <h2>Datos de uno de los mejores jugadores de Lol (MagiFelix5)<h5>(campeones jugados)</h5></h2>
+    <h2>Calificaciones Pelis</h2>
      <div></div>
     <h4>Biblioteca: Chart.js</h4>
     <!--<button class="btn btn-primary hBack" type="button">Volver</button>
