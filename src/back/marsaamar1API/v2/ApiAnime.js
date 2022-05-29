@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const axios = require('axios').default;
+var animes;
 
 module.exports.register = (app) =>{
 

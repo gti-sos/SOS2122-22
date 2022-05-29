@@ -1,6 +1,7 @@
 <script>
     import * as c3 from "c3";
     import { onMount } from 'svelte';
+    import Button from 'sveltestrap/src/Button.svelte';
 
 
 
@@ -70,6 +71,14 @@
         <p class="description">
             Grafica de muertes producidad por cancer
         </p>
+        <Button id="btn" color="outline-dark" on:click={function (){
+            window.location.href = `/#/integrations/`
+               }}>Integrations
+        </Button>
+       <Button id="btn" color="outline-dark" on:click={function (){
+        window.location.href = `/remoteApiRaul`
+           }}>JSON (Proxy)
+        </Button>
     </figure>
     
 

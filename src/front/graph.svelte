@@ -234,8 +234,12 @@
             <code>series-label</code> module, which adds a label to each line for
             enhanced readability.
         </p>
+        <Button id="btn" color="outline-dark" on:click={function (){
+            window.location.href = `/#/integrations/`
+               }}>Integrations
+        </Button>
     </figure>
-    <Button outline color="secondary" href="/">Volver</Button>
+    
 
 </main>
 
