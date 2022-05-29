@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(cors());    //Debe de estar antes de registrar alguna ruta. 
 
-console.log("A");
+
 //Belen ------------------------------------------------------------------------
 const coal_stats_API = require("./src/back/belrodsalAPI/v1/indexBelrodsal.js");
 const coal_stats_APIV2 = require("./src/back/belrodsalAPI/v2/indexBelrodsalV2.js");
@@ -39,7 +39,7 @@ const Area_API = require("./src/back/marsaamar1API/v2/ApiArea.js");
 const Datastore = require('nedb');
 
 
-console.log("B");
+
 
 
 db_co2_stats = new Datastore();
